@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FoundrySuite</title>
+    
+    <!-- Security Meta Tags -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()">
+    <link rel="canonical" href="https://foundrysuite.com/login.html">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="images/logo.png">
+    <script>
+        // Set theme immediately to prevent white flash
+        // Default to light mode (don't respect system preference)
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const theme = savedTheme || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Login Page Specific Styles */
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: stretch;
+            background: var(--bg-primary);
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .login-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Left Side - Brand Showcase */
+        .login-brand-panel {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 3rem 4rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+            overflow: hidden;
+        }
+
+        /* Animated Background Pattern */
+        .login-brand-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Geometric Shapes */
+        .geometric-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 10%;
+            background: linear-gradient(135deg, #3B82F6, #F59E0B);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 15%;
+            right: 15%;
+            background: linear-gradient(135deg, #F59E0B, #3B82F6);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            right: 20%;
+            background: #3B82F6;
+            transform: rotate(45deg);
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Animated Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: particle-float 20s infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Video Background */
+        .login-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        .login-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 250, 252, 0.4) 100%);
+            z-index: 1;
+        }
+
+        [data-theme="dark"] .login-video-overlay {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.4) 100%);
+        }
+
+        /* Video Mask Overlays - Hide navigation and buttons in video */
+        .login-video-mask-top,
+        .login-video-mask-bottom {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .login-video-mask-top {
+            top: 0;
+            height: 15%;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%);
+        }
+
+        .login-video-mask-bottom {
+            bottom: 0;
+            height: 20%;
+            background: linear-gradient(0deg, var(--bg-primary) 0%, transparent 100%);
+        }
+
+        [data-theme="dark"] .login-video-mask-top,
+        [data-theme="dark"] .login-video-mask-bottom {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%);
+        }
+
+        [data-theme="dark"] .login-video-mask-bottom {
+            background: linear-gradient(0deg, var(--bg-primary) 0%, transparent 100%);
+        }
+
+        /* Christmas Image */
+        .login-christmas-image {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 200px;
+            height: auto;
+            z-index: 3;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            display: block;
+        }
+
+        .login-christmas-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: block;
+            object-fit: contain;
+        }
+
+        .login-christmas-image:hover {
+            opacity: 1;
+            transform: scale(1.05);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .login-christmas-image {
+                width: 150px;
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-christmas-image {
+                width: 120px;
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+
+        .brand-content {
+            position: relative;
+            z-index: 2;
+            max-width: 500px;
+        }
+
+        .brand-logo-large {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .brand-logo-large img {
+            height: 60px;
+            width: auto;
+            background: transparent;
+        }
+
+        .brand-logo-large-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .brand-tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+            line-height: 1.4;
+        }
+
+        .brand-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2.5rem 0;
+        }
+
+        .brand-features li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .brand-features li::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #3B82F6, #F59E0B);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+
+        .brand-trust {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .trust-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .trust-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Product Icons */
+        .product-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .product-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        /* Right Side - Login Form */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .login-header {
+            text-align: left;
+            margin-bottom: 1rem;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .login-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            background: transparent;
+        }
+
+        .login-logo img {
+            height: 40px;
+            width: auto;
+            background: transparent;
+        }
+
+        .login-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.375rem;
+        }
+
+        .login-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .login-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .form-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 0.9375rem;
+            font-family: inherit;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+            background: var(--bg-primary);
+        }
+
+        [data-theme="dark"] .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--primary-color);
+        }
+
+        .checkbox-wrapper label {
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .forgot-password:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            margin-top: 0.5rem;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .customer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .customer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        .customer-logo-placeholder {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+            align-self: center;
+        }
+
+        .login-footer p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin: 0.25rem 0;
+        }
+
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .theme-toggle-login {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle-login:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .theme-toggle-login:hover .theme-icon {
+            color: white;
+        }
+
+        @media (max-width: 1024px) {
+            .login-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .login-brand-panel {
+                padding: 2rem;
+                min-height: auto;
+            }
+
+            .brand-logo-large-text {
+                font-size: 2rem;
+            }
+
+            .brand-tagline {
+                font-size: 1.25rem;
+            }
+
+            .geometric-shape {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-card {
+                padding: 1.5rem;
+            }
+
+            .login-title {
+                font-size: 1.5rem;
+            }
+
+            .theme-toggle-login {
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .brand-logo-large {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .brand-logo-large-text {
+                font-size: 1.75rem;
+            }
+
+            .brand-tagline {
+                font-size: 1.125rem;
+            }
+
+            .brand-features li {
+                font-size: 0.9375rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle-login" id="themeToggle" aria-label="Toggle theme">
+        <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <div class="login-wrapper">
+        <!-- Left Side - Brand Showcase -->
+        <div class="login-brand-panel">
+            <!-- Video Background -->
+            <video class="login-video-bg" autoplay loop muted playsinline preload="auto" webkit-playsinline>
+                <source src="videos/hero.background.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="login-video-overlay"></div>
+            <!-- Video Masks to hide navigation and buttons -->
+            <div class="login-video-mask-top"></div>
+            <div class="login-video-mask-bottom"></div>
+            
+            <!-- Christmas-New Year Image -->
+            <div class="login-christmas-image">
+                <img src="images/seasons.png" alt="Christmas & New Year Greetings from FoundrySuite" loading="eager" fetchpriority="high" onerror="this.style.display='none';">
+            </div>
+            
+            <!-- Geometric Shapes -->
+            <div class="geometric-shape shape-1"></div>
+            <div class="geometric-shape shape-2"></div>
+            <div class="geometric-shape shape-3"></div>
+            
+            <!-- Animated Particles -->
+            <div class="particles" id="particles"></div>
+
+            <div class="brand-content">
+                <div class="brand-logo-large">
+                    <img src="images/logo.png" alt="FoundrySuite Logo">
+                    <span class="brand-logo-large-text">
+                        <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span>
+                    </span>
+                </div>
+
+                <h2 class="brand-tagline">Your Business. Your Modules. One Platform.</h2>
+
+                <ul class="brand-features">
+                    <li>Integrated modular solutions that scale with your business</li>
+                    <li>Enterprise-grade security and data protection</li>
+                    <li>Unified platform for all your business operations</li>
+                    <li>24/7 support and continuous improvements</li>
+                </ul>
+
+                <div class="brand-trust">
+                    <div class="trust-item">
+                        <div class="trust-value">1K+</div>
+                        <div class="trust-label">Businesses</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-value">99.99%</div>
+                        <div class="trust-label">Uptime</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-value">24/7</div>
+                        <div class="trust-label">Support</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-value">5+</div>
+                        <div class="trust-label">Countries</div>
+                    </div>
+                </div>
+
+                <div class="product-icons">
+                    <div class="product-icon">📊</div>
+                    <div class="product-icon">🔒</div>
+                    <div class="product-icon">⚡</div>
+                    <div class="product-icon">
+                        <img src="images/logo.png" alt="FoundrySuite Logo" style="width: 24px; height: 24px; object-fit: contain;">
+                    </div>
+                    <div class="product-icon">📱</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="login-container">
+            <div class="customer-logo-container">
+                <div class="customer-logo">
+                    <span class="customer-logo-placeholder">Customer Logo</span>
+                </div>
+            </div>
+            <div class="login-header">
+                <h1 class="login-title">Log in to your account</h1>
+                <p class="login-subtitle">Enter your credentials to access your workspace</p>
+            </div>
+
+            <div class="login-card">
+            <form class="login-form" id="loginForm">
+                <div class="form-field">
+                    <label for="email" class="form-label">Email or Username</label>
+                    <input 
+                        type="text" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Enter your email or username"
+                        required
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="password" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input" 
+                        placeholder="Enter your password"
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <div class="form-options">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-button">Log In</button>
+            </form>
+        </div>
+
+            <div class="login-footer">
+                <p>Don't have an account? <a href="#contact">Contact your administrator</a></p>
+                <p><a href="index.html">← Back to home</a></p>
+                <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.8125rem;">&copy; <span id="copyright-year">2025</span> <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span>. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Login form handling
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const remember = document.getElementById('remember').checked;
+                
+                // Here you would typically send the data to a server
+                // For now, we'll just show a message
+                console.log('Login attempt:', { email, remember });
+                alert('Login functionality will be connected to your authentication system.');
+            });
+        }
+
+        // Animated Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+
+            const particleCount = 20;
+            const colors = ['#3B82F6', '#F59E0B']; // Tech Blue and Amber
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles on load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                removeSeasonalContent();
+                createParticles();
+            });
+        } else {
+            removeSeasonalContent();
+            createParticles();
+        }
+    </script>
+</body>
+</html>
+

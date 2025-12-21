@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FoundrySuite - Your complete suite of modular tools to streamline operations and accelerate growth. Industry-focused solutions built on Foundry products.">
+    <title>FoundrySuite - Your Complete Business Solution</title>
+    
+    <!-- Security Meta Tags -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://formspree.io; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=()">
+    <link rel="canonical" href="https://foundrysuite.com/">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="images/logo.png">
+    <script>
+        // Set theme immediately to prevent white flash
+        // Default to light mode (don't respect system preference)
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const theme = savedTheme || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#home" class="skip-to-content">Skip to main content</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#home" class="logo">
+                    <img src="images/logo.png" alt="FoundrySuite Logo" class="logo-img" fetchpriority="high">
+                    <span class="logo-text"><span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span></span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#products" class="nav-link">Products</a></li>
+                    <li><a href="#solutions" class="nav-link">Industries</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="login.html" class="nav-link nav-login">Login</a></li>
+                    <li><a href="#contact" class="nav-link nav-cta">Book a Demo</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="theme-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <video class="hero-video-bg" autoplay loop muted playsinline preload="auto">
+            <source src="videos/hero.background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-video-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Empower Your Business with <span class="gradient-text"><span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span></span>
+                </h1>
+                <p class="hero-subtitle">The complete suite of modular tools to streamline operations and accelerate growth.</p>
+                <p class="hero-tagline">Your business. Your modules. One platform.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                    <a href="#products" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-devices-wrapper">
+                    <div class="hero-desktop-container">
+                        <div class="solution-slideshow">
+                            <div class="slideshow-container">
+                                <!-- Slide 1: Christmas & New Year -->
+                                <div class="solution-slide active" data-solution="christmas">
+                                    <img src="images/seasons.png" alt="Christmas & New Year Greetings from FoundrySuite" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="solution-slide-placeholder" style="display: none;">
+                                        <div class="placeholder-content">
+                                            <h3>Season's Greetings</h3>
+                                            <p>Merry Christmas & Happy New Year from FoundrySuite</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Slide 2: Default Dashboard -->
+                                <div class="solution-slide" data-solution="dashboard">
+                                    <img src="images/BID-hd.svg" alt="FoundrySuite Business Intelligence Dashboard" class="solution-slide-img" loading="lazy">
+                                </div>
+                                
+                                <!-- Slide 3: Foundry Build - Construction -->
+                                <div class="solution-slide" data-solution="build">
+                                    <img src="images/Foundry-Build.png" alt="Foundry Build - The Integrated ERP for Civil & Commercial Construction" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="solution-slide-placeholder" style="display: none;">
+                                        <div class="placeholder-content">
+                                            <h3>Foundry Build</h3>
+                                            <p>The Integrated ERP for Civil & Commercial Construction</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Slide 4: Foundry Campus - Education -->
+                                <div class="solution-slide" data-solution="campus">
+                                    <img src="images/Foundry-Campus.png" alt="Foundry Campus - Education & Institutions ERP" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="solution-slide-placeholder" style="display: none;">
+                                        <div class="placeholder-content">
+                                            <h3>Foundry Campus</h3>
+                                            <p>Education & Institutions ERP</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Slide 5: Foundry Health - Healthcare -->
+                                <div class="solution-slide" data-solution="health">
+                                    <img src="images/Foundry-Health.png" alt="Foundry Health - Unified ERP Platform for Healthcare & Life Sciences Enterprises" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="solution-slide-placeholder" style="display: none;">
+                                        <div class="placeholder-content">
+                                            <h3>Foundry Health</h3>
+                                            <p>Unified ERP Platform for Healthcare & Life Sciences Enterprises</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Slide 6: Foundry IT - IT Services -->
+                                <div class="solution-slide" data-solution="it">
+                                    <img src="images/Foundry-IT.png" alt="Foundry IT - Unified ERP Platform for IT & Digital Services Enterprises" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="solution-slide-placeholder" style="display: none;">
+                                        <div class="placeholder-content">
+                                            <h3>Foundry IT</h3>
+                                            <p>Unified ERP Platform for IT & Digital Services Enterprises</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Slide 7: Foundry Agri - Agriculture -->
+                                <div class="solution-slide" data-solution="agri">
+                                    <img src="images/Foundry-Agri.png" alt="Foundry Agri - Agriculture & Agri-Projects ERP" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="solution-slide-placeholder" style="display: none;">
+                                        <div class="placeholder-content">
+                                            <h3>Foundry Agri</h3>
+                                            <p>Agriculture & Agri-Projects ERP</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slideshow Navigation -->
+                            <div class="slideshow-nav">
+                                <button class="slide-nav-btn prev-btn" aria-label="Previous slide">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                    </svg>
+                                </button>
+                                <div class="slide-indicators">
+                                    <button class="slide-indicator active" data-slide="0" aria-label="Go to slide 1"></button>
+                                    <button class="slide-indicator" data-slide="1" aria-label="Go to slide 2"></button>
+                                    <button class="slide-indicator" data-slide="2" aria-label="Go to slide 3"></button>
+                                    <button class="slide-indicator" data-slide="3" aria-label="Go to slide 4"></button>
+                                    <button class="slide-indicator" data-slide="4" aria-label="Go to slide 5"></button>
+                                    <button class="slide-indicator" data-slide="5" aria-label="Go to slide 6"></button>
+                                    <button class="slide-indicator" data-slide="6" aria-label="Go to slide 7"></button>
+                                </div>
+                                <button class="slide-nav-btn next-btn" aria-label="Next slide">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-mobile-container">
+                        <div class="mobile-mockup">
+                            <div class="mobile-screen">
+                                <div class="mobile-header">
+                                    <div class="mobile-status-bar">
+                                        <span>9:41</span>
+                                        <div class="mobile-signal-icons">
+                                            <span>📶</span>
+                                            <span>📶</span>
+                                            <span>🔋</span>
+                                        </div>
+                                    </div>
+                                    <div class="mobile-nav">
+                                        <span class="mobile-logo-small"><span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span></span>
+                                        <span class="mobile-menu">☰</span>
+                                    </div>
+                                </div>
+                                <div class="mobile-content">
+                                    <!-- Screen 1: Analytics Dashboard -->
+                                    <div class="mobile-screen-view active" data-screen="0">
+                                        <div class="mobile-kpi-card mobile-performance-card">
+                                            <div class="mobile-kpi-title">Monthly Performance</div>
+                                            <div class="mobile-performance-chart">
+                                                <div class="mobile-performance-bars">
+                                                    <div class="mobile-performance-bar" style="height: 65%">
+                                                        <span class="mobile-bar-value">Q1</span>
+                                                    </div>
+                                                    <div class="mobile-performance-bar" style="height: 75%">
+                                                        <span class="mobile-bar-value">Q2</span>
+                                                    </div>
+                                                    <div class="mobile-performance-bar" style="height: 85%">
+                                                        <span class="mobile-bar-value">Q3</span>
+                                                    </div>
+                                                    <div class="mobile-performance-bar mobile-bar-highlight" style="height: 95%">
+                                                        <span class="mobile-bar-value">Q4</span>
+                                                    </div>
+                                                    <div class="mobile-performance-bar" style="height: 70%">
+                                                        <span class="mobile-bar-value">YTD</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mobile-section">
+                                            <div class="mobile-section-title">Revenue Trends</div>
+                                            <div class="mobile-line-chart">
+                                                <svg viewBox="0 0 100 50" class="mobile-chart-svg">
+                                                    <polyline points="5,40 15,35 25,30 35,25 45,20 55,18 65,15 75,12 85,10 95,8" 
+                                                             fill="none" stroke="var(--primary-color)" stroke-width="2"/>
+                                                    <polyline points="5,45 15,40 25,38 35,35 45,32 55,30 65,28 75,25 85,22 95,20" 
+                                                             fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="2,2"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="mobile-section">
+                                            <div class="mobile-section-title">Sales Pipeline</div>
+                                            <div class="mobile-pipeline">
+                                                <div class="mobile-pipeline-label">
+                                                    <span>68%</span>
+                                                    <span>Target: 75%</span>
+                                                </div>
+                                                <div class="mobile-pipeline-bar">
+                                                    <div class="mobile-pipeline-fill" style="width: 68%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Screen 2: Projects View -->
+                                    <div class="mobile-screen-view" data-screen="1">
+                                        <div class="mobile-kpi-card">
+                                            <div class="mobile-kpi-title">Active Projects</div>
+                                            <div class="mobile-kpi-value" style="font-size: 1.5rem; margin-top: 0.5rem;">24</div>
+                                            <div style="font-size: 0.4375rem; color: var(--text-secondary); margin-top: 0.25rem;">+12% this month</div>
+                                        </div>
+                                        <div class="mobile-section">
+                                            <div class="mobile-section-title">Project Status</div>
+                                            <div class="mobile-project-list">
+                                                <div class="mobile-project-item">
+                                                    <div class="mobile-project-name">Project Alpha</div>
+                                                    <div class="mobile-project-progress">
+                                                        <div class="mobile-project-progress-bar" style="width: 75%"></div>
+                                                    </div>
+                                                    <div class="mobile-project-meta">75% Complete</div>
+                                                </div>
+                                                <div class="mobile-project-item">
+                                                    <div class="mobile-project-name">Project Beta</div>
+                                                    <div class="mobile-project-progress">
+                                                        <div class="mobile-project-progress-bar" style="width: 45%"></div>
+                                                    </div>
+                                                    <div class="mobile-project-meta">45% Complete</div>
+                                                </div>
+                                                <div class="mobile-project-item">
+                                                    <div class="mobile-project-name">Project Gamma</div>
+                                                    <div class="mobile-project-progress">
+                                                        <div class="mobile-project-progress-bar" style="width: 90%"></div>
+                                                    </div>
+                                                    <div class="mobile-project-meta">90% Complete</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mobile-section">
+                                            <div class="mobile-section-title">Tasks Today</div>
+                                            <div class="mobile-task-count">8 Tasks</div>
+                                            <div style="font-size: 0.4375rem; color: var(--text-secondary); margin-top: 0.25rem;">3 High Priority</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Screen 3: CRM View -->
+                                    <div class="mobile-screen-view" data-screen="2">
+                                        <div class="mobile-kpi-card">
+                                            <div class="mobile-kpi-title">Customers</div>
+                                            <div class="mobile-kpi-value" style="font-size: 1.5rem; margin-top: 0.5rem;">1,247</div>
+                                            <div style="font-size: 0.4375rem; color: var(--text-secondary); margin-top: 0.25rem;">+23 new this week</div>
+                                        </div>
+                                        <div class="mobile-section">
+                                            <div class="mobile-section-title">Recent Activities</div>
+                                            <div class="mobile-activity-list">
+                                                <div class="mobile-activity-item">
+                                                    <div class="mobile-activity-icon">📞</div>
+                                                    <div class="mobile-activity-content">
+                                                        <div class="mobile-activity-title">Call with Acme Corp</div>
+                                                        <div class="mobile-activity-time">2 hours ago</div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobile-activity-item">
+                                                    <div class="mobile-activity-icon">📧</div>
+                                                    <div class="mobile-activity-content">
+                                                        <div class="mobile-activity-title">Quote sent to TechCo</div>
+                                                        <div class="mobile-activity-time">5 hours ago</div>
+                                                    </div>
+                                                </div>
+                                                <div class="mobile-activity-item">
+                                                    <div class="mobile-activity-icon">✅</div>
+                                                    <div class="mobile-activity-content">
+                                                        <div class="mobile-activity-title">Deal closed: $45K</div>
+                                                        <div class="mobile-activity-time">Yesterday</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mobile-section">
+                                            <div class="mobile-section-title">Conversion Rate</div>
+                                            <div class="mobile-conversion-rate">32.5%</div>
+                                            <div style="font-size: 0.4375rem; color: var(--text-secondary); margin-top: 0.25rem;">↑ 5.2% from last month</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Products</h2>
+                <p class="section-subtitle">Comprehensive modules designed to power your business. Modular solutions that work independently or seamlessly together on one unified platform. Use what you need today. Add more as your business grows.</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card product-card-platform">
+                    <div class="platform-badge">Core Platform</div>
+                    <div class="product-icon product-icon-platform">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry Platform</h3>
+                        <p class="product-description">IAM, workflows, integrations, and enterprise-grade security. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry CRM</h3>
+                        <p class="product-description">Sales, marketing, and customer lifecycle management. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry Projects</h3>
+                        <p class="product-description">Project planning, delivery, cost control, and milestones across industries. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry Work Management</h3>
+                        <p class="product-description">Tasks, approvals, alerts, and structured job flows. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry HCM</h3>
+                        <p class="product-description">People, contractors, attendance, payroll, and workforce compliance. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry Finance & Accounting</h3>
+                        <p class="product-description">General ledger, billing, receivables, payables, and financial control. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry Supply Chain & Assets</h3>
+                        <p class="product-description">Procurement, inventory, equipment, and asset lifecycle management. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry DMS</h3>
+                        <p class="product-description">Documents & Drawings management with version control & approvals. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry Quality & Compliance</h3>
+                        <p class="product-description">Quality inspections, standards, audits, and compliance workflows. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry HSE</h3>
+                        <p class="product-description">Health, Safety & Environment management for risk-driven industries. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry IT Service Management</h3>
+                        <p class="product-description">IT and enterprise service management for internal teams. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Foundry Analytics</h3>
+                        <p class="product-description">Dashboards, insights, and data-driven decision support. <a href="#" class="product-link">Learn More<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Industries</h2>
+                <p class="section-subtitle">Industry-specific solutions and cross-industry packs built on the Foundry platform.</p>
+            </div>
+            
+            <div class="solutions-subsections-wrapper">
+                <!-- Section 1: Industry Solutions -->
+                <div class="solution-subsection">
+                <h3 class="subsection-title">Industry Solutions</h3>
+                <p class="subsection-subtitle">Industry-focused solutions built on the Foundry platform.</p>
+                <div class="solutions-grid">
+                    <div class="solution-card solution-card-build">
+                        <div class="solution-icon solution-icon-build">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Construction crane -->
+                                <line x1="12" y1="2" x2="12" y2="8"></line>
+                                <line x1="8" y1="8" x2="16" y2="8"></line>
+                                <line x1="10" y1="8" x2="10" y2="14"></line>
+                                <line x1="14" y1="8" x2="14" y2="14"></line>
+                                <!-- Building -->
+                                <rect x="4" y="14" width="4" height="8"></rect>
+                                <rect x="16" y="10" width="4" height="12"></rect>
+                                <!-- Road -->
+                                <line x1="2" y1="22" x2="22" y2="22" stroke-width="3"></line>
+                                <line x1="2" y1="22" x2="22" y2="22" stroke-dasharray="2,2" stroke-width="1"></line>
+                            </svg>
+                        </div>
+                        <div class="solution-content">
+                            <h3 class="solution-title">Foundry Build</h3>
+                            <p class="solution-description">EPC & Construction Enterprises</p>
+                        </div>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-icon solution-icon-campus">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                <path d="M12 22v-4"></path>
+                                <path d="M12 18l-3-2"></path>
+                            </svg>
+                        </div>
+                        <div class="solution-content">
+                            <h3 class="solution-title">Foundry Campus</h3>
+                            <p class="solution-description">Education Enterprises & Institutions</p>
+                        </div>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <div class="solution-content">
+                            <h3 class="solution-title">Foundry IT</h3>
+                            <p class="solution-description">IT & Digital Services Enterprises</p>
+                        </div>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                        </div>
+                        <div class="solution-content">
+                            <h3 class="solution-title">Foundry Health</h3>
+                            <p class="solution-description">Healthcare & Life Sciences Enterprises</p>
+                        </div>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
+                                <path d="M12 6v6l4 2"></path>
+                                <path d="M8 10c0-1.5 1.5-2 2.5-1.5"></path>
+                                <path d="M16 10c0-1.5-1.5-2-2.5-1.5"></path>
+                                <path d="M9 13c1 1.5 3 1.5 4 0"></path>
+                                <path d="M10 8c0-1 1-1 2 0"></path>
+                                <path d="M14 8c0-1-1-1-2 0"></path>
+                                <path d="M12 4v2"></path>
+                                <path d="M12 18v2"></path>
+                            </svg>
+                        </div>
+                        <div class="solution-content">
+                            <h3 class="solution-title">Foundry Agri</h3>
+                            <p class="solution-description">Agriculture & Agri-Business Enterprises</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                <!-- Section 2: Delivery & Business Model Packs -->
+                <div class="solution-subsection">
+                    <h3 class="subsection-title">Delivery & Business Model Packs</h3>
+                    <p class="subsection-subtitle">Cross-industry packs that define how your business operates and delivers value. Select one or more packs based on how your business runs.</p>
+                    <div class="solutions-grid">
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                            </div>
+                            <div class="solution-content">
+                                <h3 class="solution-title">Growth Pack</h3>
+                                <p class="solution-description">Sales, CRM, marketing, and revenue operations</p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                    <line x1="10" y1="6.5" x2="14" y2="6.5"></line>
+                                    <line x1="10" y1="17.5" x2="14" y2="17.5"></line>
+                                    <line x1="6.5" y1="10" x2="6.5" y2="14"></line>
+                                    <line x1="17.5" y1="10" x2="17.5" y2="14"></line>
+                                </svg>
+                            </div>
+                            <div class="solution-content">
+                                <h3 class="solution-title">Projects Pack</h3>
+                                <p class="solution-description">Project-driven, delivery-focused enterprises across industries</p>
+                            </div>
+                        </div>
+                        <div class="solution-card">
+                            <div class="solution-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div class="solution-content">
+                                <h3 class="solution-title">Services Pack</h3>
+                                <p class="solution-description">Consulting and service-led business models across industries</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive services to help you maximize the value of FoundrySuite. From implementation to ongoing support, we're here to ensure your success. Start with what you need today. Add more as your business grows.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12l14 0"></path>
+                            <path d="M13 18l6 -6 -6 -6"></path>
+                            <path d="M19 6l0 12"></path>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">FoundrySuite Implementation</h3>
+                        <ul class="service-list">
+                            <li>Platform setup & configuration</li>
+                            <li>Module selection & activation</li>
+                            <li>Role-based access & workflows</li>
+                            <li>Go-live support</li>
+                        </ul>
+                        <p class="service-micro-line">Standardized implementation methodology for faster go-live.</p>
+                        <a href="#contact" class="service-cta">Get Started</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"></path>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Customization & Configuration</h3>
+                        <ul class="service-list">
+                            <li>Custom workflows & automations</li>
+                            <li>Dashboards & reports</li>
+                            <li>Field additions, roles & permissions</li>
+                            <li>UI changes & business rules</li>
+                            <li>Industry-specific enhancements</li>
+                        </ul>
+                        <p class="service-micro-line">Configuration-led customization without impacting core platform upgrades.</p>
+                        <a href="#contact" class="service-cta">Customize FoundrySuite</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6M3.93 3.93l4.24 4.24m7.66 7.66l4.24 4.24M1 12h6m6 0h6M3.93 20.07l4.24-4.24m7.66-7.66l4.24-4.24"></path>
+                            <path d="M19 12h2M12 19v2M5 12H3M12 5V3"></path>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">System Integrations</h3>
+                        <ul class="service-list">
+                            <li>Accounting & finance tools</li>
+                            <li>Payment gateways</li>
+                            <li>LMS & third-party apps</li>
+                            <li>API-based integrations</li>
+                        </ul>
+                        <p class="service-micro-line">Secure, API-driven integrations with upgrade safety.</p>
+                        <a href="#contact" class="service-cta">View Integrations</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                            <path d="M12 8v8"></path>
+                            <path d="M8 12h8"></path>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Data & Migration Services</h3>
+                        <ul class="service-list">
+                            <li>Legacy system migration</li>
+                            <li>Excel & manual data imports</li>
+                            <li>Validation & reconciliation</li>
+                        </ul>
+                        <p class="service-micro-line">Zero data loss with validation-led migration.</p>
+                        <a href="#contact" class="service-cta">Plan Migration</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 17H20v-4H6.5A2.5 2.5 0 0 0 4 15.5v0A2.5 2.5 0 0 0 6.5 18H20"></path>
+                            <path d="M6.5 2H20v4H6.5A2.5 2.5 0 0 1 4 3.5v0A2.5 2.5 0 0 1 6.5 1H20"></path>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Training & Onboarding</h3>
+                        <ul class="service-list">
+                            <li>Admin & user training</li>
+                            <li>Guided onboarding</li>
+                            <li>Documentation & best practices</li>
+                        </ul>
+                        <p class="service-micro-line">Structured enablement for faster user adoption.</p>
+                        <a href="#contact" class="service-cta">Enable Your Team</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <path d="M9 12l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Ongoing Support</h3>
+                        <ul class="service-list">
+                            <li>Priority support plans</li>
+                            <li>Platform health checks</li>
+                            <li>Managed updates</li>
+                        </ul>
+                        <p class="service-micro-line">Designed for long-term platform reliability.</p>
+                        <a href="#contact" class="service-cta">View Support Plans</a>
+                    </div>
+                </div>
+            </div>
+            <div class="services-cta-section">
+                <h3 class="services-cta-title">Let's Build Your FoundrySuite, the Right Way</h3>
+                <div class="services-cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Book a Demo</a>
+                    <a href="#contact" class="btn btn-secondary">Talk to an Expert</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work Section -->
+    <section id="how-we-work" class="how-we-work">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Engagement Process</h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-step-number">1</div>
+                    <div class="process-step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="process-step-title">Understand Your Business</h3>
+                </div>
+                <div class="process-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">2</div>
+                    <div class="process-step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="process-step-title">Configure & Tailor</h3>
+                </div>
+                <div class="process-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">3</div>
+                    <div class="process-step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                    </div>
+                    <h3 class="process-step-title">Test & Validate</h3>
+                </div>
+                <div class="process-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">4</div>
+                    <div class="process-step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="process-step-title">Go Live</h3>
+                </div>
+                <div class="process-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">5</div>
+                    <div class="process-step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </div>
+                    <h3 class="process-step-title">Support & Scale</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who These Services Are For Section -->
+    <section id="who-benefits" class="who-benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Who Benefits from FoundrySuite Services?</h2>
+                <p class="section-subtitle">Whether you're launching FoundrySuite for the first time or scaling across teams, our services adapt to your stage.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-pill">Growing Businesses</div>
+                <div class="benefit-pill">Enterprises</div>
+                <div class="benefit-pill">Multi-location Organizations</div>
+                <div class="benefit-pill">Service-Based Companies</div>
+                <div class="benefit-pill">Education & Delivery-Focused Organizations</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-text">
+                <h2 class="section-title">About <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span></h2>
+                <p>FoundrySuite is a comprehensive business platform designed to streamline your operations and accelerate growth. We combine cutting-edge technology with intuitive design to deliver solutions that work for businesses of all sizes.</p>
+                <p>From startups to enterprises, FoundrySuite adapts to your needs.</p>
+            </div>
+            <div class="about-mission-vision-wrapper">
+                <div class="about-left-content">
+                    <div class="mission-section">
+                        <h3 class="mission-title">🎯 Mission</h3>
+                        <p class="mission-text">To empower businesses with modular, integrated digital solutions that simplify operations, enhance visibility, and enable sustainable growth.</p>
+                    </div>
+                    <div class="mission-section vision-section">
+                        <h3 class="mission-title">👁️ Vision</h3>
+                        <p class="mission-text">To become a trusted platform for service-focused businesses, enabling them to build, scale, and run their operations on one unified ecosystem.</p>
+                    </div>
+                    <div class="core-values-section">
+                        <h3 class="mission-title">💡 Core Values</h3>
+                        <div class="values-list">
+                            <div class="value-item">
+                                <div class="value-number">1️⃣</div>
+                                <div class="value-content">
+                                    <h4 class="value-title">Simplicity with Purpose</h4>
+                                    <p class="value-description">We design solutions that are intuitive, practical, and easy to adopt—without unnecessary complexity.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-number">2️⃣</div>
+                                <div class="value-content">
+                                    <h4 class="value-title">Modularity & Flexibility</h4>
+                                    <p class="value-description">Our platform is built to adapt. Businesses choose what they need and scale at their own pace.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-number">3️⃣</div>
+                                <div class="value-content">
+                                    <h4 class="value-title">Trust & Security</h4>
+                                    <p class="value-description">We prioritize data protection, access control, and enterprise-grade security at every layer.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-number">4️⃣</div>
+                                <div class="value-content">
+                                    <h4 class="value-title">Customer-Centric Design</h4>
+                                    <p class="value-description">We build based on real business workflows, not assumptions or trends.</p>
+                                </div>
+                            </div>
+                            <div class="value-item">
+                                <div class="value-number">5️⃣</div>
+                                <div class="value-content">
+                                    <h4 class="value-title">Continuous Improvement</h4>
+                                    <p class="value-description">We evolve constantly, learning from users and improving through iteration.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-card">
+                        <img src="images/About-Us.jpg" alt="About FoundrySuite" class="about-image" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="about-text">
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1K+</div>
+                        <div class="stat-label">Businesses</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Ready to transform your business? Let's talk.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:parameswaran.cp@foundrysuite.com">parameswaran.cp@foundrysuite.com</a></p>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-full">
+                        <label for="description" class="form-label">Please provide a brief description of how FoundrySuite can help you <span class="required">*</span></label>
+                        <textarea id="description" name="message" rows="10" placeholder="Enter your description here..." minlength="5" required></textarea>
+                        <span class="error-message" id="descriptionError"></span>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mbdrolyg" method="POST" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" minlength="3" maxlength="15" pattern="[A-Za-z\s]+" required>
+                            <span class="error-message" id="firstNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" minlength="1" maxlength="15" pattern="[A-Za-z\s]+" required>
+                            <span class="error-message" id="lastNameError"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="country" class="form-label">Country/Region <span class="required">*</span></label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country/Region</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AU">Australia</option>
+                                <option value="AT">Austria</option>
+                                <option value="BH">Bahrain</option>
+                                <option value="BD">Bangladesh</option>
+                                <option value="BE">Belgium</option>
+                                <option value="BR">Brazil</option>
+                                <option value="BN">Brunei</option>
+                                <option value="BG">Bulgaria</option>
+                                <option value="CA">Canada</option>
+                                <option value="CL">Chile</option>
+                                <option value="CN">China</option>
+                                <option value="CO">Colombia</option>
+                                <option value="CR">Costa Rica</option>
+                                <option value="HR">Croatia</option>
+                                <option value="CZ">Czech Republic</option>
+                                <option value="DK">Denmark</option>
+                                <option value="EG">Egypt</option>
+                                <option value="EE">Estonia</option>
+                                <option value="FI">Finland</option>
+                                <option value="FR">France</option>
+                                <option value="DE">Germany</option>
+                                <option value="GH">Ghana</option>
+                                <option value="GR">Greece</option>
+                                <option value="HK">Hong Kong</option>
+                                <option value="HU">Hungary</option>
+                                <option value="IS">Iceland</option>
+                                <option value="IN" selected>India</option>
+                                <option value="ID">Indonesia</option>
+                                <option value="IE">Ireland</option>
+                                <option value="IL">Israel</option>
+                                <option value="IT">Italy</option>
+                                <option value="JP">Japan</option>
+                                <option value="JO">Jordan</option>
+                                <option value="KE">Kenya</option>
+                                <option value="KW">Kuwait</option>
+                                <option value="LV">Latvia</option>
+                                <option value="LB">Lebanon</option>
+                                <option value="MY">Malaysia</option>
+                                <option value="MX">Mexico</option>
+                                <option value="MA">Morocco</option>
+                                <option value="NL">Netherlands</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="NO">Norway</option>
+                                <option value="OM">Oman</option>
+                                <option value="PK">Pakistan</option>
+                                <option value="PH">Philippines</option>
+                                <option value="PL">Poland</option>
+                                <option value="PT">Portugal</option>
+                                <option value="QA">Qatar</option>
+                                <option value="RO">Romania</option>
+                                <option value="RU">Russia</option>
+                                <option value="SA">Saudi Arabia</option>
+                                <option value="SG">Singapore</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="KR">South Korea</option>
+                                <option value="ES">Spain</option>
+                                <option value="SE">Sweden</option>
+                                <option value="CH">Switzerland</option>
+                                <option value="TW">Taiwan</option>
+                                <option value="TH">Thailand</option>
+                                <option value="TR">Turkey</option>
+                                <option value="UA">Ukraine</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="US">United States</option>
+                                <option value="VN">Vietnam</option>
+                            </select>
+                            <span class="error-message" id="countryError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone <span class="required">*</span></label>
+                            <div class="phone-input-wrapper">
+                                <div class="phone-code-wrapper">
+                                    <select id="phoneCode" name="phoneCode" class="phone-code">
+                                        <option value="+1" data-flag="🇺🇸" data-code="+1" data-country="US" data-also-for="CA">+1</option>
+                                        <option value="+7" data-flag="🇷🇺" data-code="+7" data-country="RU">+7</option>
+                                        <option value="+20" data-flag="🇪🇬" data-code="+20" data-country="EG">+20</option>
+                                        <option value="+27" data-flag="🇿🇦" data-code="+27" data-country="ZA">+27</option>
+                                        <option value="+30" data-flag="🇬🇷" data-code="+30" data-country="GR">+30</option>
+                                        <option value="+31" data-flag="🇳🇱" data-code="+31" data-country="NL">+31</option>
+                                        <option value="+32" data-flag="🇧🇪" data-code="+32" data-country="BE">+32</option>
+                                        <option value="+33" data-flag="🇫🇷" data-code="+33" data-country="FR">+33</option>
+                                        <option value="+34" data-flag="🇪🇸" data-code="+34" data-country="ES">+34</option>
+                                        <option value="+36" data-flag="🇭🇺" data-code="+36" data-country="HU">+36</option>
+                                        <option value="+39" data-flag="🇮🇹" data-code="+39" data-country="IT">+39</option>
+                                        <option value="+40" data-flag="🇷🇴" data-code="+40" data-country="RO">+40</option>
+                                        <option value="+41" data-flag="🇨🇭" data-code="+41" data-country="CH">+41</option>
+                                        <option value="+43" data-flag="🇦🇹" data-code="+43" data-country="AT">+43</option>
+                                        <option value="+44" data-flag="🇬🇧" data-code="+44" data-country="GB">+44</option>
+                                        <option value="+45" data-flag="🇩🇰" data-code="+45" data-country="DK">+45</option>
+                                        <option value="+46" data-flag="🇸🇪" data-code="+46" data-country="SE">+46</option>
+                                        <option value="+47" data-flag="🇳🇴" data-code="+47" data-country="NO">+47</option>
+                                        <option value="+48" data-flag="🇵🇱" data-code="+48" data-country="PL">+48</option>
+                                        <option value="+49" data-flag="🇩🇪" data-code="+49" data-country="DE">+49</option>
+                                        <option value="+51" data-flag="🇵🇪" data-code="+51" data-country="PE">+51</option>
+                                        <option value="+52" data-flag="🇲🇽" data-code="+52" data-country="MX">+52</option>
+                                        <option value="+54" data-flag="🇦🇷" data-code="+54" data-country="AR">+54</option>
+                                        <option value="+55" data-flag="🇧🇷" data-code="+55" data-country="BR">+55</option>
+                                        <option value="+56" data-flag="🇨🇱" data-code="+56" data-country="CL">+56</option>
+                                        <option value="+57" data-flag="🇨🇴" data-code="+57" data-country="CO">+57</option>
+                                        <option value="+60" data-flag="🇲🇾" data-code="+60" data-country="MY">+60</option>
+                                        <option value="+61" data-flag="🇦🇺" data-code="+61" data-country="AU">+61</option>
+                                        <option value="+62" data-flag="🇮🇩" data-code="+62" data-country="ID">+62</option>
+                                        <option value="+63" data-flag="🇵🇭" data-code="+63" data-country="PH">+63</option>
+                                        <option value="+64" data-flag="🇳🇿" data-code="+64" data-country="NZ">+64</option>
+                                        <option value="+65" data-flag="🇸🇬" data-code="+65" data-country="SG">+65</option>
+                                        <option value="+66" data-flag="🇹🇭" data-code="+66" data-country="TH">+66</option>
+                                        <option value="+81" data-flag="🇯🇵" data-code="+81" data-country="JP">+81</option>
+                                        <option value="+82" data-flag="🇰🇷" data-code="+82" data-country="KR">+82</option>
+                                        <option value="+84" data-flag="🇻🇳" data-code="+84" data-country="VN">+84</option>
+                                        <option value="+86" data-flag="🇨🇳" data-code="+86" data-country="CN">+86</option>
+                                        <option value="+90" data-flag="🇹🇷" data-code="+90" data-country="TR">+90</option>
+                                        <option value="+91" data-flag="🇮🇳" data-code="+91" data-country="IN" selected>+91</option>
+                                        <option value="+92" data-flag="🇵🇰" data-code="+92" data-country="PK">+92</option>
+                                        <option value="+93" data-flag="🇦🇫" data-code="+93" data-country="AF">+93</option>
+                                        <option value="+212" data-flag="🇲🇦" data-code="+212" data-country="MA">+212</option>
+                                        <option value="+213" data-flag="🇩🇿" data-code="+213" data-country="DZ">+213</option>
+                                        <option value="+233" data-flag="🇬🇭" data-code="+233" data-country="GH">+233</option>
+                                        <option value="+234" data-flag="🇳🇬" data-code="+234" data-country="NG">+234</option>
+                                        <option value="+254" data-flag="🇰🇪" data-code="+254" data-country="KE">+254</option>
+                                        <option value="+351" data-flag="🇵🇹" data-code="+351" data-country="PT">+351</option>
+                                        <option value="+352" data-flag="🇱🇺" data-code="+352" data-country="LU">+352</option>
+                                        <option value="+353" data-flag="🇮🇪" data-code="+353" data-country="IE">+353</option>
+                                        <option value="+354" data-flag="🇮🇸" data-code="+354" data-country="IS">+354</option>
+                                        <option value="+355" data-flag="🇦🇱" data-code="+355" data-country="AL">+355</option>
+                                        <option value="+358" data-flag="🇫🇮" data-code="+358" data-country="FI">+358</option>
+                                        <option value="+359" data-flag="🇧🇬" data-code="+359" data-country="BG">+359</option>
+                                        <option value="+371" data-flag="🇱🇻" data-code="+371" data-country="LV">+371</option>
+                                        <option value="+372" data-flag="🇪🇪" data-code="+372" data-country="EE">+372</option>
+                                        <option value="+380" data-flag="🇺🇦" data-code="+380" data-country="UA">+380</option>
+                                        <option value="+385" data-flag="🇭🇷" data-code="+385" data-country="HR">+385</option>
+                                        <option value="+420" data-flag="🇨🇿" data-code="+420" data-country="CZ">+420</option>
+                                        <option value="+506" data-flag="🇨🇷" data-code="+506" data-country="CR">+506</option>
+                                        <option value="+673" data-flag="🇧🇳" data-code="+673" data-country="BN">+673</option>
+                                        <option value="+852" data-flag="🇭🇰" data-code="+852" data-country="HK">+852</option>
+                                        <option value="+880" data-flag="🇧🇩" data-code="+880" data-country="BD">+880</option>
+                                        <option value="+886" data-flag="🇹🇼" data-code="+886" data-country="TW">+886</option>
+                                        <option value="+961" data-flag="🇱🇧" data-code="+961" data-country="LB">+961</option>
+                                        <option value="+962" data-flag="🇯🇴" data-code="+962" data-country="JO">+962</option>
+                                        <option value="+965" data-flag="🇰🇼" data-code="+965" data-country="KW">+965</option>
+                                        <option value="+966" data-flag="🇸🇦" data-code="+966" data-country="SA">+966</option>
+                                        <option value="+968" data-flag="🇴🇲" data-code="+968" data-country="OM">+968</option>
+                                        <option value="+971" data-flag="🇦🇪" data-code="+971" data-country="AE">+971</option>
+                                        <option value="+972" data-flag="🇮🇱" data-code="+972" data-country="IL">+972</option>
+                                        <option value="+973" data-flag="🇧🇭" data-code="+973" data-country="BH">+973</option>
+                                        <option value="+974" data-flag="🇶🇦" data-code="+974" data-country="QA">+974</option>
+                                    </select>
+                                    <span class="phone-flag-display" id="phoneFlagDisplay">🇮🇳</span>
+                                    <span class="phone-code-display" id="phoneCodeDisplay">+91</span>
+                                </div>
+                                <input type="tel" id="phone" name="phone" placeholder="Contact Number" class="phone-number" minlength="7" maxlength="16" pattern="[0-9]+(-[0-9]+)?" inputmode="numeric" required>
+                            </div>
+                            <span class="error-message" id="phoneError"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Business e-mail address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="Enter your business email" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="company" class="form-label">Company <span class="required">*</span></label>
+                            <input type="text" id="company" name="company" placeholder="Enter your company name" minlength="5" maxlength="50" pattern="[A-Za-z\s]+" required>
+                            <span class="error-message" id="companyError"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group form-group-full">
+                            <label for="relationship" class="form-label">Relationship to FoundrySuite <span class="required">*</span></label>
+                            <select id="relationship" name="relationship" required>
+                                <option value="">Please select</option>
+                                <option value="prospective-customer">Prospective Customer</option>
+                                <option value="customer">Customer</option>
+                                <option value="partner">Partner</option>
+                                <option value="prospective-partner">Prospective Partner</option>
+                                <option value="consultant">Consultant</option>
+                                <option value="investor">Investor / Shareholder</option>
+                                <option value="media">Media</option>
+                                <option value="student">Student</option>
+                                <option value="employee">FoundrySuite Employee</option>
+                            </select>
+                            <span class="error-message" id="relationshipError"></span>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-full captcha-group">
+                        <label for="captchaAnswer" class="form-label">Security Check <span class="required">*</span></label>
+                        <div class="captcha-container">
+                            <div class="captcha-question-box">
+                                <span id="captchaQuestion"></span>
+                                <button type="button" id="captchaRefresh" class="captcha-refresh-btn" aria-label="Refresh CAPTCHA" title="Refresh CAPTCHA">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M23 4v6h-6"></path>
+                                        <path d="M1 20v-6h6"></path>
+                                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <input type="text" id="captchaAnswer" name="captchaAnswer" placeholder="Enter your answer" required>
+                        </div>
+                        <span class="error-message" id="captchaAnswerError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full btn-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal">
+        <div class="success-modal-overlay"></div>
+        <div class="success-modal-content">
+            <div class="success-icon-wrapper">
+                <div class="success-icon-circle">
+                    <svg class="success-checkmark" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+                        <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                    <svg class="success-circle" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                </div>
+            </div>
+            <div class="success-header">
+                <svg class="success-check-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+                <h2 class="success-title">Thank You!</h2>
+            </div>
+            <div class="success-message">
+                <p>Your message has been submitted successfully.</p>
+                <p>Our team will review your details and contact you shortly.</p>
+            </div>
+            <button class="btn btn-primary btn-close-modal" id="closeSuccessModal">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/logo.png" alt="FoundrySuite Logo" class="footer-logo" loading="lazy">
+                    <p>Empowering businesses with integrated, modular solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#solutions">Industries</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">Twitter</a>
+                        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                        <a href="#" aria-label="GitHub">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="copyright-year">2025</span> <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

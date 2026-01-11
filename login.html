@@ -224,7 +224,7 @@
             z-index: 3;
             opacity: 1;
             transition: opacity 0.3s ease;
-            display: block;
+            display: none; /* Disabled seasonal image */
         }
 
         .login-christmas-image img {
@@ -693,21 +693,6 @@
     <div class="login-wrapper">
         <!-- Left Side - Brand Showcase -->
         <div class="login-brand-panel">
-            <!-- Video Background -->
-            <video class="login-video-bg" autoplay loop muted playsinline preload="auto" webkit-playsinline>
-                <source src="videos/hero.background.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="login-video-overlay"></div>
-            <!-- Video Masks to hide navigation and buttons -->
-            <div class="login-video-mask-top"></div>
-            <div class="login-video-mask-bottom"></div>
-            
-            <!-- Christmas-New Year Image -->
-            <div class="login-christmas-image">
-                <img src="images/seasons.png" alt="Christmas & New Year Greetings from FoundrySuite" loading="eager" fetchpriority="high" onerror="this.style.display='none';">
-            </div>
-            
             <!-- Geometric Shapes -->
             <div class="geometric-shape shape-1"></div>
             <div class="geometric-shape shape-2"></div>
@@ -724,7 +709,7 @@
                     </span>
                 </div>
 
-                <h2 class="brand-tagline">Your Business. Your Modules. One Platform.</h2>
+                <h2 class="brand-tagline">Your Business. Your Modules. Our Platform.</h2>
 
                 <ul class="brand-features">
                     <li>Integrated modular solutions that scale with your business</li>
@@ -732,25 +717,6 @@
                     <li>Unified platform for all your business operations</li>
                     <li>24/7 support and continuous improvements</li>
                 </ul>
-
-                <div class="brand-trust">
-                    <div class="trust-item">
-                        <div class="trust-value">1K+</div>
-                        <div class="trust-label">Businesses</div>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-value">99.99%</div>
-                        <div class="trust-label">Uptime</div>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-value">24/7</div>
-                        <div class="trust-label">Support</div>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-value">5+</div>
-                        <div class="trust-label">Countries</div>
-                    </div>
-                </div>
 
                 <div class="product-icons">
                     <div class="product-icon">📊</div>
@@ -837,7 +803,6 @@
                 
                 // Here you would typically send the data to a server
                 // For now, we'll just show a message
-                console.log('Login attempt:', { email, remember });
                 alert('Login functionality will be connected to your authentication system.');
             });
         }

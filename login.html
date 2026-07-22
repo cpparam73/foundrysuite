@@ -27,12 +27,10 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Login Page Specific Styles */
         body {
-            font-family: var(--font-body, "Source Sans 3", system-ui, sans-serif);
-
             min-height: 100vh;
             display: flex;
             align-items: stretch;
@@ -56,7 +54,7 @@
             justify-content: center;
             align-items: flex-start;
             padding: 3rem 4rem;
-            background: linear-gradient(135deg, rgba(26, 127, 196, 0.08) 0%, rgba(232, 119, 34, 0.08) 100%);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
             overflow: hidden;
         }
 
@@ -69,8 +67,8 @@
             right: 0;
             bottom: 0;
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(26, 127, 196, 0.14) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(232, 119, 34, 0.14) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
             animation: pulse 8s ease-in-out infinite;
         }
 
@@ -721,13 +719,13 @@
                 </ul>
 
                 <div class="product-icons">
-                    <div class="product-icon">CRM</div>
-                    <div class="product-icon">HCM</div>
-                    <div class="product-icon">ERP</div>
+                    <div class="product-icon">📊</div>
+                    <div class="product-icon">🔒</div>
+                    <div class="product-icon">⚡</div>
                     <div class="product-icon">
-                        <img src="images/logo.png" alt="" style="width: 24px; height: 24px; object-fit: contain;">
+                        <img src="images/logo.png" alt="FoundrySuite Logo" style="width: 24px; height: 24px; object-fit: contain;">
                     </div>
-                    <div class="product-icon">HSE</div>
+                    <div class="product-icon">📱</div>
                 </div>
             </div>
         </div>
@@ -787,7 +785,7 @@
             <div class="login-footer">
                 <p>Don't have an account? <a href="#contact">Contact your administrator</a></p>
                 <p><a href="index.html">← Back to home</a></p>
-                <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.8125rem;">&copy; <span id="copyright-year">2026</span> <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span>. All rights reserved.</p>
+                <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.8125rem;">&copy; <span id="copyright-year">2025</span> <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span>. All rights reserved.</p>
             </div>
         </div>
     </div>
@@ -815,7 +813,7 @@
             if (!particlesContainer) return;
 
             const particleCount = 20;
-            const colors = ['#1a7fc4', '#e87722'];
+            const colors = ['#3B82F6', '#F59E0B']; // Tech Blue and Amber
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');

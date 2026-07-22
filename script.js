@@ -84,6 +84,7 @@ const DOM = {
     prevBtn: document.querySelector('.prev-btn'),
     nextBtn: document.querySelector('.next-btn'),
     slideshow: document.querySelector('.solution-slideshow'),
+    mobileScreens: document.querySelectorAll('.mobile-screen-view'),
     
     // Other
     contactItems: document.querySelectorAll('.contact-item'),
@@ -1174,6 +1175,13 @@ const initSolutionSlideshow = () => {
             if (DOM.indicators && DOM.indicators[index]) DOM.indicators[index].classList.add('active');
             
             currentSlide = index;
+            
+            if (DOM.mobileScreens && DOM.mobileScreens.length > 0) {
+                const mobileScreenIndex = index % DOM.mobileScreens.length;
+                DOM.mobileScreens.forEach((screen, i) => {
+                    screen.classList.toggle('active', i === mobileScreenIndex);
+                });
+            }
         } catch (e) {
             // Silently handle errors
         }
@@ -1289,45 +1297,11 @@ const initPageState = () => {
 // INITIALIZATION
 // ============================================================================
 
-
-const initReveals = () => {
-    const nodes = document.querySelectorAll('.reveal');
-    if (!nodes.length) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        nodes.forEach((n) => n.classList.add('in'));
-        return;
-    }
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in');
-                io.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    nodes.forEach((n) => io.observe(n));
-    // Hero reveals immediately
-    document.querySelectorAll('.hero .reveal').forEach((n) => n.classList.add('in'));
-};
-
-const initHeroNavState = () => {
-    const hero = document.getElementById('home');
-    if (!hero || !DOM.navbar) return;
-    const update = () => {
-        const heroBottom = hero.offsetTop + hero.offsetHeight - 80;
-        DOM.navbar.classList.toggle('is-solid', window.pageYOffset > heroBottom * 0.08);
-    };
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-};
-
 document.addEventListener('DOMContentLoaded', () => {
     removeSeasonalContent();
     updateCopyrightYear();
     initAnimations();
     initSolutionSlideshow();
-    initReveals();
-    initHeroNavState();
     setCustomValidationMessages();
     initFormSubmission();
     initPageState();

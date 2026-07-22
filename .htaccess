@@ -1,0 +1,126 @@
+# FoundrySuite .htaccess Configuration
+# This file handles URL redirects and ensures consistent domain usage
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Force HTTPS (uncomment if you want to force HTTPS)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove www prefix - redirect www to non-www
+# If you want to keep www, comment out these lines and uncomment the section below
+RewriteCond %{HTTP_HOST} ^www\.foundrysuite\.com [NC]
+RewriteRule ^(.*)$ https://foundrysuite.com/$1 [L,R=301]
+
+# Alternative: Force www prefix (uncomment if you prefer www)
+# RewriteCond %{HTTP_HOST} ^foundrysuite\.com [NC]
+# RewriteRule ^(.*)$ https://www.foundrysuite.com/$1 [L,R=301]
+
+# Remove trailing slashes (optional - keeps URLs clean)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [R=301,L]
+
+# Remove index.html from URL (optional - makes URLs cleaner)
+RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# ============================================================================
+# SECURITY HEADERS - Comprehensive Protection Against Cyber Attacks
+# ============================================================================
+<IfModule mod_headers.c>
+    # Prevent clickjacking attacks
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # XSS Protection (legacy browsers)
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Prevent MIME type sniffing attacks
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Referrer Policy - Control referrer information
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy - Prevent XSS, injection attacks
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self';"
+    
+    # Permissions Policy - Restrict browser features
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    
+    # Strict Transport Security - Force HTTPS (uncomment when HTTPS is enabled)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Remove server information
+    Header unset Server
+    Header unset X-Powered-By
+    
+    # Prevent caching of sensitive pages
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+</IfModule>
+
+# ============================================================================
+# FILE ACCESS PROTECTION
+# ============================================================================
+
+# Block access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|bak|backup|old|tmp)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect against directory browsing
+Options -Indexes
+
+# Block access to hidden files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ============================================================================
+# REQUEST LIMITING - Prevent DoS attacks
+# ============================================================================
+<IfModule mod_evasive.c>
+    DOSHashTableSize    2048
+    DOSPageCount        10
+    DOSSiteCount        50
+    DOSPageInterval     1
+    DOSSiteInterval      1
+    DOSBlockingPeriod   600
+</IfModule>
+
+# ============================================================================
+# RATE LIMITING - Limit request frequency
+# ============================================================================
+<IfModule mod_ratelimit.c>
+    <Location />
+        SetOutputFilter RATE_LIMIT
+        SetEnv rate-limit 400
+    </Location>
+</IfModule>
+
+# Enable Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 year"
+</IfModule>
+
+
+

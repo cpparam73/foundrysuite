@@ -1,0 +1,184 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#f8fafc"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="1920" height="80" fill="#0f172a"/>
+  <text x="60" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#14b8a6">FoundrySuite Dashboard</text>
+  <text x="1700" y="50" font-family="Arial, sans-serif" font-size="20" fill="#ffffff">Real-time Analytics</text>
+  
+  <!-- Top Metrics Cards -->
+  <!-- Revenue Card -->
+  <rect x="60" y="120" width="400" height="180" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="80" y="160" font-family="Arial, sans-serif" font-size="16" fill="#64748b">GLOBAL REVENUE</text>
+  <text x="80" y="200" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#0f172a">$1.25B</text>
+  <rect x="80" y="220" width="120" height="8" rx="4" fill="#14b8a6"/>
+  <text x="80" y="260" font-family="Arial, sans-serif" font-size="18" fill="#14b8a6" font-weight="600">↑ Growth 15.4%</text>
+  
+  <!-- Active Users Card -->
+  <rect x="500" y="120" width="400" height="180" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="520" y="160" font-family="Arial, sans-serif" font-size="16" fill="#64748b">ACTIVE USERS</text>
+  <text x="520" y="200" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#0f172a">10.2K</text>
+  <rect x="520" y="220" width="100" height="8" rx="4" fill="#06b6d4"/>
+  <text x="520" y="260" font-family="Arial, sans-serif" font-size="18" fill="#06b6d4" font-weight="600">↑ +12%</text>
+  
+  <!-- Projects Card -->
+  <rect x="940" y="120" width="400" height="180" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="960" y="160" font-family="Arial, sans-serif" font-size="16" fill="#64748b">ACTIVE PROJECTS</text>
+  <text x="960" y="200" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#0f172a">342</text>
+  <rect x="960" y="220" width="90" height="8" rx="4" fill="#8b5cf6"/>
+  <text x="960" y="260" font-family="Arial, sans-serif" font-size="18" fill="#8b5cf6" font-weight="600">↑ +8%</text>
+  
+  <!-- Efficiency Card -->
+  <rect x="1380" y="120" width="400" height="180" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="1400" y="160" font-family="Arial, sans-serif" font-size="16" fill="#64748b">EFFICIENCY</text>
+  <text x="1400" y="200" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#0f172a">92%</text>
+  <rect x="1400" y="220" width="110" height="8" rx="4" fill="#f59e0b"/>
+  <text x="1400" y="260" font-family="Arial, sans-serif" font-size="18" fill="#f59e0b" font-weight="600">↑ +3.2%</text>
+  
+  <!-- Main Chart Area -->
+  <rect x="60" y="340" width="900" height="400" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="80" y="380" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#0f172a">Revenue Trends</text>
+  
+  <!-- Chart Grid Lines -->
+  <line x1="80" y1="420" x2="920" y2="420" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="80" y1="500" x2="920" y2="500" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="80" y1="580" x2="920" y2="580" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="80" y1="660" x2="920" y2="660" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Chart Line 1 (Revenue) -->
+  <polyline points="100,680 200,650 300,620 400,600 500,580 600,560 700,540 800,520" 
+            fill="none" stroke="#14b8a6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="100" cy="680" r="6" fill="#14b8a6"/>
+  <circle cx="200" cy="650" r="6" fill="#14b8a6"/>
+  <circle cx="300" cy="620" r="6" fill="#14b8a6"/>
+  <circle cx="400" cy="600" r="6" fill="#14b8a6"/>
+  <circle cx="500" cy="580" r="6" fill="#14b8a6"/>
+  <circle cx="600" cy="560" r="6" fill="#14b8a6"/>
+  <circle cx="700" cy="540" r="6" fill="#14b8a6"/>
+  <circle cx="800" cy="520" r="6" fill="#14b8a6"/>
+  
+  <!-- Chart Line 2 (Growth) -->
+  <polyline points="100,700 200,680 300,660 400,640 500,620 600,600 700,580 800,560" 
+            fill="none" stroke="#06b6d4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="100" cy="700" r="6" fill="#06b6d4"/>
+  <circle cx="200" cy="680" r="6" fill="#06b6d4"/>
+  <circle cx="300" cy="660" r="6" fill="#06b6d4"/>
+  <circle cx="400" cy="640" r="6" fill="#06b6d4"/>
+  <circle cx="500" cy="620" r="6" fill="#06b6d4"/>
+  <circle cx="600" cy="600" r="6" fill="#06b6d4"/>
+  <circle cx="700" cy="580" r="6" fill="#06b6d4"/>
+  <circle cx="800" cy="560" r="6" fill="#06b6d4"/>
+  
+  <!-- X-axis Labels -->
+  <text x="100" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Jan</text>
+  <text x="200" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Feb</text>
+  <text x="300" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Mar</text>
+  <text x="400" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Apr</text>
+  <text x="500" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">May</text>
+  <text x="600" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Jun</text>
+  <text x="700" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Jul</text>
+  <text x="800" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Aug</text>
+  
+  <!-- Legend -->
+  <circle cx="750" cy="380" r="8" fill="#14b8a6"/>
+  <text x="770" y="385" font-family="Arial, sans-serif" font-size="16" fill="#64748b">Revenue</text>
+  <circle cx="850" cy="380" r="8" fill="#06b6d4"/>
+  <text x="870" y="385" font-family="Arial, sans-serif" font-size="16" fill="#64748b">Growth</text>
+  
+  <!-- Donut Chart Area -->
+  <rect x="1000" y="340" width="420" height="400" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="1020" y="380" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#0f172a">Regional Distribution</text>
+  
+  <!-- Donut Chart -->
+  <g transform="translate(1210, 540)">
+    <!-- Large Arc (60%) -->
+    <path d="M 0,-100 A 100,100 0 1,1 86.6,50 L 0,0 Z" fill="#14b8a6"/>
+    <!-- Medium Arc (25%) -->
+    <path d="M 86.6,50 A 100,100 0 0,1 0,100 L 0,0 Z" fill="#06b6d4"/>
+    <!-- Small Arc (15%) -->
+    <path d="M 0,100 A 100,100 0 0,1 -86.6,50 L 0,0 Z" fill="#8b5cf6"/>
+    <!-- Center Circle -->
+    <circle cx="0" cy="0" r="60" fill="#ffffff"/>
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#0f172a" text-anchor="middle" dominant-baseline="middle">78%</text>
+  </g>
+  
+  <!-- Donut Chart Labels -->
+  <text x="1020" y="620" font-family="Arial, sans-serif" font-size="16" fill="#64748b">
+    <tspan x="1020" dy="0">●</tspan>
+    <tspan x="1040" dy="0" fill="#14b8a6"> Americas (60%)</tspan>
+  </text>
+  <text x="1020" y="650" font-family="Arial, sans-serif" font-size="16" fill="#64748b">
+    <tspan x="1020" dy="0">●</tspan>
+    <tspan x="1040" dy="0" fill="#06b6d4"> Europe (25%)</tspan>
+  </text>
+  <text x="1020" y="680" font-family="Arial, sans-serif" font-size="16" fill="#64748b">
+    <tspan x="1020" dy="0">●</tspan>
+    <tspan x="1040" dy="0" fill="#8b5cf6"> Asia-Pacific (15%)</tspan>
+  </text>
+  
+  <!-- Bar Chart Area -->
+  <rect x="1460" y="340" width="400" height="400" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="1480" y="380" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#0f172a">Monthly Performance</text>
+  
+  <!-- Bar Chart Bars -->
+  <rect x="1500" y="600" width="50" height="100" rx="4" fill="#14b8a6"/>
+  <rect x="1580" y="550" width="50" height="150" rx="4" fill="#06b6d4"/>
+  <rect x="1660" y="580" width="50" height="120" rx="4" fill="#8b5cf6"/>
+  <rect x="1740" y="520" width="50" height="180" rx="4" fill="#f59e0b"/>
+  <rect x="1820" y="540" width="50" height="160" rx="4" fill="#14b8a6"/>
+  
+  <!-- Bar Chart Labels -->
+  <text x="1525" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Q1</text>
+  <text x="1605" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Q2</text>
+  <text x="1685" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Q3</text>
+  <text x="1765" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Q4</text>
+  <text x="1845" y="720" font-family="Arial, sans-serif" font-size="14" fill="#64748b" text-anchor="middle">YTD</text>
+  
+  <!-- Bottom Metrics Row -->
+  <rect x="60" y="780" width="280" height="240" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="80" y="820" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Sales Pipeline</text>
+  <text x="200" y="880" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#14b8a6">68%</text>
+  <rect x="80" y="900" width="200" height="12" rx="6" fill="#e2e8f0"/>
+  <rect x="80" y="900" width="136" height="12" rx="6" fill="#14b8a6"/>
+  <text x="80" y="950" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Target: 75%</text>
+  
+  <rect x="380" y="780" width="280" height="240" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="400" y="820" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Customer Satisfaction</text>
+  <text x="520" y="880" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#06b6d4">94%</text>
+  <rect x="400" y="900" width="200" height="12" rx="6" fill="#e2e8f0"/>
+  <rect x="400" y="900" width="188" height="12" rx="6" fill="#06b6d4"/>
+  <text x="400" y="950" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Excellent rating</text>
+  
+  <rect x="700" y="780" width="280" height="240" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="720" y="820" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Project Completion</text>
+  <text x="840" y="880" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#8b5cf6">87%</text>
+  <rect x="720" y="900" width="200" height="12" rx="6" fill="#e2e8f0"/>
+  <rect x="720" y="900" width="174" height="12" rx="6" fill="#8b5cf6"/>
+  <text x="720" y="950" font-family="Arial, sans-serif" font-size="14" fill="#64748b">On track</text>
+  
+  <rect x="1020" y="780" width="280" height="240" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="1040" y="820" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Cash Flow</text>
+  <text x="1160" y="880" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#f59e0b">$2.4M</text>
+  <rect x="1040" y="900" width="200" height="12" rx="6" fill="#e2e8f0"/>
+  <rect x="1040" y="900" width="180" height="12" rx="6" fill="#f59e0b"/>
+  <text x="1040" y="950" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Positive trend</text>
+  
+  <rect x="1340" y="780" width="280" height="240" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="1360" y="820" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Team Efficiency</text>
+  <text x="1500" y="880" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#14b8a6">91%</text>
+  <rect x="1360" y="900" width="200" height="12" rx="6" fill="#e2e8f0"/>
+  <rect x="1360" y="900" width="182" height="12" rx="6" fill="#14b8a6"/>
+  <text x="1360" y="950" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Above target</text>
+  
+  <rect x="1660" y="780" width="200" height="240" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="1680" y="820" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a">Alerts</text>
+  <text x="1760" y="880" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#ef4444">3</text>
+  <text x="1680" y="920" font-family="Arial, sans-serif" font-size="14" fill="#64748b">Active issues</text>
+  <text x="1680" y="950" font-family="Arial, sans-serif" font-size="14" fill="#64748b">All resolved</text>
+  
+  <!-- Status Banner -->
+  <rect x="0" y="1040" width="1920" height="40" fill="#0f172a"/>
+  <text x="60" y="1065" font-family="Arial, sans-serif" font-size="16" fill="#14b8a6" font-weight="600">● LIVE</text>
+  <text x="150" y="1065" font-family="Arial, sans-serif" font-size="16" fill="#ffffff">Real-time data synchronization active | All systems operational | Last updated: Now</text>
+</svg>

@@ -17,10 +17,10 @@
     <link rel="shortcut icon" type="image/png" href="images/logo.png">
     <script>
         // Set theme immediately to prevent flash.
-        // Login defaults to dark; respect saved preference when present.
+        // Login defaults to light; respect saved preference when present.
         (function() {
             const savedTheme = localStorage.getItem('theme');
-            const theme = savedTheme || 'dark';
+            const theme = savedTheme || 'light';
             document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>

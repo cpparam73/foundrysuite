@@ -8,21 +8,22 @@
 // SECURITY MODULE - Input Validation & XSS Prevention
 // ============================================================================
 
+// Prefer FoundrySecurity (assets/js/core/security-manager.js) when present.
 const Security = {
-    /**
-     * Sanitize input to prevent XSS attacks
-     */
     sanitizeInput: (input) => {
+        if (window.FoundrySecurity && typeof window.FoundrySecurity.sanitizeInput === 'function') {
+            return window.FoundrySecurity.sanitizeInput(input);
+        }
         if (typeof input !== 'string') return input;
         const div = document.createElement('div');
         div.textContent = input;
         return div.innerHTML;
     },
-    
-    /**
-     * Validate email format securely
-     */
+
     validateEmailSecure: (email) => {
+        if (window.FoundrySecurity && typeof window.FoundrySecurity.validateEmail === 'function') {
+            return window.FoundrySecurity.validateEmail(email);
+        }
         if (!email || typeof email !== 'string') return false;
         const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
         if (email.length > 254) return false;
@@ -31,15 +32,15 @@ const Security = {
         if (localPart.length > 64 || domain.length > 253) return false;
         return emailRegex.test(email);
     },
-    
-    /**
-     * Detect SQL injection patterns
-     */
+
     detectSQLInjection: (input) => {
+        if (window.FoundrySecurity && typeof window.FoundrySecurity.detectSqlInjection === 'function') {
+            return window.FoundrySecurity.detectSqlInjection(input);
+        }
         if (typeof input !== 'string') return false;
         const sqlPatterns = [
-            /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE|UNION|SCRIPT)\b)/gi,
-            /(--|#|\/\*|\*\/|;|\||&)/g,
+            /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE|UNION)\b)/gi,
+            /(--|\/\*|\*\/)/g,
             /(\b(OR|AND)\s+\d+\s*=\s*\d+)/gi,
             /(\b(OR|AND)\s+['"]\s*=\s*['"])/gi
         ];
@@ -1518,8 +1519,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initPlatformFaqAccordion();
 
-    // Content protection is a core platform service (assets/js/core/content-protection.js).
-    // Ensure it is active even if a page forgets the script tag.
+    // Core platform services — ensure active even if a page forgets a script tag.
+    if (window.FoundrySecurity && typeof window.FoundrySecurity.init === 'function') {
+        window.FoundrySecurity.init();
+    }
     if (window.FoundryContentProtection && typeof window.FoundryContentProtection.init === 'function') {
         window.FoundryContentProtection.init();
     }

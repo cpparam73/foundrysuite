@@ -32,7 +32,7 @@ RewriteRule ^platform\.html$ /foundry-platform.html [R=301,L]
 # SECURITY HEADERS - Comprehensive Protection Against Cyber Attacks
 # ============================================================================
 <IfModule mod_headers.c>
-    # Prevent clickjacking attacks
+    # Prevent clickjacking attacks (CSP frame-ancestors is primary)
     Header always set X-Frame-Options "SAMEORIGIN"
     
     # XSS Protection (legacy browsers)
@@ -44,13 +44,18 @@ RewriteRule ^platform\.html$ /foundry-platform.html [R=301,L]
     # Referrer Policy - Control referrer information
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     
-    # Content Security Policy - Prevent XSS, injection attacks
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self';"
+    # Content Security Policy — keep in sync with docs/SECURITY.md
+    # Includes Formspree for contact forms; frame-ancestors blocks unauthorized embedding
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://formspree.io; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests"
     
-    # Permissions Policy - Restrict browser features
-    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+    # Permissions Policy — disable unused powerful APIs
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=(), accelerometer=(), magnetometer=(), gyroscope=(), interest-cohort=()"
+
+    # Cross-origin isolation helpers
+    Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+    Header always set Cross-Origin-Resource-Policy "same-site"
     
-    # Strict Transport Security - Force HTTPS (uncomment when HTTPS is enabled)
+    # Strict Transport Security - Force HTTPS (enable only when TLS is confirmed)
     # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     
     # Remove server information

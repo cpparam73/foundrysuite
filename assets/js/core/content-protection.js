@@ -35,10 +35,8 @@
     const DEFAULT_CONFIG = {
         disableImageRightClick: true,
         disableImageDrag: true,
-        disableImageSelection: true,
         disableImageCopy: true,
         disableSaveShortcuts: true,
-        disableDeveloperShortcuts: false,
         enableOverlayProtection: true,
         protectBackgroundImages: true,
         showToastNotifications: true,

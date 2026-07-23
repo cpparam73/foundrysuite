@@ -53,6 +53,7 @@
             provider: null, // 'turnstile' | 'hcaptcha' | 'recaptcha' | custom
             verify: null    // async (form) => boolean — set by host app when ready
         },
+        // Origins / URL prefixes allowed for form actions (enforced by host submit + helpers)
         trustedFormActions: [
             'https://formspree.io'
         ],
@@ -187,10 +188,7 @@
         };
         activityLog.push(entry);
         if (activityLog.length > MAX_LOG) activityLog.shift();
-        if (global.console && typeof global.console.info === 'function') {
-            // Intentionally low-noise; no stack traces
-            console.info('[FoundrySecurity]', type);
-        }
+        // Intentionally silent in production — no console output
     };
 
     // ----------------------------------------------------------------------
@@ -301,6 +299,20 @@
         }
     };
 
+    const isTrustedFormAction = (action) => {
+        if (!action || typeof action !== 'string') return false;
+        try {
+            const url = new URL(action, global.location && global.location.href);
+            if (url.protocol !== 'https:') return false;
+            return (config.trustedFormActions || []).some((trusted) => {
+                const t = String(trusted || '');
+                return action.indexOf(t) === 0 || url.href.indexOf(t) === 0 || url.origin === t || url.origin + '/' === t;
+            });
+        } catch (e) {
+            return false;
+        }
+    };
+
     const hardenLink = (anchor) => {
         if (!isElement(anchor) || anchor.tagName !== 'A') return;
         if (anchor.getAttribute('data-sec-link') === '1') return;
@@ -398,7 +410,14 @@
             return { ok: false, message: 'Please complete all required fields.' };
         }
 
-        if (looksLikeScriptInjection(value) || detectSqlInjection(value)) {
+        if (looksLikeScriptInjection(value)) {
+            logSuspicious('form-injection', name);
+            return { ok: false, message: 'Please remove invalid characters and try again.' };
+        }
+
+        // SQL-pattern checks are too aggressive for free-text (e.g. "create a project")
+        const isLongText = type === 'textarea' || /message|description|comment|notes/i.test(name);
+        if (!isLongText && detectSqlInjection(value)) {
             logSuspicious('form-injection', name);
             return { ok: false, message: 'Please remove invalid characters and try again.' };
         }
@@ -437,6 +456,15 @@
                 return;
             }
 
+            const action = form.getAttribute('action') || '';
+            if (action && !isTrustedFormAction(action)) {
+                event.preventDefault();
+                event.stopPropagation();
+                logSuspicious('untrusted-form-action', action.slice(0, 120));
+                showFriendlyError(form, 'Unable to submit form securely. Please try again later.');
+                return;
+            }
+
             const throttle = recordBotEvent('submit');
             if (!throttle.ok) {
                 event.preventDefault();
@@ -445,10 +473,16 @@
                 return;
             }
 
-            const fields = form.querySelectorAll('input, textarea, select');
+            const fields = Array.from(form.elements || []).filter((field) => {
+                return field && field.tagName && /^(INPUT|TEXTAREA|SELECT)$/i.test(field.tagName);
+            });
             for (let i = 0; i < fields.length; i += 1) {
                 const field = fields[i];
                 if (field.type === 'file' || field.type === 'submit' || field.type === 'button' || field.type === 'reset') {
+                    continue;
+                }
+                // Skip honeypot fields — handled by host form logic
+                if ((field.name || '') === '_gotcha') {
                     continue;
                 }
                 const result = validateField(field);
@@ -587,6 +621,7 @@
         setText,
         setSafeHtml,
         hardenLink,
+        isTrustedFormAction,
         protectForm,
         verifyCaptcha,
         recordBotEvent,

@@ -147,6 +147,35 @@ const ensureSingleHyphen = (value) => {
 };
 
 /**
+ * Detect likely script / HTML injection in free-text fields
+ */
+const looksLikeScriptInjection = (input) => {
+    if (window.FoundrySecurity && typeof window.FoundrySecurity.looksLikeScriptInjection === 'function') {
+        return window.FoundrySecurity.looksLikeScriptInjection(input);
+    }
+    if (typeof input !== 'string') return false;
+    return /<\s*script\b/i.test(input)
+        || /javascript\s*:/i.test(input)
+        || /on\w+\s*=\s*['"]?/i.test(input)
+        || /<\s*iframe\b/i.test(input);
+};
+
+/**
+ * Sanitize plain-text form values before submission (strip controls/tags; keep readable text)
+ */
+const sanitizeFormText = (input) => {
+    if (typeof input !== 'string') return '';
+    let value = input;
+    if (window.FoundrySecurity && typeof window.FoundrySecurity.stripControlChars === 'function') {
+        value = window.FoundrySecurity.stripControlChars(value);
+    } else {
+        value = value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
+    }
+    // Remove HTML tags without entity-encoding (plain-text email delivery)
+    return value.replace(/<\/?[^>]+>/g, '').trim();
+};
+
+/**
  * Validate email format securely
  */
 const validateEmail = (email) => {
@@ -539,8 +568,7 @@ const handlePendingScroll = (useSmooth = false) => {
     });
 };
 
-// Back-compat alias used by load handler
-const handleHashNavigation = (useSmooth = false) => handlePendingScroll(useSmooth);
+// Pending scroll handled via handlePendingScroll (hash / sessionStorage)
 
 // ============================================================================
 // PHONE NUMBER HANDLING
@@ -842,9 +870,16 @@ const validateField = (fieldId, value) => {
         case 'description':
             if (!trimmed) return 'Please provide a description';
             if (trimmed.length < 5) return 'Description must be at least 5 characters';
+            if (trimmed.length > 5000) return 'Description must not exceed 5000 characters';
+            if (looksLikeScriptInjection(trimmed)) {
+                return 'Invalid characters detected. Please remove HTML or script content.';
+            }
             return null;
             
         case 'firstName':
+            if (Security.detectSQLInjection(trimmed) || looksLikeScriptInjection(trimmed)) {
+                return 'Invalid characters detected. Please use only alphanumeric characters and standard punctuation.';
+            }
             if (!trimmed) return 'Please enter your first name';
             if (!/^[A-Za-z\s]+$/.test(trimmed)) return 'First name must contain only alphabetic characters';
             if (trimmed.length < 3) return 'First name must be at least 3 characters';
@@ -853,10 +888,7 @@ const validateField = (fieldId, value) => {
             
         case 'lastName':
             // Security: Check for SQL injection and XSS patterns
-            if (Security.detectSQLInjection(trimmed)) {
-                return 'Invalid characters detected. Please use only alphanumeric characters and standard punctuation.';
-            }
-            if (trimmed.includes('<script') || trimmed.includes('javascript:') || trimmed.includes('onerror=')) {
+            if (Security.detectSQLInjection(trimmed) || looksLikeScriptInjection(trimmed)) {
                 return 'Invalid characters detected. Please use only alphanumeric characters and standard punctuation.';
             }
             if (!trimmed) return 'Please enter your last name';
@@ -895,10 +927,7 @@ const validateField = (fieldId, value) => {
             
         case 'company':
             // Security: Check for SQL injection and XSS patterns
-            if (Security.detectSQLInjection(trimmed)) {
-                return 'Invalid characters detected. Please use only alphanumeric characters and standard punctuation.';
-            }
-            if (trimmed.includes('<script') || trimmed.includes('javascript:') || trimmed.includes('onerror=')) {
+            if (Security.detectSQLInjection(trimmed) || looksLikeScriptInjection(trimmed)) {
                 return 'Invalid characters detected. Please use only alphanumeric characters and standard punctuation.';
             }
             if (!trimmed) return 'Please enter your company name';
@@ -917,6 +946,44 @@ const validateField = (fieldId, value) => {
             
         default:
             return null;
+    }
+};
+
+/**
+ * Reset contact form UI after a successful submission
+ */
+const resetContactFormAfterSuccess = () => {
+    if (!DOM.contactForm) return;
+
+    DOM.contactForm.reset();
+
+    FORM_FIELDS.forEach((fieldId) => {
+        const field = getElement(fieldId);
+        if (!field) return;
+        if (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT' || field.tagName === 'SELECT') {
+            field.value = '';
+        }
+        field.classList.remove('error');
+    });
+
+    // Restore default India phone display after reset
+    if (DOM.phoneCodeSelect) {
+        const indiaOption = DOM.phoneCodeSelect.querySelector('option[data-country="IN"]');
+        if (indiaOption) {
+            indiaOption.selected = true;
+            updatePhoneDisplayFromOption(indiaOption);
+        }
+    }
+    if (DOM.countrySelect) {
+        DOM.countrySelect.value = 'IN';
+    }
+
+    clearAllErrors();
+
+    if (DOM.captchaQuestion && DOM.captchaAnswer) {
+        const captcha = generateCaptcha();
+        DOM.captchaQuestion.textContent = captcha.question;
+        DOM.captchaAnswer.value = '';
     }
 };
 
@@ -950,6 +1017,30 @@ const initFormSubmission = () => {
         // Prevent native HTML5 validation from showing one error at a time
         e.preventDefault();
         e.stopPropagation();
+
+        // Honeypot — silently drop bot submissions
+        const honeypot = DOM.contactForm.querySelector('[name="_gotcha"]');
+        if (honeypot && String(honeypot.value || '').trim()) {
+            return false;
+        }
+
+        // Fail closed if action is not a trusted HTTPS endpoint
+        const formAction = DOM.contactForm.getAttribute('action') || '';
+        const trustedActions = (window.FoundrySecurity && window.FoundrySecurity.config && window.FoundrySecurity.config.trustedFormActions)
+            || ['https://formspree.io'];
+        const actionOk = (() => {
+            try {
+                const url = new URL(formAction, window.location.href);
+                if (url.protocol !== 'https:') return false;
+                return trustedActions.some((trusted) => formAction.indexOf(trusted) === 0 || url.origin.indexOf(trusted.replace(/\/$/, '')) === 0 || formAction.startsWith(trusted));
+            } catch (err) {
+                return false;
+            }
+        })();
+        if (!actionOk) {
+            alert('Unable to submit form securely. Please try again later.');
+            return false;
+        }
         
         // Clear all previous errors first
         clearAllErrors();
@@ -1067,51 +1158,33 @@ const initFormSubmission = () => {
         }
         
         // If no errors, submit the form to Formspree using fetch
-        const submitFormData = new FormData(DOM.contactForm);
-        
-        // CRITICAL: Ensure description field (name="message") is included in submission
-        // The field has id="description" but name="message"
-        // FormData should get it automatically, but we'll explicitly ensure it's included
-        const descriptionField = DOM.contactForm.querySelector('[name="message"]') || 
-                                 DOM.contactForm.querySelector('#description') ||
-                                 DOM.description;
-        
-        if (descriptionField) {
-            // Get the current value from the field
-            const descriptionValue = descriptionField.value || '';
-            
-            // CRITICAL: Always remove and re-add to ensure it's included
-            // FormData might not include it if the field is empty or has issues
-            if (submitFormData.has('message')) {
-                submitFormData.delete('message');
-            }
-            
-            // Always append message field - even if empty (Formspree needs it)
-            submitFormData.append('message', descriptionValue);
-        } else {
-            // Fallback: Find all textareas and add the one with name="message"
-            const allTextareas = DOM.contactForm.querySelectorAll('textarea');
-            
-            allTextareas.forEach((ta) => {
-                // If this textarea has name="message" or id="description", add it
-                if (ta.name === 'message' || ta.id === 'description') {
-                    const value = ta.value || '';
-                    if (submitFormData.has('message')) {
-                        submitFormData.delete('message');
-                    }
-                    submitFormData.append('message', value);
-                }
-            });
-        }
+        const submitFormData = new FormData();
+
+        // Sanitize and copy validated fields (include form-associated description via form attribute)
+        const fieldNames = ['firstName', 'lastName', 'country', 'phoneCode', 'phone', 'email', 'company', 'relationship', 'captchaAnswer'];
+        fieldNames.forEach((name) => {
+            const el = DOM.contactForm.elements.namedItem(name) || getElement(name);
+            if (!el || typeof el.value !== 'string') return;
+            const safe = name === 'email' || name === 'phone' || name === 'phoneCode' || name === 'country' || name === 'relationship' || name === 'captchaAnswer'
+                ? String(el.value).trim()
+                : sanitizeFormText(String(el.value).trim());
+            submitFormData.append(name, safe);
+        });
+
+        const descriptionField = getElement('description') || DOM.contactForm.elements.namedItem('message');
+        const descriptionValue = descriptionField && typeof descriptionField.value === 'string'
+            ? sanitizeFormText(descriptionField.value.trim())
+            : '';
+        submitFormData.append('message', descriptionValue);
         
         // Add Formspree-specific fields to improve email delivery and reduce spam detection
         submitFormData.append('_subject', 'New Contact Form Submission from FoundrySuite Website');
         submitFormData.append('_format', 'plain'); // Plain text emails are less likely to be marked as spam
         
         // Set reply-to address to the submitter's email
-        const emailField = DOM.contactForm.querySelector('[name="email"]');
-        if (emailField && emailField.value) {
-            submitFormData.append('_replyto', emailField.value);
+        const emailValue = submitFormData.get('email');
+        if (emailValue) {
+            submitFormData.append('_replyto', emailValue);
         }
         
         // Show loading state
@@ -1122,8 +1195,6 @@ const initFormSubmission = () => {
             submitButton.textContent = 'Submitting...';
         }
         
-        // FormData is ready for submission
-        
         fetch(DOM.contactForm.action, {
             method: 'POST',
             body: submitFormData,
@@ -1132,131 +1203,29 @@ const initFormSubmission = () => {
             }
         })
         .then(response => {
-            // Check if response is ok
             if (response.ok) {
-                // Try to get response data
-                return response.json().then(data => {
-                    // Success - show modal and reset form
+                return response.json().catch(() => ({})).then(() => {
                     showSuccessModal();
-                    
-                    // Reset form - this should clear all fields
-                    DOM.contactForm.reset();
-                    
-                    // Explicitly clear description field (name="message") FIRST to ensure it's cleared
-                    const descriptionField = DOM.contactForm.querySelector('[name="message"]');
-                    if (descriptionField) {
-                        descriptionField.value = '';
-                        descriptionField.textContent = ''; // Also clear textContent for textarea
-                    }
-                    
-                    // Also clear description field by ID as backup
-                    if (DOM.description) {
-                        DOM.description.value = '';
-                        DOM.description.textContent = '';
-                    }
-                    
-                    // Explicitly clear all form fields to ensure they're all reset
-                    FORM_FIELDS.forEach(fieldId => {
-                        const field = getElement(fieldId);
-                        if (field) {
-                            if (field.tagName === 'TEXTAREA') {
-                                field.value = '';
-                                field.textContent = ''; // Clear textContent for textarea
-                            } else {
-                                field.value = '';
-                            }
-                            field.classList.remove('error');
-                        }
-                    });
-                    
-                    // Clear phone code display if it exists
-                    if (DOM.phoneCodeDisplay) {
-                        DOM.phoneCodeDisplay.textContent = '';
-                    }
-                    if (DOM.phoneFlagDisplay) {
-                        DOM.phoneFlagDisplay.textContent = '';
-                    }
-                    
-                    clearAllErrors();
-                    
-                    // Generate new CAPTCHA
-                    if (DOM.captchaQuestion && DOM.captchaAnswer) {
-                        const captcha = generateCaptcha();
-                        DOM.captchaQuestion.textContent = captcha.question;
-                        DOM.captchaAnswer.value = '';
-                    }
-                }).catch(() => {
-                    // Still show success if status was OK
-                    showSuccessModal();
-                    
-                    // Reset form - this should clear all fields
-                    DOM.contactForm.reset();
-                    
-                    // Explicitly clear description field (name="message") FIRST to ensure it's cleared
-                    const descriptionField = DOM.contactForm.querySelector('[name="message"]');
-                    if (descriptionField) {
-                        descriptionField.value = '';
-                        descriptionField.textContent = ''; // Also clear textContent for textarea
-                    }
-                    
-                    // Also clear description field by ID as backup
-                    if (DOM.description) {
-                        DOM.description.value = '';
-                        DOM.description.textContent = '';
-                    }
-                    
-                    // Explicitly clear all form fields to ensure they're all reset
-                    FORM_FIELDS.forEach(fieldId => {
-                        const field = getElement(fieldId);
-                        if (field) {
-                            if (field.tagName === 'TEXTAREA') {
-                                field.value = '';
-                                field.textContent = ''; // Clear textContent for textarea
-                            } else {
-                                field.value = '';
-                            }
-                            field.classList.remove('error');
-                        }
-                    });
-                    
-                    // Clear phone code display if it exists
-                    if (DOM.phoneCodeDisplay) {
-                        DOM.phoneCodeDisplay.textContent = '';
-                    }
-                    if (DOM.phoneFlagDisplay) {
-                        DOM.phoneFlagDisplay.textContent = '';
-                    }
-                    
-                    clearAllErrors();
-                    
-                    if (DOM.captchaQuestion && DOM.captchaAnswer) {
-                        const captcha = generateCaptcha();
-                        DOM.captchaQuestion.textContent = captcha.question;
-                        DOM.captchaAnswer.value = '';
-                    }
-                });
-            } else {
-                // If not ok, try to get error message
-                return response.json().then(data => {
-                    throw new Error(data.error || data.message || 'Form submission failed');
-                }).catch(() => {
-                    throw new Error('Form submission failed. Status: ' + response.status);
+                    resetContactFormAfterSuccess();
                 });
             }
+            return response.json().then(data => {
+                throw new Error(data.error || data.message || 'Form submission failed');
+            }).catch(() => {
+                throw new Error('Form submission failed. Status: ' + response.status);
+            });
         })
-        .catch(error => {
+        .catch(() => {
             alert('There was an error submitting your form. Please check your connection and try again.');
         })
         .finally(() => {
-            // Restore button state
             if (submitButton) {
                 submitButton.disabled = false;
                 submitButton.textContent = originalButtonText;
             }
         });
         
-        // If validation passes, let Formspree handle the submission
-        // Form will submit normally via POST to Formspree endpoint
+        return false;
     });
 };
 
@@ -1319,6 +1288,21 @@ const initThemeToggle = () => {
             syncThemeLogos(newTheme);
         });
     }
+};
+
+/**
+ * Login page placeholder submit handler (no credentials processed client-side)
+ */
+const initLoginForm = () => {
+    const loginForm = document.getElementById('loginForm');
+    if (!loginForm) return;
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // Do not read or transmit credentials from this static marketing site
+        alert('Login functionality will be connected to your authentication system.');
+    });
 };
 
 /**
@@ -1439,33 +1423,18 @@ const initSolutionSlideshow = () => {
 };
 
 // ============================================================================
-// SEASONAL CONTENT
+// IMAGE FALLBACKS (replaces inline onerror handlers)
 // ============================================================================
 
-const removeSeasonalContent = () => {
-    const ENABLE_SEASONAL_REMOVAL = false;
-    if (!ENABLE_SEASONAL_REMOVAL) return;
-    
-    const removalDate = new Date('2026-01-07');
-    const currentDate = new Date();
-    
-    if (currentDate >= removalDate) {
-        const elements = [
-            '.hero-video-bg',
-            '.hero-video-overlay',
-            '.login-video-bg',
-            '.login-video-overlay',
-            '.solution-slide[data-solution="christmas"]',
-            '.login-christmas-image'
-        ];
-        
-        elements.forEach(selector => {
-            const element = document.querySelector(selector);
-            if (element) element.remove();
+const initImageFallbacks = () => {
+    document.querySelectorAll('img[data-fallback-sibling="true"]').forEach((img) => {
+        img.addEventListener('error', () => {
+            img.style.display = 'none';
+            const sibling = img.nextElementSibling;
+            if (sibling) sibling.style.display = 'flex';
         });
-    }
+    });
 };
-
 
 // ============================================================================
 // COPYRIGHT YEAR UPDATE
@@ -1502,8 +1471,8 @@ const initPageState = () => {
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    removeSeasonalContent();
     updateCopyrightYear();
+    initImageFallbacks();
     initAnimations();
     initSolutionSlideshow();
     setCustomValidationMessages();
@@ -1518,6 +1487,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSuccessModal();
     initThemeToggle();
     initPlatformFaqAccordion();
+    initLoginForm();
 
     // Core platform services — ensure active even if a page forgets a script tag.
     if (window.FoundrySecurity && typeof window.FoundrySecurity.init === 'function') {

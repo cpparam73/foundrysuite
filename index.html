@@ -145,7 +145,7 @@
                                 
                                 <!-- Slide 3: Foundry Build - Construction -->
                                 <div class="solution-slide" data-solution="build">
-                                    <img src="images/Products/Foundry-Build.png" alt="Foundry Build - The Integrated ERP for Civil & Commercial Construction" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <img src="images/Products/Foundry-Build.png" alt="Foundry Build - The Integrated ERP for Civil & Commercial Construction" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder" style="display: none;">
                                         <div class="placeholder-content">
                                             <h3>Foundry Build</h3>
@@ -156,7 +156,7 @@
                                 
                                 <!-- Slide 4: Foundry Campus - Education -->
                                 <div class="solution-slide" data-solution="campus">
-                                    <img src="images/Products/Foundry-Campus.png?v=2" alt="Foundry Campus - Education & Institutions ERP" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <img src="images/Products/Foundry-Campus.png?v=2" alt="Foundry Campus - Education & Institutions ERP" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder" style="display: none;">
                                         <div class="placeholder-content">
                                             <h3>Foundry Campus</h3>
@@ -167,7 +167,7 @@
                                 
                                 <!-- Slide 5: Foundry Health - Healthcare -->
                                 <div class="solution-slide" data-solution="health">
-                                    <img src="images/Products/Foundry-Health.png?v=3" alt="Foundry Health - Unified ERP Platform for Healthcare & Life Sciences Enterprises" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <img src="images/Products/Foundry-Health.png?v=3" alt="Foundry Health - Unified ERP Platform for Healthcare & Life Sciences Enterprises" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder" style="display: none;">
                                         <div class="placeholder-content">
                                             <h3>Foundry Health</h3>
@@ -178,7 +178,7 @@
                                 
                                 <!-- Slide 6: Foundry IT - IT Services -->
                                 <div class="solution-slide" data-solution="it">
-                                    <img src="images/Products/Foundry-IT.png?v=2" alt="Foundry IT - Unified ERP Platform for IT & Digital Services Enterprises" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <img src="images/Products/Foundry-IT.png?v=2" alt="Foundry IT - Unified ERP Platform for IT & Digital Services Enterprises" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder" style="display: none;">
                                         <div class="placeholder-content">
                                             <h3>Foundry IT</h3>
@@ -189,7 +189,7 @@
                                 
                                 <!-- Slide 7: Foundry Agri - Agriculture -->
                                 <div class="solution-slide" data-solution="agri">
-                                    <img src="images/Products/Foundry-Agri.png?v=2" alt="Foundry Agri - Agriculture & Agri-Projects ERP" class="solution-slide-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <img src="images/Products/Foundry-Agri.png?v=2" alt="Foundry Agri - Agriculture & Agri-Projects ERP" class="solution-slide-img" loading="lazy" data-fallback-sibling="true">
                                     <div class="solution-slide-placeholder" style="display: none;">
                                         <div class="placeholder-content">
                                             <h3>Foundry Agri</h3>
@@ -1117,11 +1117,13 @@
                     </div>
                     <div class="form-group form-group-full">
                         <label for="description" class="form-label">Please provide a brief description of how FoundrySuite can help you <span class="required">*</span></label>
-                        <textarea id="description" name="message" rows="10" placeholder="Enter your description here..." minlength="5" required></textarea>
+                        <textarea id="description" name="message" form="contactForm" rows="10" placeholder="Enter your description here..." minlength="5" maxlength="5000" required></textarea>
                         <span class="error-message" id="descriptionError"></span>
                     </div>
                 </div>
                 <form class="contact-form" id="contactForm" action="https://formspree.io/f/mbdrolyg" method="POST" novalidate>
+                    <!-- Honeypot — leave empty; bots that fill it are rejected -->
+                    <input type="text" name="_gotcha" id="contactHoneypot" class="hp-field" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName" class="form-label">First Name <span class="required">*</span></label>
@@ -1424,7 +1426,7 @@
 
     <script src="assets/js/core/security-manager.js"></script>
     <script src="assets/js/core/content-protection.js"></script>
-    <script src="script.js?v=security-1"></script>
+    <script src="script.js?v=security-2"></script>
 </body>
 </html>
 

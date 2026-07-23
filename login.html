@@ -175,10 +175,23 @@
             88% { transform: translateX(320%) skewX(-18deg); opacity: 0; }
         }
 
-        .login-brand-logo img {
+        .login-brand-logo img,
+        .login-brand-logo-img {
             height: 42px;
             width: auto;
             object-fit: contain;
+        }
+
+        .login-brand-logo-img--dark {
+            display: none;
+        }
+
+        [data-theme="dark"] .login-brand-logo-img--light {
+            display: none;
+        }
+
+        [data-theme="dark"] .login-brand-logo-img--dark {
+            display: block;
         }
 
         .login-brand-logo-text {
@@ -713,7 +726,8 @@
 
             <div class="login-brand-inner">
                 <a href="index.html" class="login-brand-logo">
-                    <img src="images/Branding/logo-light.png" alt="FoundrySuite Logo">
+                    <img src="images/Branding/logo-light.png" alt="FoundrySuite Logo" class="login-brand-logo-img login-brand-logo-img--light">
+                    <img src="images/Branding/logo-dark.png" alt="" class="login-brand-logo-img login-brand-logo-img--dark" aria-hidden="true">
                     <span class="login-brand-logo-text">
                         <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span>
                     </span>

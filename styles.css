@@ -4330,8 +4330,8 @@ body {
 
 .founder-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
-    gap: 2.25rem; /* ~25% tighter than 3rem for a cohesive profile */
+    grid-template-columns: auto minmax(0, 1fr); /* photo sized to content; text fills remaining space */
+    gap: 40px;
     align-items: center;
 }
 
@@ -4343,8 +4343,8 @@ body {
 }
 
 .founder-photo-card {
-    width: min(100%, 255px); /* ~25% smaller than 340px */
-    max-width: 100%;
+    width: min(100%, 260px);
+    max-width: 260px;
     border-radius: 1rem;
     overflow: hidden;
     border: 2px solid var(--border-color);
@@ -4355,8 +4355,8 @@ body {
 .founder-photo {
     width: 100%;
     height: auto;
-    max-width: 100%;
-    max-height: 320px;
+    max-width: 260px;
+    max-height: 325px; /* 4:5 of 260px */
     aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center top;
@@ -4411,11 +4411,13 @@ body {
     }
 
     .founder-photo-card {
-        width: min(100%, 230px);
+        width: min(100%, 220px);
+        max-width: 220px;
     }
 
     .founder-photo {
-        max-height: 288px;
+        max-width: 220px;
+        max-height: 275px;
         aspect-ratio: 4 / 5;
         object-position: center top;
     }

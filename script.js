@@ -1517,6 +1517,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initSuccessModal();
     initThemeToggle();
     initPlatformFaqAccordion();
+
+    // Content protection is a core platform service (assets/js/core/content-protection.js).
+    // Ensure it is active even if a page forgets the script tag.
+    if (window.FoundryContentProtection && typeof window.FoundryContentProtection.init === 'function') {
+        window.FoundryContentProtection.init();
+    }
     
     setTimeout(() => {
         updateNavbarScroll();

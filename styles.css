@@ -232,11 +232,29 @@ body {
     color: #3B82F6;
 }
 
+.footer-logo-link {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    line-height: 0;
+}
+
+.footer-logo-link:hover,
+.footer-logo-link:focus-visible {
+    text-decoration: none;
+}
+
+.footer-logo-link:focus-visible {
+    outline: 2px solid #3B82F6;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
 .footer-logo {
     height: 40px;
     width: auto;
     object-fit: contain;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
     display: block;
 }
 

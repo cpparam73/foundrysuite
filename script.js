@@ -296,8 +296,10 @@ const HOME_SECTION_IDS = ['home', 'products', 'foundry-platform', 'solutions', '
 const isHomePage = () => Boolean(document.getElementById('home'));
 
 const getHomeUrl = () => {
+    // Prefer a clean site-root URL (production: https://www.foundrysuite.com/)
     try {
-        return new URL('/', window.location.href).pathname;
+        const url = new URL('/', window.location.href);
+        return url.pathname;
     } catch (e) {
         return '/';
     }
@@ -336,6 +338,7 @@ const getScrollTargetId = (link) => {
         // Logo / home links that point at the site root
         if (
             link.classList.contains('logo') ||
+            link.classList.contains('footer-logo-link') ||
             link.classList.contains('login-brand-logo') ||
             link.matches('[data-scroll-to="home"]')
         ) {

@@ -248,12 +248,15 @@
             position: relative;
             z-index: 1;
             width: 100%;
+            max-width: 100%;
             height: auto;
             display: block;
             border-radius: 0;
             background: transparent;
             box-shadow: none;
-            /* static artwork — no rotation */
+            /* Keep native resolution — CSS only constrains display size */
+            image-rendering: auto;
+            -webkit-user-drag: none;
             transform: none;
             animation: none;
         }
@@ -706,9 +709,14 @@
                         <span class="login-brand-orbit-glow" aria-hidden="true"></span>
                         <img
                             src="images/FoundrySuite-Orbit-transparent.png"
+                            srcset="images/FoundrySuite-Orbit-transparent.png 1536w, images/FoundrySuite-Orbit@2x.png 3072w"
+                            sizes="(max-width: 1024px) min(92vw, 560px), min(600px, 48vw)"
+                            width="1536"
+                            height="1024"
                             alt="Foundry Platform — modular capabilities orbit"
                             class="login-brand-orbit-img"
                             fetchpriority="high"
+                            decoding="async"
                         >
                     </div>
                 </div>

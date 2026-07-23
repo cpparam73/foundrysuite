@@ -4337,10 +4337,14 @@ body {
 
 .founder-visual {
     min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .founder-photo-card {
-    width: 100%;
+    width: min(100%, 340px); /* ~35–40% smaller visual presence */
+    max-width: 100%;
     border-radius: 1rem;
     overflow: hidden;
     border: 2px solid var(--border-color);
@@ -4352,7 +4356,8 @@ body {
     width: 100%;
     height: auto;
     max-width: 100%;
-    aspect-ratio: 402 / 520;
+    max-height: 435px;
+    aspect-ratio: 4 / 5;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -4405,9 +4410,14 @@ body {
         gap: 1.5rem;
     }
 
+    .founder-photo-card {
+        width: min(100%, 300px);
+    }
+
     .founder-photo {
-        aspect-ratio: 16 / 10;
-        object-position: center;
+        max-height: 390px;
+        aspect-ratio: 4 / 5;
+        object-position: center top;
     }
 }
 

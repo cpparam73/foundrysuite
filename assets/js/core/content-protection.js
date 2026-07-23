@@ -58,11 +58,13 @@
             '.arch-diagram img',
             '.login-brand-orbit-img',
             '.login-brand-logo-img',
+            '.founder-photo',
             '.product-card img',
             'img[src*="Branding/"]',
             'img[src*="Architecture/"]',
             'img[src*="About/"]',
             'img[src*="Products/"]',
+            'img[src*="Founder/"]',
             'img[src*="Social/"]'
         ],
         /** Containers that may use CSS background-image and need a shield */

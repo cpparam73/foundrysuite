@@ -28,6 +28,27 @@ RewriteRule ^index\.html$ / [R=301,L]
 # Canonical Foundry Platform product page
 RewriteRule ^platform\.html$ /foundry-platform.html [R=301,L]
 
+# Legacy image path redirects (old /images/ → /assets/images/)
+RewriteRule ^images/Social/og-image\.png$ /assets/images/Social/og-image.png [R=301,L]
+RewriteRule ^images/About/About-Us\.jpg$ /assets/images/About/about-us.jpg [R=301,L]
+RewriteRule ^images/Branding/BID-hd\.svg$ /assets/images/Branding/bid-hd.svg [R=301,L]
+RewriteRule ^images/Branding/(.*)$ /assets/images/Branding/$1 [R=301,L]
+RewriteRule ^images/Icons/(.*)$ /assets/images/Icons/$1 [R=301,L]
+RewriteRule ^images/Architecture/foundrysuite-Orbit-light\.png$ /assets/images/Architecture/foundrysuite-orbit-light.png [R=301,L]
+RewriteRule ^images/Architecture/foundrysuite-Orbit-dark\.png$ /assets/images/Architecture/foundrysuite-orbit-dark.png [R=301,L]
+RewriteRule ^images/Architecture/platform-Architecture-light\.png$ /assets/images/Architecture/platform-architecture-light.png [R=301,L]
+RewriteRule ^images/Architecture/platform-achitecture-dark\.png$ /assets/images/Architecture/platform-architecture-dark.png [R=301,L]
+RewriteRule ^images/Architecture/(.*)$ /assets/images/Architecture/$1 [R=301,L]
+RewriteRule ^images/Products/Foundry-Build\.png$ /assets/images/Products/foundry-build.png [R=301,L]
+RewriteRule ^images/Products/Foundry-Campus\.png$ /assets/images/Products/foundry-campus.png [R=301,L]
+RewriteRule ^images/Products/Foundry-Health\.png$ /assets/images/Products/foundry-health.png [R=301,L]
+RewriteRule ^images/Products/Foundry-IT\.png$ /assets/images/Products/foundry-it.png [R=301,L]
+RewriteRule ^images/Products/Foundry-Agri\.png$ /assets/images/Products/foundry-agri.png [R=301,L]
+RewriteRule ^images/Products/(.*)$ /assets/images/Products/$1 [R=301,L]
+RewriteRule ^images/Founder/(.*)$ /assets/images/Founder/parameswaran-cp.jpg [R=301,L]
+RewriteRule ^assets/images/founder/(.*)$ /assets/images/Founder/$1 [R=301,L]
+RewriteRule ^images/Social/(.*)$ /assets/images/Social/$1 [R=301,L]
+
 # ============================================================================
 # SECURITY HEADERS - Comprehensive Protection Against Cyber Attacks
 # ============================================================================

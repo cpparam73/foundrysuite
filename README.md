@@ -20,7 +20,8 @@ Brand-led marketing site for FoundrySuite — pure HTML, CSS, and JavaScript.
 - `script.js` — nav, theme, slideshow, form validation & Formspree
 - `assets/js/core/` — security-manager & content-protection
 - `docs/SECURITY.md` — server/hosting security configuration
-- `images/` / `videos/` — brand assets
+- `assets/images/` — brand, product, icon, and social assets
+- `videos/` — optional media assets
 
 ## Local preview
 

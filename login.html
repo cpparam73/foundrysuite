@@ -17,7 +17,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="images/Icons/favicon-32x32-light.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/Icons/favicon-16x16-light.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/Icons/apple-touch-icon-light.png">
-    <link rel="shortcut icon" href="images/Icons/favicon-light.ico">
     <script>
         // Set theme immediately to prevent flash.
         // Login defaults to light; respect saved preference when present.
@@ -848,7 +847,7 @@
         </div>
 
             <div class="login-footer">
-                <p>Don't have an account? <a href="#contact">Contact your administrator</a></p>
+                <p>Don't have an account? <a href="/#contact">Contact your administrator</a></p>
                 <p><a href="/" data-scroll-to="home">← Back to home</a></p>
                 <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.8125rem;">&copy; <span id="copyright-year">2025</span> <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span>. All rights reserved.</p>
             </div>
@@ -859,49 +858,12 @@
     <script src="assets/js/core/content-protection.js"></script>
     <script src="script.js?v=security-1"></script>
     <script>
-        // Login form handling
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                const remember = document.getElementById('remember').checked;
-                
-                // Here you would typically send the data to a server
-                // For now, we'll just show a message
                 alert('Login functionality will be connected to your authentication system.');
             });
-        }
-
-        // Animated Particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            if (!particlesContainer) return;
-
-            const particleCount = 20;
-            const colors = ['#3B82F6', '#F59E0B']; // Tech Blue and Amber
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Initialize particles on load
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                removeSeasonalContent();
-                createParticles();
-            });
-        } else {
-            removeSeasonalContent();
-            createParticles();
         }
     </script>
 </body>

@@ -14,11 +14,13 @@ Brand-led marketing site for FoundrySuite — pure HTML, CSS, and JavaScript.
 ## Structure
 
 - `index.html` — marketing site
+- `foundry-platform.html` — Foundry Platform product page
 - `login.html` — customer login
-- `styles.css` — 2.0 design system
+- `styles.css` — design system
 - `script.js` — nav, theme, slideshow, form validation & Formspree
+- `assets/js/core/` — security-manager & content-protection
+- `docs/SECURITY.md` — server/hosting security configuration
 - `images/` / `videos/` — brand assets
-- `v1/` — previous production snapshot (backup)
 
 ## Local preview
 

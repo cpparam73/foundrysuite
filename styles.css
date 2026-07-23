@@ -4351,10 +4351,12 @@ body {
 .founder-photo {
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 5;
+    max-width: 100%;
+    aspect-ratio: 402 / 520;
     object-fit: cover;
     object-position: center top;
     display: block;
+    border-radius: 1rem;
 }
 
 .founder-content {

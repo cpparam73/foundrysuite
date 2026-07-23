@@ -1,7 +1,8 @@
 FoundrySuite website image assets
 
 Folder structure:
-- About/          — About page photography (About-Us.jpg) and founder portrait (Founder.jpg)
+- About/          — About page photography (About-Us.jpg)
+- Founder/        — Source founder portrait (copied to assets/images/founder/parameswaran-cp.jpg for the site)
 - Architecture/   — Orbit visuals and platform layered architecture diagrams
 - Branding/       — Logo (logo-light.png, logo-dark.png) and BID-hd.svg
 - Icons/          — Favicons and apple-touch icons (light/dark variants)

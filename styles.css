@@ -5596,6 +5596,7 @@ body {
     border-radius: 1rem;
     padding: 1.5rem 1.35rem;
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 [data-theme="dark"] .platform-overview-card {
@@ -5630,6 +5631,7 @@ body {
     background:
         linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(59, 130, 246, 0.08)),
         var(--bg-primary);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .platform-overview-pillar-label {
@@ -5684,13 +5686,35 @@ body {
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
 }
 
+.platform-overview-card:hover,
+.platform-overview-pillar:hover,
 .platform-card:hover,
 .platform-list-card:hover,
 .platform-ai-card:hover,
-.platform-benefit:hover {
+.platform-benefit:hover,
+.platform-faq-item:hover,
+.platform-arch-layers li:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09);
-    border-color: rgba(59, 130, 246, 0.35);
+    border-color: rgba(59, 130, 246, 0.45);
+    box-shadow:
+        0 14px 34px rgba(15, 23, 42, 0.1),
+        0 0 0 1px rgba(59, 130, 246, 0.18),
+        0 10px 28px rgba(245, 158, 11, 0.1);
+}
+
+[data-theme="dark"] .platform-overview-card:hover,
+[data-theme="dark"] .platform-overview-pillar:hover,
+[data-theme="dark"] .platform-card:hover,
+[data-theme="dark"] .platform-list-card:hover,
+[data-theme="dark"] .platform-ai-card:hover,
+[data-theme="dark"] .platform-benefit:hover,
+[data-theme="dark"] .platform-faq-item:hover,
+[data-theme="dark"] .platform-arch-layers li:hover {
+    border-color: rgba(59, 130, 246, 0.55);
+    box-shadow:
+        0 16px 36px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(59, 130, 246, 0.28),
+        0 10px 28px rgba(245, 158, 11, 0.12);
 }
 
 .platform-card--accent {
@@ -5793,12 +5817,6 @@ body {
     background: linear-gradient(135deg, #F59E0B, #3B82F6);
 }
 
-.platform-arch-layers li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-    border-color: rgba(59, 130, 246, 0.35);
-}
-
 .platform-arch-layers strong {
     font-family: 'Outfit', 'Inter', sans-serif;
     color: var(--text-primary);
@@ -5867,6 +5885,7 @@ body {
     background: var(--bg-primary);
     padding: 0.15rem 1rem;
     box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .platform-faq-item summary {
@@ -6003,10 +6022,13 @@ body {
         animation: none !important;
     }
 
+    .platform-overview-card:hover,
+    .platform-overview-pillar:hover,
     .platform-card:hover,
     .platform-list-card:hover,
     .platform-ai-card:hover,
     .platform-benefit:hover,
+    .platform-faq-item:hover,
     .platform-arch-layers li:hover {
         transform: none;
     }

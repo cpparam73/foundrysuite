@@ -1320,6 +1320,43 @@ const initThemeToggle = () => {
     }
 };
 
+/**
+ * Platform FAQ — exclusive accordion (one open panel at a time)
+ */
+const initPlatformFaqAccordion = () => {
+    const list = document.querySelector('[data-faq-accordion]');
+    if (!list) return;
+
+    const items = Array.from(list.querySelectorAll('details.platform-faq-item'));
+    if (!items.length) return;
+
+    const syncItemAria = (item) => {
+        const summary = item.querySelector('summary');
+        if (!summary) return;
+        summary.setAttribute('aria-expanded', item.open ? 'true' : 'false');
+    };
+
+    const syncAllAria = () => {
+        items.forEach(syncItemAria);
+    };
+
+    items.forEach((item) => {
+        syncItemAria(item);
+
+        item.addEventListener('toggle', () => {
+            if (item.open) {
+                items.forEach((other) => {
+                    if (other !== item && other.open) {
+                        other.open = false;
+                    }
+                });
+            }
+            // Sync after exclusive close settles
+            queueMicrotask(syncAllAria);
+        });
+    });
+};
+
 // ============================================================================
 // SLIDESHOW
 // ============================================================================
@@ -1479,6 +1516,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCaptcha();
     initSuccessModal();
     initThemeToggle();
+    initPlatformFaqAccordion();
     
     setTimeout(() => {
         updateNavbarScroll();

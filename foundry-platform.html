@@ -525,30 +525,42 @@
                     <h2 class="platform-section-title">FAQ</h2>
                     <p class="platform-section-subtitle">Common questions about Foundry Platform and how it supports FoundrySuite solutions.</p>
                 </div>
-                <div class="platform-faq-list">
+                <div class="platform-faq-list" data-faq-accordion>
                     <details class="platform-faq-item" open>
-                        <summary>What is Foundry Platform?</summary>
-                        <p>Foundry Platform is the shared cloud-native foundation for FoundrySuite. It provides identity, security, workflows, integrations, content services, analytics, and AI capabilities used by every module and industry solution.</p>
+                        <summary aria-expanded="true" aria-controls="faq-answer-1">What is Foundry Platform?</summary>
+                        <div class="platform-faq-answer" id="faq-answer-1" role="region">
+                            <p>Foundry Platform is the shared cloud-native foundation for FoundrySuite. It provides identity, security, workflows, integrations, content services, analytics, and AI capabilities used by every module and industry solution.</p>
+                        </div>
                     </details>
                     <details class="platform-faq-item">
-                        <summary>Do I need Foundry Platform to use industry solutions like Foundry Build or Foundry Health?</summary>
-                        <p>Yes. Industry suites run on Foundry Platform so they inherit the same security model, workflow engine, APIs, and operational governance—while delivering domain-specific capabilities for each sector.</p>
+                        <summary aria-expanded="false" aria-controls="faq-answer-2">Do I need Foundry Platform to use industry solutions like Foundry Build or Foundry Health?</summary>
+                        <div class="platform-faq-answer" id="faq-answer-2" role="region">
+                            <p>Yes. Industry suites run on Foundry Platform so they inherit the same security model, workflow engine, APIs, and operational governance—while delivering domain-specific capabilities for each sector.</p>
+                        </div>
                     </details>
                     <details class="platform-faq-item">
-                        <summary>Can we start with a few modules and expand later?</summary>
-                        <p>Absolutely. FoundrySuite is composable by design. Start with the modules you need today—then add CRM, Projects, HCM, Finance, Analytics, or industry packs as your operating model evolves.</p>
+                        <summary aria-expanded="false" aria-controls="faq-answer-3">Can we start with a few modules and expand later?</summary>
+                        <div class="platform-faq-answer" id="faq-answer-3" role="region">
+                            <p>Absolutely. FoundrySuite is composable by design. Start with the modules you need today—then add CRM, Projects, HCM, Finance, Analytics, or industry packs as your operating model evolves.</p>
+                        </div>
                     </details>
                     <details class="platform-faq-item">
-                        <summary>How does Foundry Platform handle integrations?</summary>
-                        <p>Through an API-first integration fabric and integration engine that supports connectors, event-driven flows, mapping, monitoring, and controlled data exchange with enterprise and partner systems.</p>
+                        <summary aria-expanded="false" aria-controls="faq-answer-4">How does Foundry Platform handle integrations?</summary>
+                        <div class="platform-faq-answer" id="faq-answer-4" role="region">
+                            <p>Through an API-first integration fabric and integration engine that supports connectors, event-driven flows, mapping, monitoring, and controlled data exchange with enterprise and partner systems.</p>
+                        </div>
                     </details>
                     <details class="platform-faq-item">
-                        <summary>Is customization upgrade-safe?</summary>
-                        <p>Foundry Platform separates configuration and extension points from core services so you can tailor workflows, roles, and integrations without blocking platform upgrades.</p>
+                        <summary aria-expanded="false" aria-controls="faq-answer-5">Is customization upgrade-safe?</summary>
+                        <div class="platform-faq-answer" id="faq-answer-5" role="region">
+                            <p>Foundry Platform separates configuration and extension points from core services so you can tailor workflows, roles, and integrations without blocking platform upgrades.</p>
+                        </div>
                     </details>
                     <details class="platform-faq-item">
-                        <summary>What deployment models are supported?</summary>
-                        <p>Foundry Cloud (managed SaaS), private cloud, hybrid, and enterprise-hosted patterns are available depending on compliance, data residency, and operational requirements.</p>
+                        <summary aria-expanded="false" aria-controls="faq-answer-6">What deployment models are supported?</summary>
+                        <div class="platform-faq-answer" id="faq-answer-6" role="region">
+                            <p>Foundry Cloud (managed SaaS), private cloud, hybrid, and enterprise-hosted patterns are available depending on compliance, data residency, and operational requirements.</p>
+                        </div>
                     </details>
                 </div>
             </div>
@@ -617,6 +629,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=platform-nav-2"></script>
+    <script src="script.js?v=faq-accordion-1"></script>
 </body>
 </html>

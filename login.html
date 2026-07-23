@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* Login Page Specific Styles */
         body {
@@ -41,328 +41,244 @@
 
         .login-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.05fr 0.95fr;
             width: 100%;
             min-height: 100vh;
         }
 
-        /* Left Side - Brand Showcase */
+        /* —— Left panel: homepage-aligned hero —— */
         .login-brand-panel {
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
-            padding: 3rem 4rem;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+            align-items: stretch;
+            padding: 2.5rem 2.75rem 2.25rem;
             overflow: hidden;
+            background: linear-gradient(165deg, #ffffff 0%, #f8fafc 45%, #eef4ff 100%);
         }
 
-        /* Animated Background Pattern */
-        .login-brand-panel::before {
-            content: '';
+        [data-theme="dark"] .login-brand-panel {
+            background: linear-gradient(165deg, #0b1220 0%, #0f172a 50%, #111827 100%);
+        }
+
+        .login-brand-atmosphere {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* Geometric Shapes */
-        .geometric-shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 15s ease-in-out infinite;
-        }
-
-        .shape-1 {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 10%;
-            background: linear-gradient(135deg, #3B82F6, #F59E0B);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation-delay: 0s;
-        }
-
-        .shape-2 {
-            width: 150px;
-            height: 150px;
-            bottom: 15%;
-            right: 15%;
-            background: linear-gradient(135deg, #F59E0B, #3B82F6);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation-delay: 2s;
-        }
-
-        .shape-3 {
-            width: 100px;
-            height: 100px;
-            top: 50%;
-            right: 20%;
-            background: #3B82F6;
-            transform: rotate(45deg);
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-
-        /* Animated Particles */
-        .particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: particle-float 20s infinite;
-        }
-
-        @keyframes particle-float {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        /* Video Background */
-        .login-video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            inset: 0;
             z-index: 0;
-            opacity: 1;
             pointer-events: none;
+            overflow: hidden;
         }
 
-        .login-video-overlay {
+        .login-brand-orb {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 250, 252, 0.4) 100%);
-            z-index: 1;
+            border-radius: 50%;
+            filter: blur(72px);
+            opacity: 0.55;
+            will-change: transform;
         }
 
-        [data-theme="dark"] .login-video-overlay {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.4) 100%);
+        .login-brand-orb--foundry {
+            width: min(52vw, 420px);
+            height: min(52vw, 420px);
+            top: -10%;
+            left: -12%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.38) 0%, rgba(245, 158, 11, 0) 70%);
+            animation: loginOrbDrift 18s ease-in-out infinite;
         }
 
-        /* Video Mask Overlays - Hide navigation and buttons in video */
-        .login-video-mask-top,
-        .login-video-mask-bottom {
+        .login-brand-orb--suite {
+            width: min(48vw, 380px);
+            height: min(48vw, 380px);
+            bottom: -16%;
+            right: -10%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.32) 0%, rgba(59, 130, 246, 0) 70%);
+            animation: loginOrbDrift 22s ease-in-out infinite reverse;
+        }
+
+        .login-brand-grid {
             position: absolute;
-            left: 0;
-            width: 100%;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 75%);
+            opacity: 0.7;
+        }
+
+        [data-theme="dark"] .login-brand-grid {
+            background-image:
+                linear-gradient(rgba(248, 250, 252, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(248, 250, 252, 0.04) 1px, transparent 1px);
+        }
+
+        @keyframes loginOrbDrift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(3%, 4%) scale(1.06); }
+        }
+
+        .login-brand-inner {
+            position: relative;
             z-index: 2;
-            pointer-events: none;
-        }
-
-        .login-video-mask-top {
-            top: 0;
-            height: 15%;
-            background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%);
-        }
-
-        .login-video-mask-bottom {
-            bottom: 0;
-            height: 20%;
-            background: linear-gradient(0deg, var(--bg-primary) 0%, transparent 100%);
-        }
-
-        [data-theme="dark"] .login-video-mask-top,
-        [data-theme="dark"] .login-video-mask-bottom {
-            background: linear-gradient(180deg, var(--bg-primary) 0%, transparent 100%);
-        }
-
-        [data-theme="dark"] .login-video-mask-bottom {
-            background: linear-gradient(0deg, var(--bg-primary) 0%, transparent 100%);
-        }
-
-        /* Christmas Image */
-        .login-christmas-image {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            width: 200px;
-            height: auto;
-            z-index: 3;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-            display: none; /* Disabled seasonal image */
-        }
-
-        .login-christmas-image img {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
             width: 100%;
-            height: auto;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            display: block;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .login-brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .login-brand-logo img {
+            height: 42px;
+            width: auto;
             object-fit: contain;
         }
 
-        .login-christmas-image:hover {
-            opacity: 1;
-            transform: scale(1.05);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        @media (max-width: 1024px) {
-            .login-christmas-image {
-                width: 150px;
-                top: 1.5rem;
-                right: 1.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .login-christmas-image {
-                width: 120px;
-                top: 1rem;
-                right: 1rem;
-            }
-        }
-
-        .brand-content {
-            position: relative;
-            z-index: 2;
-            max-width: 500px;
-        }
-
-        .brand-logo-large {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .brand-logo-large img {
-            height: 60px;
-            width: auto;
-            background: transparent;
-        }
-
-        .brand-logo-large-text {
-            font-size: 2.5rem;
+        .login-brand-logo-text {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            font-size: 1.65rem;
             font-weight: 700;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
         }
 
-        .brand-tagline {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 2.5rem;
-            line-height: 1.4;
+        .login-brand-headline {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            font-size: clamp(1.75rem, 3.2vw, 2.55rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin: 0;
+            background: linear-gradient(105deg, #F59E0B 0%, #ea8a0a 35%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .brand-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2.5rem 0;
-        }
-
-        .brand-features li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-            color: var(--text-primary);
-            font-size: 1rem;
-        }
-
-        .brand-features li::before {
-            content: '✓';
+        .login-brand-devices {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, #3B82F6, #F59E0B);
-            color: white;
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 0.875rem;
+            width: 100%;
+            margin: 0.25rem 0 0.35rem;
+        }
+
+        .login-brand-desktop {
+            position: relative;
+            flex: 1;
+            min-width: 0;
+            z-index: 2;
+            animation: loginFrameFloat 7s ease-in-out infinite;
+        }
+
+        @keyframes loginFrameFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .login-brand-dashboard {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 1rem;
+            box-shadow: 0 22px 56px rgba(15, 23, 42, 0.16);
+            background: #f1f5f9;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+        }
+
+        [data-theme="dark"] .login-brand-dashboard {
+            background: #0f172a;
+            border-color: rgba(71, 85, 105, 0.45);
+            box-shadow: 0 22px 56px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-brand-phone {
+            position: relative;
+            width: 108px;
             flex-shrink: 0;
+            z-index: 4;
+            margin-left: -44px;
+            animation: loginPhoneFloat 6s ease-in-out infinite;
         }
 
-        .brand-trust {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-            margin-top: 2rem;
+        @keyframes loginPhoneFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .trust-item {
+        .login-brand-phone .mobile-mockup {
+            width: 100%;
+        }
+
+        .login-brand-badges {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.65rem;
+            margin-top: 0.25rem;
+        }
+
+        .login-brand-badge {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.7rem 0.45rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            border-radius: 0.85rem;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
         }
 
-        .trust-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+        [data-theme="dark"] .login-brand-badge {
+            background: rgba(15, 23, 42, 0.55);
+            border-color: rgba(71, 85, 105, 0.55);
         }
 
-        .trust-label {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        /* Product Icons */
-        .product-icons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .product-icon {
-            width: 48px;
-            height: 48px;
+        .login-brand-badge-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
-            color: var(--primary-color);
-            font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(59, 130, 246, 0.18));
+            color: #3B82F6;
+        }
+
+        .login-brand-badge-icon svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .login-brand-badge span {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .login-brand-orb,
+            .login-brand-desktop,
+            .login-brand-phone {
+                animation: none !important;
+            }
         }
 
         /* Right Side - Login Form */
@@ -619,20 +535,26 @@
             }
 
             .login-brand-panel {
-                padding: 2rem;
+                padding: 2rem 1.5rem 1.75rem;
                 min-height: auto;
+                order: -1;
             }
 
-            .brand-logo-large-text {
-                font-size: 2rem;
+            .login-brand-inner {
+                max-width: 520px;
             }
 
-            .brand-tagline {
-                font-size: 1.25rem;
+            .login-brand-headline {
+                text-align: left;
             }
 
-            .geometric-shape {
-                display: none;
+            .login-brand-phone {
+                width: 96px;
+                margin-left: -36px;
+            }
+
+            .login-brand-badges {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
             }
         }
 
@@ -652,21 +574,40 @@
                 height: 40px;
             }
 
-            .brand-logo-large {
-                flex-direction: column;
-                align-items: flex-start;
+            .login-brand-panel {
+                padding: 1.5rem 1.15rem 1.35rem;
             }
 
-            .brand-logo-large-text {
-                font-size: 1.75rem;
+            .login-brand-logo-text {
+                font-size: 1.35rem;
             }
 
-            .brand-tagline {
-                font-size: 1.125rem;
+            .login-brand-headline {
+                font-size: 1.55rem;
             }
 
-            .brand-features li {
-                font-size: 0.9375rem;
+            .login-brand-phone {
+                width: 84px;
+                margin-left: -28px;
+            }
+
+            .login-brand-badges {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.55rem;
+            }
+
+            .login-brand-badge span {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-brand-phone {
+                display: none;
+            }
+
+            .login-brand-desktop {
+                max-width: 100%;
             }
         }
     </style>
@@ -691,41 +632,145 @@
     </button>
 
     <div class="login-wrapper">
-        <!-- Left Side - Brand Showcase -->
+        <!-- Left Side - Brand Showcase (homepage-aligned hero) -->
         <div class="login-brand-panel">
-            <!-- Geometric Shapes -->
-            <div class="geometric-shape shape-1"></div>
-            <div class="geometric-shape shape-2"></div>
-            <div class="geometric-shape shape-3"></div>
-            
-            <!-- Animated Particles -->
-            <div class="particles" id="particles"></div>
+            <div class="login-brand-atmosphere" aria-hidden="true">
+                <span class="login-brand-orb login-brand-orb--foundry"></span>
+                <span class="login-brand-orb login-brand-orb--suite"></span>
+                <span class="login-brand-grid"></span>
+            </div>
 
-            <div class="brand-content">
-                <div class="brand-logo-large">
+            <div class="login-brand-inner">
+                <a href="index.html" class="login-brand-logo">
                     <img src="images/logo.png" alt="FoundrySuite Logo">
-                    <span class="brand-logo-large-text">
+                    <span class="login-brand-logo-text">
                         <span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span>
                     </span>
+                </a>
+
+                <h1 class="login-brand-headline">
+                    Your business.<br>
+                    Your modules.<br>
+                    One platform.
+                </h1>
+
+                <div class="login-brand-devices">
+                    <div class="login-brand-desktop">
+                        <img
+                            src="images/BID-hd.svg"
+                            alt="FoundrySuite Business Intelligence Dashboard"
+                            class="login-brand-dashboard"
+                            fetchpriority="high"
+                        >
+                    </div>
+                    <div class="login-brand-phone">
+                        <div class="mobile-mockup">
+                            <div class="mobile-screen">
+                                <div class="mobile-header">
+                                    <div class="mobile-status-bar">
+                                        <span>9:41</span>
+                                        <div class="mobile-signal-icons">
+                                            <span>📶</span>
+                                            <span>📶</span>
+                                            <span>🔋</span>
+                                        </div>
+                                    </div>
+                                    <div class="mobile-nav">
+                                        <span class="mobile-logo-small"><span class="logo-foundry">Foundry</span><span class="logo-suite">Suite</span></span>
+                                        <span class="mobile-menu">☰</span>
+                                    </div>
+                                </div>
+                                <div class="mobile-content">
+                                    <div class="mobile-screen-view active" data-screen="0">
+                                        <div class="mobile-kpi-card mobile-performance-card">
+                                            <div class="mobile-kpi-title">Monthly Performance</div>
+                                            <div class="mobile-performance-chart">
+                                                <div class="mobile-performance-bars">
+                                                    <div class="mobile-performance-bar" style="height: 65%">
+                                                        <span class="mobile-bar-value">Q1</span>
+                                                    </div>
+                                                    <div class="mobile-performance-bar" style="height: 75%">
+                                                        <span class="mobile-bar-value">Q2</span>
+                                                    </div>
+                                                    <div class="mobile-performance-bar" style="height: 85%">
+                                                        <span class="mobile-bar-value">Q3</span>
+                                                    </div>
+                                                    <div class="mobile-performance-bar mobile-bar-highlight" style="height: 95%">
+                                                        <span class="mobile-bar-value">Q4</span>
+                                                    </div>
+                                                    <div class="mobile-performance-bar" style="height: 70%">
+                                                        <span class="mobile-bar-value">YTD</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mobile-section">
+                                            <div class="mobile-section-title">Revenue Trends</div>
+                                            <div class="mobile-line-chart">
+                                                <svg viewBox="0 0 100 50" class="mobile-chart-svg">
+                                                    <polyline points="5,40 15,35 25,30 35,25 45,20 55,18 65,15 75,12 85,10 95,8"
+                                                             fill="none" stroke="var(--primary-color)" stroke-width="2"/>
+                                                    <polyline points="5,45 15,40 25,38 35,35 45,32 55,30 65,28 75,25 85,22 95,20"
+                                                             fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="2,2"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="mobile-section">
+                                            <div class="mobile-section-title">Sales Pipeline</div>
+                                            <div class="mobile-pipeline">
+                                                <div class="mobile-pipeline-label">
+                                                    <span>68%</span>
+                                                    <span>Target: 75%</span>
+                                                </div>
+                                                <div class="mobile-pipeline-bar">
+                                                    <div class="mobile-pipeline-fill" style="width: 68%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <h2 class="brand-tagline">Your Business. Your Modules. Our Platform.</h2>
-
-                <ul class="brand-features">
-                    <li>Integrated modular solutions that scale with your business</li>
-                    <li>Enterprise-grade security and data protection</li>
-                    <li>Unified platform for all your business operations</li>
-                    <li>24/7 support and continuous improvements</li>
-                </ul>
-
-                <div class="product-icons">
-                    <div class="product-icon">📊</div>
-                    <div class="product-icon">🔒</div>
-                    <div class="product-icon">⚡</div>
-                    <div class="product-icon">
-                        <img src="images/logo.png" alt="FoundrySuite Logo" style="width: 24px; height: 24px; object-fit: contain;">
+                <div class="login-brand-badges" aria-label="Platform highlights">
+                    <div class="login-brand-badge">
+                        <div class="login-brand-badge-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                            </svg>
+                        </div>
+                        <span>Cloud Native</span>
                     </div>
-                    <div class="product-icon">📱</div>
+                    <div class="login-brand-badge">
+                        <div class="login-brand-badge-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2a7 7 0 0 1 4 12.5V17a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-2.5A7 7 0 0 1 12 2z"></path>
+                                <line x1="10" y1="22" x2="14" y2="22"></line>
+                            </svg>
+                        </div>
+                        <span>AI Powered</span>
+                    </div>
+                    <div class="login-brand-badge">
+                        <div class="login-brand-badge-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                            </svg>
+                        </div>
+                        <span>Modular</span>
+                    </div>
+                    <div class="login-brand-badge">
+                        <div class="login-brand-badge-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <span>Secure</span>
+                    </div>
                 </div>
             </div>
         </div>

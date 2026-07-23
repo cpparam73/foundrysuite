@@ -16,11 +16,11 @@
     <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="shortcut icon" type="image/png" href="images/logo.png">
     <script>
-        // Set theme immediately to prevent white flash
-        // Default to light mode (don't respect system preference)
+        // Set theme immediately to prevent flash.
+        // Login defaults to dark; respect saved preference when present.
         (function() {
             const savedTheme = localStorage.getItem('theme');
-            const theme = savedTheme || 'light';
+            const theme = savedTheme || 'dark';
             document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>

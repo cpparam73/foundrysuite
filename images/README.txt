@@ -1,31 +1,13 @@
-Please add your FoundrySuite logo file here.
+FoundrySuite website image assets
 
-The logo should be named: logo.png (or logo.svg)
+Folder structure:
+- About/          — About page photography (About-Us.jpg)
+- Architecture/   — Orbit visuals and platform layered architecture diagrams
+- Branding/       — Logo (logo-light.png, logo-dark.png) and BID-hd.svg
+- Icons/          — Favicons and apple-touch icons (light/dark variants)
+- Products/       — Industry product visuals (Build, Campus, Health, IT, Agri)
+- Social/         — Open Graph / social share image (og-image.png)
+- Archieve/       — Archived / superseded assets (not referenced by the site)
 
-Supported formats: PNG, SVG, JPG, WEBP
-
-The logo will be automatically displayed in:
-- Navigation bar (top left)
-- Footer section
-
-Recommended size: At least 200px wide for best quality
-Background: Transparent (PNG/SVG) works best
-
----
-
-BID (Business Intelligence Dashboard) Images:
-
-For high-resolution display, please add:
-- BID-hd.png (high-resolution PNG version)
-- BID-hd.jpg (high-resolution JPEG version - optional)
-
-The website will automatically use the high-resolution version on larger screens.
-
-Recommended specifications:
-- Resolution: 1920x1080 or higher (2x resolution for retina displays)
-- Format: PNG (preferred) or JPG
-- File size: Optimized for web (under 500KB recommended)
-
-Current files:
-- BID.png (standard resolution)
-- BID.jpg (standard resolution)
+Live pages reference these paths only. Prefer light variants for the default theme;
+dark Orbit / architecture / icon variants are used where theme switching applies.

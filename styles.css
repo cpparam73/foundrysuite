@@ -2391,11 +2391,22 @@ body {
     background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(20, 184, 166, 0.06) 100%);
 }
 
+.why-foundrysuite-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.why-foundrysuite-copy {
+    min-width: 0;
+}
+
 .why-foundrysuite .section-header {
     margin-bottom: 1rem;
     margin-top: 0;
     text-align: left;
-    max-width: 760px;
+    max-width: none;
     margin-left: 0;
     margin-right: 0;
 }
@@ -2408,13 +2419,13 @@ body {
 
 .why-foundrysuite .section-subtitle {
     font-size: 1rem;
-    max-width: 760px;
+    max-width: none;
     margin: 0.125rem 0 0 0;
     text-align: left;
 }
 
 .why-foundrysuite-body {
-    max-width: 760px;
+    max-width: none;
     margin: 0 0 1.25rem 0;
     text-align: left;
 }
@@ -2430,14 +2441,22 @@ body {
     margin-bottom: 0;
 }
 
+.why-foundrysuite-aside {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .why-foundrysuite-highlights {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
     gap: 0.75rem;
-    max-width: 900px;
-    margin: 1.25rem auto 0;
+    width: 100%;
+    max-width: 22rem;
+    margin: 0;
     padding: 0;
 }
 
@@ -2445,10 +2464,11 @@ body {
     background: var(--bg-primary);
     border: 2px solid var(--border-color);
     border-radius: 2rem;
-    padding: 0.625rem 1.25rem;
+    padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-primary);
+    text-align: center;
     transition: all 0.3s ease;
 }
 
@@ -2465,12 +2485,35 @@ body {
 
 .why-foundrysuite-cta {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 1.5rem;
 }
 
 .why-foundrysuite-cta .btn {
     min-width: 160px;
+}
+
+@media (max-width: 968px) {
+    .why-foundrysuite-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .why-foundrysuite-aside {
+        justify-content: flex-start;
+    }
+
+    .why-foundrysuite-highlights {
+        max-width: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .why-foundrysuite-highlights li {
+        width: auto;
+    }
 }
 
 @media (max-width: 768px) {

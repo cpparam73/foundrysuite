@@ -134,12 +134,42 @@
         }
 
         .login-brand-logo {
+            position: relative;
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
             text-decoration: none;
             color: var(--text-primary);
             margin-bottom: 0.05rem;
+            overflow: hidden;
+            border-radius: 0.35rem;
+        }
+
+        .login-brand-logo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -40%;
+            width: 35%;
+            height: 100%;
+            background: linear-gradient(
+                105deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0) 30%,
+                rgba(255, 255, 255, 0.55) 50%,
+                rgba(59, 130, 246, 0.18) 58%,
+                rgba(245, 158, 11, 0.12) 65%,
+                transparent 100%
+            );
+            transform: skewX(-18deg);
+            animation: loginLogoSweep 9s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes loginLogoSweep {
+            0%, 72%, 100% { transform: translateX(0) skewX(-18deg); opacity: 0; }
+            78% { opacity: 0.85; }
+            88% { transform: translateX(320%) skewX(-18deg); opacity: 0; }
         }
 
         .login-brand-logo img {
@@ -192,24 +222,24 @@
         .login-brand-orbit {
             position: relative;
             width: 100%;
-            max-width: min(100%, 600px); /* ~15% larger than 520px */
+            max-width: min(100%, 600px);
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: loginOrbitFloat 9s ease-in-out infinite;
         }
 
         .login-brand-orbit-glow {
             position: absolute;
-            inset: -16%;
+            inset: -14%;
             border-radius: 50%;
             background:
-                radial-gradient(circle at 32% 30%, rgba(245, 158, 11, 0.48) 0%, transparent 48%),
-                radial-gradient(circle at 72% 68%, rgba(59, 130, 246, 0.46) 0%, transparent 50%),
-                conic-gradient(from 0deg, rgba(245, 158, 11, 0.38), transparent 22%, rgba(59, 130, 246, 0.4), transparent 55%, rgba(245, 158, 11, 0.3));
-            filter: blur(34px);
-            opacity: 1;
-            animation: loginOrbitSpin 36s linear infinite;
+                radial-gradient(circle at 34% 32%, rgba(245, 158, 11, 0.34) 0%, transparent 55%),
+                radial-gradient(circle at 70% 66%, rgba(59, 130, 246, 0.32) 0%, transparent 58%);
+            filter: blur(36px);
+            opacity: 0.72;
+            animation: loginOrbitBreathe 8.5s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
         }
@@ -220,31 +250,29 @@
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 1rem;
-            box-shadow:
-                0 22px 56px rgba(15, 23, 42, 0.14),
-                0 0 40px rgba(59, 130, 246, 0.12),
-                0 0 56px rgba(245, 158, 11, 0.1);
-            animation: loginOrbitDrift 22s ease-in-out infinite;
-            transform-origin: center center;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            /* static artwork — no rotation */
+            transform: none;
+            animation: none;
         }
 
-        @keyframes loginOrbitSpin {
-            from { transform: rotate(0deg) scale(1); opacity: 0.78; }
-            50% { transform: rotate(180deg) scale(1.07); opacity: 1; }
-            to { transform: rotate(360deg) scale(1); opacity: 0.78; }
+        @keyframes loginOrbitFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
-        @keyframes loginOrbitDrift {
-            0%, 100% { transform: rotate(-1.2deg) scale(1); }
-            50% { transform: rotate(1.2deg) scale(1.015); }
+        @keyframes loginOrbitBreathe {
+            0%, 100% { opacity: 0.55; transform: scale(0.98); }
+            50% { opacity: 0.9; transform: scale(1.04); }
         }
 
         .login-brand-badges {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0.65rem;
-            margin-top: 0.15rem;
+            gap: 0.45rem;
+            margin-top: 0.1rem;
         }
 
         .login-brand-badge {
@@ -252,14 +280,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.4rem;
-            padding: 0.7rem 0.45rem;
+            gap: 0.3rem;
+            padding: 0.52rem 0.35rem;
             text-align: center;
             background: rgba(255, 255, 255, 0.72);
             border: 1px solid rgba(148, 163, 184, 0.28);
-            border-radius: 0.85rem;
+            border-radius: 0.75rem;
             backdrop-filter: blur(8px);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 6px 14px rgba(15, 23, 42, 0.04);
         }
 
         [data-theme="dark"] .login-brand-badge {
@@ -268,8 +296,8 @@
         }
 
         .login-brand-badge-icon {
-            width: 34px;
-            height: 34px;
+            width: 28px;
+            height: 28px;
             border-radius: 999px;
             display: flex;
             align-items: center;
@@ -279,23 +307,25 @@
         }
 
         .login-brand-badge-icon svg {
-            width: 17px;
-            height: 17px;
+            width: 14px;
+            height: 14px;
         }
 
         .login-brand-badge span {
             font-family: 'Outfit', 'Inter', sans-serif;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 0.01em;
             color: var(--text-primary);
-            line-height: 1.2;
+            line-height: 1.15;
         }
 
         @media (prefers-reduced-motion: reduce) {
             .login-brand-orb,
+            .login-brand-orbit,
             .login-brand-orbit-glow,
-            .login-brand-orbit-img {
+            .login-brand-orbit-img,
+            .login-brand-logo::after {
                 animation: none !important;
             }
         }
@@ -615,11 +645,15 @@
 
             .login-brand-badges {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 0.55rem;
+                gap: 0.4rem;
+            }
+
+            .login-brand-badge {
+                padding: 0.48rem 0.3rem;
             }
 
             .login-brand-badge span {
-                font-size: 0.75rem;
+                font-size: 0.68rem;
             }
         }
     </style>
@@ -671,7 +705,7 @@
                     <div class="login-brand-orbit">
                         <span class="login-brand-orbit-glow" aria-hidden="true"></span>
                         <img
-                            src="images/FoundrySuite-Orbit.png"
+                            src="images/FoundrySuite-Orbit-transparent.png"
                             alt="Foundry Platform — modular capabilities orbit"
                             class="login-brand-orbit-img"
                             fetchpriority="high"

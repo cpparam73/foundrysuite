@@ -457,13 +457,16 @@ const initSmoothScroll = () => {
         const link = e.target.closest('a');
         if (!link) return;
 
-        // Real page navigations (not homepage section scrolls)
-        const href = link.getAttribute('href') || '';
+        const href = (link.getAttribute('href') || '').trim();
+
+        // Foundry Platform + Login are real pages — never intercept / scroll
         if (
+            link.classList.contains('nav-link--platform') ||
             link.classList.contains('nav-login') ||
-            /login\.html/i.test(href) ||
-            /foundry-platform\.html/i.test(href)
+            /foundry-platform\.html(?:[?#]|$)/i.test(href) ||
+            /login\.html(?:[?#]|$)/i.test(href)
         ) {
+            closeMobileNav();
             return;
         }
 

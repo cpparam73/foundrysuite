@@ -233,10 +233,10 @@ body {
 }
 
 .footer-logo {
-    height: 32px;
+    height: 40px;
     width: auto;
     object-fit: contain;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     display: block;
 }
 

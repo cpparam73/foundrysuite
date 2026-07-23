@@ -2417,8 +2417,6 @@ body {
 }
 
 .why-foundrysuite .section-title {
-    font-size: 2rem;
-    margin-bottom: 0.25rem;
     text-align: left;
 }
 
@@ -2518,10 +2516,6 @@ body {
 @media (max-width: 768px) {
     .why-foundrysuite {
         padding: 0.5rem 0 1.5rem;
-    }
-
-    .why-foundrysuite .section-title {
-        font-size: 1.75rem;
     }
 
     .why-foundrysuite-highlights {
@@ -2925,8 +2919,6 @@ body {
 
 .solutions .section-title {
     text-align: left;
-    font-size: 2rem;
-    margin-bottom: 0.25rem;
 }
 
 .solutions .section-subtitle {
@@ -2973,8 +2965,9 @@ body {
 }
 
 .subsection-title {
-    font-size: 2rem;
+    font-size: 2rem; /* 32px */
     font-weight: 700;
+    line-height: 1.25;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
     margin-top: 0;
@@ -3403,7 +3396,6 @@ body {
 
 .products .section-title {
     text-align: left;
-    margin-bottom: 0.25rem;
 }
 
 .products .section-subtitle {
@@ -3416,11 +3408,13 @@ body {
     font-size: 1rem;
 }
 
-/* Base Section Styles - All sections inherit these */
+/* Base Section Styles — primary section titles (48px) */
 .section-title {
-    font-size: 2.5rem;
+    font-size: 3rem; /* 48px */
     font-weight: 700;
-    margin-bottom: 1rem;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
     color: var(--text-primary);
 }
 
@@ -3504,11 +3498,6 @@ body {
     margin-bottom: 1rem;
     margin-top: 0;
     text-align: left;
-}
-
-.services .section-title {
-    font-size: 1.75rem;
-    margin-bottom: 0.25rem;
 }
 
 .services .section-subtitle {
@@ -3782,10 +3771,6 @@ body {
         margin-bottom: 1rem;
     }
     
-    .services .section-title {
-        font-size: 1.75rem;
-    }
-    
     .services .section-subtitle {
         font-size: 0.875rem;
     }
@@ -3840,8 +3825,10 @@ body {
 }
 
 .how-we-work .section-title {
-    font-size: 2rem;
-    margin-bottom: 0.25rem;
+    font-size: 2rem; /* 32px — subsection hierarchy */
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
 }
 
 .process-steps {
@@ -4008,8 +3995,10 @@ body {
 }
 
 .who-benefits .section-title {
-    font-size: 2rem;
-    margin-bottom: 0.25rem;
+    font-size: 2rem; /* 32px — subsection hierarchy */
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
 }
 
 .who-benefits .section-subtitle {
@@ -4058,7 +4047,7 @@ body {
     }
     
     .how-we-work .section-title {
-        font-size: 1.75rem;
+        font-size: 1.5rem; /* scaled subsection */
     }
     
     .process-steps {
@@ -4083,7 +4072,7 @@ body {
     }
     
     .who-benefits .section-title {
-        font-size: 1.75rem;
+        font-size: 1.5rem; /* scaled subsection */
     }
     
     .benefits-grid {
@@ -4112,8 +4101,8 @@ body {
 }
 
 .about .section-title {
-    margin-bottom: 1rem;
     margin-top: 0;
+    margin-bottom: 0.75rem;
     background: linear-gradient(105deg, #F59E0B 0%, #ea8a0a 35%, #3B82F6 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -4130,10 +4119,6 @@ body {
 .about-text {
     max-width: 100%;
     width: 100%;
-}
-
-.about-text h2 {
-    margin-bottom: 1.5rem;
 }
 
 .about-text p {
@@ -4342,9 +4327,7 @@ body {
 }
 
 .contact .section-title {
-    margin-bottom: 0.125rem;
     text-align: left !important;
-    font-size: 1.75rem;
 }
 
 .contact .section-subtitle {
@@ -5597,7 +5580,11 @@ body {
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 2.25rem; /* scaled primary section title from 48px */
+    }
+
+    .subsection-title {
+        font-size: 1.5rem; /* scaled subsection title from 32px */
     }
 
     .features-grid {

@@ -3408,9 +3408,9 @@ body {
     font-size: 1rem;
 }
 
-/* Base Section Styles — primary section titles (48px) */
+/* Base Section Styles — primary section titles (44px) */
 .section-title {
-    font-size: 3rem; /* 48px */
+    font-size: 2.75rem; /* 44px */
     font-weight: 700;
     line-height: 1.2;
     margin-top: 0;
@@ -5580,7 +5580,7 @@ body {
     }
 
     .section-title {
-        font-size: 2.25rem; /* scaled primary section title from 48px */
+        font-size: 2.125rem; /* scaled primary section title from 44px */
     }
 
     .subsection-title {

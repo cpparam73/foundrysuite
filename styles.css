@@ -5748,6 +5748,8 @@ body {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     gap: 1.75rem;
     align-items: start;
+    /* Keeps the sticky/parallax diagram clipped to this track */
+    overflow: hidden;
 }
 
 .platform-arch-layers {
@@ -5814,6 +5816,9 @@ body {
     min-width: 0;
     max-width: 100%;
     align-self: start;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
 
 .platform-arch-diagram {
@@ -5933,6 +5938,12 @@ body {
     .platform-architecture {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        overflow: visible;
+    }
+
+    .platform-architecture-visual {
+        will-change: auto;
+        transform: none !important;
     }
 
     .platform-card-grid--4,
@@ -5998,5 +6009,9 @@ body {
     .platform-benefit:hover,
     .platform-arch-layers li:hover {
         transform: none;
+    }
+
+    .platform-architecture-visual {
+        will-change: auto;
     }
 }

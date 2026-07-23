@@ -1341,3 +1341,85 @@ if (DOM.navbar) {
 }
 
 window.addEventListener('scroll', updateActiveNavLink);
+
+// ============================================================================
+// PLATFORM ARCHITECTURE — sticky scroll-linked diagram
+// ============================================================================
+
+/**
+ * Keep the architecture diagram aligned with the card stack while scrolling.
+ * Starts with the first card, ends with the last, and stays inside the section track.
+ * Uses rAF + translate3d (CSS sticky is unreliable with body overflow-x: hidden).
+ */
+const initArchitectureStickyScroll = () => {
+    const section = document.getElementById('architecture');
+    const track = section?.querySelector('.platform-architecture');
+    const visual = section?.querySelector('.platform-architecture-visual');
+    const layers = section?.querySelector('.platform-arch-layers');
+
+    if (!section || !track || !visual || !layers) return;
+
+    const desktopQuery = window.matchMedia('(min-width: 1025px)');
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frameId = 0;
+    let lastY = -1;
+
+    const resetVisual = () => {
+        lastY = -1;
+        visual.style.transform = 'translate3d(0, 0, 0)';
+    };
+
+    const update = () => {
+        frameId = 0;
+
+        if (!desktopQuery.matches) {
+            resetVisual();
+            return;
+        }
+
+        const navbarHeight = DOM.navbar ? DOM.navbar.offsetHeight : 70;
+        const stickyOffset = navbarHeight + 16;
+        const trackRect = track.getBoundingClientRect();
+        const trackHeight = track.offsetHeight;
+        const visualHeight = visual.offsetHeight;
+        const maxTravel = Math.max(0, trackHeight - visualHeight);
+
+        if (maxTravel === 0) {
+            resetVisual();
+            return;
+        }
+
+        // Progress while the track scrolls past the sticky anchor under the navbar
+        let nextY = stickyOffset - trackRect.top;
+        nextY = Math.max(0, Math.min(maxTravel, nextY));
+
+        // Skip redundant writes to avoid layout thrash / jitter
+        if (Math.abs(nextY - lastY) < 0.25) return;
+        lastY = nextY;
+
+        visual.style.transform = `translate3d(0, ${nextY}px, 0)`;
+    };
+
+    const requestUpdate = () => {
+        if (frameId) return;
+        frameId = window.requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    desktopQuery.addEventListener('change', requestUpdate);
+
+    // Recalculate after images load (diagram height affects max travel)
+    visual.querySelectorAll('img').forEach((img) => {
+        if (img.complete) return;
+        img.addEventListener('load', requestUpdate, { once: true });
+    });
+
+    // Initial position
+    requestUpdate();
+
+    // Reduced motion still keeps positional sync (not decorative animation)
+    reduceMotionQuery.addEventListener('change', requestUpdate);
+};
+
+initArchitectureStickyScroll();

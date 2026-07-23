@@ -453,9 +453,13 @@ const initSmoothScroll = () => {
         const link = e.target.closest('a');
         if (!link) return;
 
-        // Login stays a real page navigation
+        // Real page navigations (not homepage section scrolls)
         const href = link.getAttribute('href') || '';
-        if (link.classList.contains('nav-login') || /login\.html/i.test(href)) {
+        if (
+            link.classList.contains('nav-login') ||
+            /login\.html/i.test(href) ||
+            /foundry-platform\.html/i.test(href)
+        ) {
             return;
         }
 

@@ -4114,6 +4114,17 @@ body {
 .about .section-title {
     margin-bottom: 1rem;
     margin-top: 0;
+    background: linear-gradient(105deg, #F59E0B 0%, #ea8a0a 35%, #3B82F6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.about .section-title .logo-foundry,
+.about .section-title .logo-suite {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 
 .about-text {

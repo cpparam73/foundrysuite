@@ -73,8 +73,10 @@ RewriteRule ^images/Social/(.*)$ /assets/images/Social/$1 [R=301,L]
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=(), accelerometer=(), magnetometer=(), gyroscope=(), interest-cohort=()"
 
     # Cross-origin isolation helpers
+    # Public marketing assets (especially OG images) must be fetchable by
+    # social crawlers (Facebook, LinkedIn, Slack, WhatsApp, X, Teams).
     Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
-    Header always set Cross-Origin-Resource-Policy "same-site"
+    Header always set Cross-Origin-Resource-Policy "cross-origin"
     
     # Strict Transport Security - Force HTTPS (enable only when TLS is confirmed)
     # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"

@@ -5411,7 +5411,7 @@ body {
 .platform-hero {
     position: relative;
     overflow: hidden;
-    padding: calc(70px + 2.5rem) 0 3.25rem;
+    padding: calc(70px + 1.5rem) 0 2rem;
     background: linear-gradient(165deg, #ffffff 0%, #f8fafc 45%, #eef4ff 100%);
 }
 
@@ -5548,7 +5548,7 @@ body {
 }
 
 .platform-section {
-    padding: 4.5rem 0;
+    padding: 2.75rem 0;
 }
 
 .platform-section--alt {
@@ -5558,7 +5558,7 @@ body {
 .platform-section-header {
     text-align: center;
     max-width: 42rem;
-    margin: 0 auto 2.5rem;
+    margin: 0 auto 1.5rem;
 }
 
 .platform-section-header--left {
@@ -5587,7 +5587,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.15rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .platform-overview-card {
@@ -5746,7 +5746,7 @@ body {
 .platform-architecture {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: 2.5rem;
+    gap: 1.75rem;
     align-items: start;
 }
 
@@ -5757,6 +5757,7 @@ body {
     display: grid;
     gap: 0.75rem;
     counter-reset: arch-layer;
+    min-width: 0;
 }
 
 .platform-arch-layers li {
@@ -5810,10 +5811,14 @@ body {
 
 .platform-architecture-visual {
     position: relative;
+    min-width: 0;
+    max-width: 100%;
+    align-self: start;
 }
 
 .platform-arch-diagram {
     width: 100%;
+    max-width: 100%;
     height: auto;
     display: block;
     border-radius: 1rem;
@@ -5891,7 +5896,7 @@ body {
 }
 
 .platform-final-cta {
-    padding: 4.25rem 0;
+    padding: 2.6rem 0;
     background:
         radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.16), transparent 45%),
         radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.16), transparent 40%),
@@ -5927,7 +5932,7 @@ body {
     .platform-hero-grid,
     .platform-architecture {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .platform-card-grid--4,
@@ -5946,11 +5951,19 @@ body {
 
 @media (max-width: 720px) {
     .platform-hero {
-        padding: calc(70px + 1.5rem) 0 2.25rem;
+        padding: calc(70px + 1rem) 0 1.4rem;
     }
 
     .platform-section {
-        padding: 3.25rem 0;
+        padding: 2rem 0;
+    }
+
+    .platform-final-cta {
+        padding: 2rem 0;
+    }
+
+    .platform-section-header {
+        margin-bottom: 1.15rem;
     }
 
     .platform-card-grid--4,

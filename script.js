@@ -290,52 +290,192 @@ const updateNavbarScroll = () => {
     }
 };
 
+const SCROLL_TARGET_KEY = 'fs-scroll-to';
+const HOME_SECTION_IDS = ['home', 'products', 'foundry-platform', 'solutions', 'services', 'about', 'contact'];
+
+const isHomePage = () => Boolean(document.getElementById('home'));
+
+const getHomeUrl = () => {
+    try {
+        return new URL('/', window.location.href).pathname;
+    } catch (e) {
+        return '/';
+    }
+};
+
+/**
+ * Keep the address bar on a clean path (no #fragments)
+ */
+const clearUrlHash = () => {
+    if (!window.location.hash) return;
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+};
+
+/**
+ * Resolve a scroll target id from a link
+ */
+const getScrollTargetId = (link) => {
+    if (!link) return null;
+
+    const dataTarget = link.getAttribute('data-scroll-to');
+    if (dataTarget) return dataTarget;
+
+    const href = link.getAttribute('href') || '';
+    if (href === '#' || href === '') return null;
+
+    if (href.startsWith('#')) {
+        const id = href.slice(1);
+        return id || null;
+    }
+
+    try {
+        const url = new URL(href, window.location.href);
+        if (url.hash) {
+            return url.hash.slice(1) || null;
+        }
+        // Logo / home links that point at the site root
+        if (
+            link.classList.contains('logo') ||
+            link.classList.contains('login-brand-logo') ||
+            link.matches('[data-scroll-to="home"]')
+        ) {
+            const path = url.pathname.replace(/\/index\.html$/i, '/');
+            if (path === '/' || path === '') return 'home';
+        }
+    } catch (e) {
+        return null;
+    }
+
+    return null;
+};
+
+/**
+ * Smooth-scroll to a homepage section without changing the URL
+ */
+const scrollToSection = (targetId, { smooth = true } = {}) => {
+    if (!targetId) return false;
+
+    const target = document.getElementById(targetId);
+    if (!target) return false;
+
+    clearUrlHash();
+    const scrollPosition = calculateScrollPosition(target);
+    window.scrollTo({
+        top: scrollPosition,
+        behavior: smooth ? 'smooth' : 'auto'
+    });
+
+    const refreshActive = () => updateActiveNavLink();
+    if (smooth && 'onscrollend' in window) {
+        window.addEventListener('scrollend', refreshActive, { once: true });
+    }
+    setTimeout(refreshActive, smooth ? 450 : 40);
+    return true;
+};
+
+const closeMobileNav = () => {
+    if (DOM.navMenu) DOM.navMenu.classList.remove('active');
+    if (DOM.navToggle) DOM.navToggle.classList.remove('active');
+};
+
+/**
+ * Navigate to homepage then scroll to a section (used from other pages)
+ */
+const goHomeAndScroll = (targetId) => {
+    if (targetId && targetId !== 'home') {
+        sessionStorage.setItem(SCROLL_TARGET_KEY, targetId);
+    } else {
+        sessionStorage.removeItem(SCROLL_TARGET_KEY);
+    }
+    window.location.href = getHomeUrl();
+};
+
+/**
+ * Document Y position for an element (offsetTop is parent-relative)
+ */
+const getDocumentTop = (el) => {
+    const rect = el.getBoundingClientRect();
+    return rect.top + (window.pageYOffset || document.documentElement.scrollTop);
+};
+
 /**
  * Update active navigation link based on scroll position
  */
 const updateActiveNavLink = () => {
     // Homepage-only: product pages keep their statically marked active nav item
-    if (!document.getElementById('home')) return;
+    if (!isHomePage()) return;
 
     const scrollY = window.pageYOffset;
-    
+    const offset = (DOM.navbar ? DOM.navbar.offsetHeight : 70) + SCROLL_OFFSET + 8;
+
     const setActiveLink = (targetId) => {
-        DOM.navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === targetId);
+        DOM.navLinks.forEach((link) => {
+            if (link.classList.contains('nav-login') || link.classList.contains('nav-cta')) {
+                link.classList.remove('active');
+                return;
+            }
+            const linkTarget = getScrollTargetId(link);
+            link.classList.toggle('active', linkTarget === targetId);
         });
     };
-    
+
     if (scrollY < NAVBAR_SCROLL_THRESHOLD) {
-        setActiveLink('#home');
+        setActiveLink('home');
         return;
     }
-    
-    for (const section of DOM.sections) {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - NAVBAR_SCROLL_THRESHOLD;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            setActiveLink(`#${sectionId}`);
-            return;
+
+    // Prefer deeper targets (e.g. foundry-platform card inside products)
+    const targets = HOME_SECTION_IDS
+        .map((id) => {
+            const el = document.getElementById(id);
+            return el ? { id, top: getDocumentTop(el) } : null;
+        })
+        .filter(Boolean)
+        .sort((a, b) => a.top - b.top);
+
+    let activeId = targets[0] ? targets[0].id : 'home';
+    for (const target of targets) {
+        if (scrollY + offset >= target.top) {
+            activeId = target.id;
         }
     }
+    setActiveLink(activeId);
 };
 
 /**
- * Initialize smooth scrolling for navigation links
+ * Initialize smooth scrolling for in-page and cross-page nav
  */
 const initSmoothScroll = () => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        // Login stays a real page navigation
+        const href = link.getAttribute('href') || '';
+        if (link.classList.contains('nav-login') || /login\.html/i.test(href)) {
+            return;
+        }
+
+        const targetId = getScrollTargetId(link);
+        if (!targetId) {
+            // Bare "#" placeholders (privacy/social) — avoid jump-to-top
+            if (href === '#') e.preventDefault();
+            return;
+        }
+
+        // On homepage: scroll in place, never change the URL
+        if (isHomePage()) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const scrollPosition = calculateScrollPosition(target);
-                window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
-                setTimeout(updateActiveNavLink, 100);
-            }
-        });
+            scrollToSection(targetId, { smooth: true });
+            closeMobileNav();
+            return;
+        }
+
+        // On other pages: go home, then scroll
+        if (HOME_SECTION_IDS.includes(targetId) || targetId === 'home') {
+            e.preventDefault();
+            goHomeAndScroll(targetId);
+        }
     });
 };
 
@@ -348,50 +488,44 @@ const initMobileNav = () => {
             DOM.navMenu.classList.toggle('active');
             DOM.navToggle.classList.toggle('active');
         });
-        
-        DOM.navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                DOM.navMenu.classList.remove('active');
-                DOM.navToggle.classList.remove('active');
-            });
-        });
     }
 };
 
 /**
- * Handle hash navigation
+ * Consume pending scroll target from hash or sessionStorage (URL stays clean)
  */
-let savedHash = null;
+let pendingScrollTarget = null;
 if (window.location.hash) {
-    savedHash = window.location.hash;
-    history.replaceState(null, null, window.location.pathname);
+    pendingScrollTarget = window.location.hash.slice(1) || null;
+    clearUrlHash();
+}
+try {
+    const storedTarget = sessionStorage.getItem(SCROLL_TARGET_KEY);
+    if (storedTarget) {
+        pendingScrollTarget = storedTarget;
+        sessionStorage.removeItem(SCROLL_TARGET_KEY);
+    }
+} catch (e) {
+    // sessionStorage may be unavailable
 }
 
-const handleHashNavigation = (useSmooth = false) => {
-    const hash = savedHash || window.location.hash;
-    if (hash) {
-        if (savedHash && !window.location.hash) {
-            history.replaceState(null, null, savedHash);
-        }
-        
-        const target = document.querySelector(hash);
-        if (target) {
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    const scrollPosition = calculateScrollPosition(target);
-                    window.scrollTo({
-                        top: scrollPosition,
-                        behavior: useSmooth ? 'smooth' : 'instant'
-                    });
-                    setTimeout(() => {
-                        updateActiveNavLink();
-                        updateNavbarScroll();
-                    }, useSmooth ? 500 : 100);
-                });
-            });
-        }
-    }
+const handlePendingScroll = (useSmooth = false) => {
+    if (!pendingScrollTarget || !isHomePage()) return;
+    const targetId = pendingScrollTarget;
+    pendingScrollTarget = null;
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            scrollToSection(targetId, { smooth: useSmooth });
+            setTimeout(() => {
+                updateActiveNavLink();
+                updateNavbarScroll();
+            }, useSmooth ? 500 : 100);
+        });
+    });
 };
+
+// Back-compat alias used by load handler
+const handleHashNavigation = (useSmooth = false) => handlePendingScroll(useSmooth);
 
 // ============================================================================
 // PHONE NUMBER HANDLING
@@ -1341,10 +1475,10 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     updateNavbarScroll();
     updateActiveNavLink();
-    
-    if (savedHash || window.location.hash) {
+
+    if (pendingScrollTarget) {
         setTimeout(() => {
-            handleHashNavigation(false);
+            handlePendingScroll(false);
         }, 300);
     }
 });

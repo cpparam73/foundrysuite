@@ -8,14 +8,13 @@ RewriteEngine On
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Remove www prefix - redirect www to non-www
-# If you want to keep www, comment out these lines and uncomment the section below
-RewriteCond %{HTTP_HOST} ^www\.foundrysuite\.com [NC]
-RewriteRule ^(.*)$ https://foundrysuite.com/$1 [L,R=301]
+# Remove non-www prefix - redirect apex to www
+RewriteCond %{HTTP_HOST} ^foundrysuite\.com$ [NC]
+RewriteRule ^(.*)$ https://www.foundrysuite.com/$1 [L,R=301]
 
-# Alternative: Force www prefix (uncomment if you prefer www)
-# RewriteCond %{HTTP_HOST} ^foundrysuite\.com [NC]
-# RewriteRule ^(.*)$ https://www.foundrysuite.com/$1 [L,R=301]
+# Alternative: Force non-www (commented — site canonical is www)
+# RewriteCond %{HTTP_HOST} ^www\.foundrysuite\.com [NC]
+# RewriteRule ^(.*)$ https://foundrysuite.com/$1 [L,R=301]
 
 # Remove trailing slashes (optional - keeps URLs clean)
 RewriteCond %{REQUEST_FILENAME} !-d

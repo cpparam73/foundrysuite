@@ -254,11 +254,30 @@
             border-radius: 0;
             background: transparent;
             box-shadow: none;
-            /* Keep native resolution — CSS only constrains display size */
             image-rendering: auto;
             -webkit-user-drag: none;
             transform: none;
             animation: none;
+        }
+
+        .login-brand-orbit-img--dark {
+            display: none;
+        }
+
+        [data-theme="dark"] .login-brand-orbit-img--light {
+            display: none;
+        }
+
+        [data-theme="dark"] .login-brand-orbit-img--dark {
+            display: block;
+        }
+
+        [data-theme="dark"] .login-brand-orbit-glow {
+            background:
+                radial-gradient(circle at 34% 32%, rgba(245, 158, 11, 0.42) 0%, transparent 55%),
+                radial-gradient(circle at 70% 66%, rgba(96, 165, 250, 0.4) 0%, transparent 58%);
+            filter: blur(40px);
+            opacity: 0.85;
         }
 
         @keyframes loginOrbitFloat {
@@ -714,8 +733,18 @@
                             width="1536"
                             height="1024"
                             alt="Foundry Platform — modular capabilities orbit"
-                            class="login-brand-orbit-img"
+                            class="login-brand-orbit-img login-brand-orbit-img--light"
                             fetchpriority="high"
+                            decoding="async"
+                        >
+                        <img
+                            src="images/FoundrySuite-Orbit-dark.png"
+                            srcset="images/FoundrySuite-Orbit-dark.png 1536w, images/FoundrySuite-Orbit-dark@2x.png 3072w"
+                            sizes="(max-width: 1024px) min(92vw, 560px), min(600px, 48vw)"
+                            width="1536"
+                            height="1024"
+                            alt="Foundry Platform — modular capabilities orbit"
+                            class="login-brand-orbit-img login-brand-orbit-img--dark"
                             decoding="async"
                         >
                     </div>

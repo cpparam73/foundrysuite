@@ -849,6 +849,27 @@ body {
     box-shadow: none;
 }
 
+/* Orbit theme variants */
+.hero .solution-slide[data-solution="orbit"] .solution-orbit-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.hero .solution-orbit-img--dark {
+    display: none;
+}
+
+[data-theme="dark"] .hero .solution-orbit-img--light {
+    display: none;
+}
+
+[data-theme="dark"] .hero .solution-orbit-img--dark {
+    display: block;
+}
+
 /* Industry slides: same full-image fit (no crop) */
 .hero .solution-slide[data-solution="build"] .solution-slide-img,
 .hero .solution-slide[data-solution="campus"] .solution-slide-img,

@@ -170,11 +170,18 @@ body {
 
 .nav-wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     height: 70px;
     padding: 0;
-    gap: 0.75rem;
+    gap: 1rem;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 .logo {
@@ -185,7 +192,6 @@ body {
     color: var(--text-primary);
     cursor: pointer;
     flex-shrink: 0;
-    height: 48px;
 }
 
 .logo:hover {
@@ -252,45 +258,26 @@ body {
 
 .nav-menu {
     display: flex;
-    list-style: none;
-    gap: 1.25rem;
     align-items: center;
+    gap: 32px;
+    list-style: none;
     margin: 0;
     padding: 0;
-    flex: 1;
-    justify-content: flex-end;
-    min-width: 0;
+    flex: 0 0 auto;
 }
 
 .nav-menu > li {
     display: flex;
     align-items: center;
-    height: 48px;
-}
-
-.nav-item--mobile-only {
-    display: none;
-}
-
-.nav-item--button {
-    margin-left: 0;
-}
-
-.nav-item--button + .nav-item--button {
-    margin-left: 0;
 }
 
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
-    height: 48px;
-}
-
-.nav-actions .nav-login,
-.nav-actions .nav-cta {
-    flex-shrink: 0;
+    justify-content: flex-end;
+    gap: 12px;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 .nav-link {
@@ -304,7 +291,6 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 48px;
     white-space: nowrap;
 }
 
@@ -313,18 +299,17 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    line-height: 1.12;
+    line-height: 1.15;
     gap: 0;
     font-size: 0.8125rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     white-space: normal;
-    padding: 0 0.15rem;
 }
 
 .nav-link--platform span {
     display: block;
-    line-height: 1.12;
+    line-height: 1.15;
 }
 
 .nav-link-hidden {
@@ -334,12 +319,12 @@ body {
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: 8px;
+    bottom: -6px;
     left: 50%;
     width: 0;
     height: 2px;
     background: var(--primary-color);
-    transition: width 0.25s ease, left 0.25s ease;
+    transition: width 0.25s ease;
     transform: translateX(-50%);
 }
 
@@ -377,8 +362,8 @@ body {
     padding: 0 1.25rem;
     height: 48px;
     border-radius: 12px;
-    margin-left: 0;
     box-shadow: none;
+    flex-shrink: 0;
     transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -430,6 +415,7 @@ body {
     letter-spacing: 0.01em;
     border: 2px solid #14b8a6;
     box-shadow: none;
+    flex-shrink: 0;
     transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
@@ -4989,7 +4975,7 @@ body {
 
 @media (max-width: 1200px) and (min-width: 969px) {
     .nav-menu {
-        gap: 0.9rem;
+        gap: 20px;
     }
 
     .nav-link {
@@ -5008,6 +4994,16 @@ body {
 
     .logo-text {
         font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-actions .nav-cta {
+        display: none;
+    }
+
+    .logo-text {
+        font-size: 1.125rem;
     }
 }
 
@@ -5220,7 +5216,6 @@ body {
         box-shadow: var(--shadow-lg);
         padding: 1.5rem 0;
         gap: 0;
-        justify-content: flex-start;
         flex: none;
     }
 
@@ -5231,25 +5226,29 @@ body {
     .nav-menu > li {
         padding: 0.65rem 0;
         width: 100%;
-        height: auto;
         justify-content: center;
     }
 
-    .nav-item--mobile-only {
-        display: flex;
-        padding: 0.75rem 0;
+    .nav-brand {
+        flex: 1 1 auto;
     }
 
-    .nav-login--desktop,
-    .nav-cta--desktop {
-        display: none;
+    .nav-actions {
+        flex: 0 0 auto;
+        gap: 8px;
+    }
+
+    .nav-actions .nav-login,
+    .nav-actions .nav-cta {
+        height: 40px;
+        padding: 0 0.85rem;
+        font-size: 0.8125rem;
     }
 
     .nav-link {
-        height: auto;
-        min-height: 44px;
         width: 100%;
         justify-content: center;
+        min-height: 44px;
     }
 
     .nav-link--platform {
@@ -5265,17 +5264,6 @@ body {
 
     .nav-link::after {
         bottom: 4px;
-    }
-
-    .nav-login,
-    .nav-cta {
-        width: min(260px, 80%);
-        margin: 0 auto;
-    }
-
-    .nav-actions {
-        gap: 0.75rem;
-        height: 48px;
     }
 
     .theme-toggle {

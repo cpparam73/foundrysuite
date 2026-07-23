@@ -1146,13 +1146,28 @@ const initAnimations = () => {
 // THEME TOGGLE
 // ============================================================================
 
+const syncThemeLogos = (theme) => {
+    const activeTheme = theme || DOM.html.getAttribute('data-theme') || 'light';
+    document.querySelectorAll('[data-logo]').forEach((img) => {
+        const nextSrc = activeTheme === 'dark'
+            ? img.getAttribute('data-logo-dark')
+            : img.getAttribute('data-logo-light');
+        if (nextSrc && img.getAttribute('src') !== nextSrc) {
+            img.setAttribute('src', nextSrc);
+        }
+    });
+};
+
 const initThemeToggle = () => {
+    syncThemeLogos();
+
     if (DOM.themeToggle) {
         DOM.themeToggle.addEventListener('click', () => {
             const currentTheme = DOM.html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             DOM.html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            syncThemeLogos(newTheme);
         });
     }
 };

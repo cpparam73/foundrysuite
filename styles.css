@@ -215,21 +215,6 @@ body {
     transition: transform 0.3s ease;
 }
 
-.logo-img--dark,
-.footer-logo--dark {
-    display: none;
-}
-
-[data-theme="dark"] .logo-img--light,
-[data-theme="dark"] .footer-logo--light {
-    display: none;
-}
-
-[data-theme="dark"] .logo-img--dark,
-[data-theme="dark"] .footer-logo--dark {
-    display: block;
-}
-
 .logo-img:hover {
     transform: scale(1.05);
 }

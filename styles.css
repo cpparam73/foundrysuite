@@ -169,18 +169,17 @@ body {
 }
 
 .nav-wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
+    column-gap: 1.5rem;
     height: 70px;
     padding: 0;
-    gap: 1rem;
 }
 
 .nav-brand {
     display: flex;
     align-items: center;
-    flex: 1 1 0;
     min-width: 0;
 }
 
@@ -244,16 +243,18 @@ body {
 .nav-menu {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 32px;
     list-style: none;
     margin: 0;
     padding: 0;
-    flex: 0 0 auto;
+    min-width: 0;
 }
 
 .nav-menu > li {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .nav-actions {
@@ -261,8 +262,16 @@ body {
     align-items: center;
     justify-content: flex-end;
     gap: 12px;
-    flex: 1 1 0;
-    min-width: 0;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 0.3rem;
+    padding: 0.35rem;
 }
 
 .nav-link {
@@ -284,9 +293,9 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    line-height: 1.15;
+    line-height: 1.1;
     gap: 0;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     white-space: normal;
@@ -294,7 +303,7 @@ body {
 
 .nav-link--platform span {
     display: block;
-    line-height: 1.15;
+    line-height: 1.1;
 }
 
 .nav-link-hidden {
@@ -486,16 +495,6 @@ body {
     opacity: 0;
     transform: rotate(90deg);
     color: #334155;
-}
-
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
 }
 
 .nav-toggle span {
@@ -4958,9 +4957,9 @@ body {
     margin-top: 0.5rem;
 }
 
-@media (max-width: 1200px) and (min-width: 969px) {
+@media (max-width: 1400px) and (min-width: 1101px) {
     .nav-menu {
-        gap: 20px;
+        gap: 18px;
     }
 
     .nav-link {
@@ -4968,13 +4967,17 @@ body {
     }
 
     .nav-link--platform {
-        font-size: 0.75rem;
+        font-size: 0.8125rem;
     }
 
     .nav-login,
     .nav-cta {
-        padding: 0 1rem;
+        padding: 0 0.9rem;
         font-size: 0.875rem;
+    }
+
+    .nav-wrapper {
+        column-gap: 1rem;
     }
 
     .logo-text {
@@ -4989,6 +4992,91 @@ body {
 
     .logo-text {
         font-size: 1.125rem;
+    }
+}
+
+/* Compact header: hamburger before links can collide with brand/CTAs */
+@media (max-width: 1100px) {
+    .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 0.75rem;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: var(--bg-secondary);
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s ease;
+        box-shadow: var(--shadow-lg);
+        padding: 1.5rem 0;
+        gap: 0;
+        justify-content: flex-start;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu > li {
+        padding: 0.65rem 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-actions {
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .nav-actions .nav-login,
+    .nav-actions .nav-cta {
+        height: 40px;
+        padding: 0 0.85rem;
+        font-size: 0.8125rem;
+    }
+
+    .nav-link {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+    }
+
+    .nav-link--platform {
+        font-size: 0.9375rem;
+        flex-direction: row;
+        gap: 0.35rem;
+        line-height: 1.2;
+    }
+
+    .nav-link--platform span {
+        display: inline;
+    }
+
+    .nav-link::after {
+        bottom: 4px;
+    }
+
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .logo-text {
+        font-size: 1.25rem;
+    }
+
+    .logo-img {
+        height: 35px;
     }
 }
 

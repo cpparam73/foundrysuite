@@ -2466,11 +2466,13 @@ body {
 }
 
 .why-foundrysuite-highlights li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
     background: transparent;
     border: none;
-    border-left: 2px solid var(--primary-color);
     border-radius: 0;
-    padding: 0.2rem 0 0.2rem 0.9rem;
+    padding: 0.15rem 0;
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -2478,8 +2480,15 @@ body {
     box-shadow: none;
 }
 
+.why-foundrysuite-check {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: var(--primary-color);
+}
+
 .why-foundrysuite-highlights li:hover {
-    border-color: var(--primary-color);
     color: var(--text-primary);
     transform: none;
     box-shadow: none;

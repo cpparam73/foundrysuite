@@ -2939,18 +2939,37 @@ body {
 .solutions-subsections-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
+    gap: 2.5rem;
+    align-items: stretch;
 }
 
 .solution-subsection {
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-height: 0;
+}
+
+.solution-subsection .subsection-title {
+    flex-shrink: 0;
+}
+
+.solution-subsection .subsection-subtitle {
+    /* Equalize header blocks so both card grids start on the same baseline */
+    min-height: 4.8em;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
 }
 
 .solution-subsection .solutions-grid {
+    flex: 1 1 auto;
+    width: 100%;
+    margin-top: 0;
+    align-content: stretch;
     align-items: stretch;
+    /* Fill column height so fewer cards still span the same visual band */
+    grid-auto-rows: minmax(0, 1fr);
+    min-height: 0;
 }
 
 .subsection-title {

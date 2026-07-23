@@ -646,8 +646,8 @@ body {
 
 .hero .container {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-    gap: 2.25rem;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.45fr);
+    gap: 1.5rem;
     align-items: center; /* left copy + right illustration share one vertical axis */
     align-content: center;
     position: relative;
@@ -860,18 +860,19 @@ body {
 .hero-devices-wrapper {
     position: relative;
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: flex-end; /* flush with page right margin */
+    justify-items: stretch;
     gap: 0;
     min-height: auto;
 }
 
 .hero-desktop-container {
     position: relative;
-    flex: 2.2;
-    max-width: 187%; /* previous 144% × 1.30 */
     width: 100%;
+    max-width: none;
+    min-width: 0;
     z-index: 2; /* sits behind the phone for depth */
     animation: heroFrameFloat 7s ease-in-out infinite;
 }
@@ -891,10 +892,9 @@ body {
 
 .slideshow-container {
     position: relative;
-    width: min(100%, calc(780px * 1024 / 682));
+    width: 100%;
     height: auto;
-    aspect-ratio: 1024 / 682; /* stable card frame */
-    max-height: 780px;
+    aspect-ratio: 1024 / 682; /* stable card frame — scales with column */
     min-height: 0;
     overflow: hidden;
     border-radius: 1rem;
@@ -923,7 +923,7 @@ body {
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    padding: 0.65rem;
+    padding: 0.4rem;
     box-sizing: border-box;
 }
 
@@ -1767,12 +1767,12 @@ body {
 
 .hero-mobile-container {
     position: relative;
-    width: 119px; /* previous 140px × 0.85 */
+    width: 138px; /* scales with larger desktop frame */
     flex-shrink: 0;
     z-index: 4; /* in front of architecture slide */
     margin-bottom: 0;
-    margin-left: -52px; /* overlap onto the slide for depth */
-    left: 16px; /* nudge slightly to the right */
+    margin-left: -58px; /* overlap onto the slide for depth */
+    left: 8px; /* keep phone near the page right margin */
     animation: mobileSlideIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
                mobileFloat 6s ease-in-out infinite 2s;
     opacity: 0;
@@ -5148,6 +5148,24 @@ body {
 
     .hero-devices-wrapper {
         justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        min-height: auto;
+    }
+
+    .hero-desktop-container {
+        width: min(100%, 640px);
+        max-width: 100%;
+    }
+
+    .hero-mobile-container {
+        width: 112px; /* proportionally smaller on tablet */
+        margin-bottom: 0;
+        margin-top: -25px;
+        margin-left: 0;
+        left: 12px;
     }
 
     .hero-buttons {
@@ -5170,21 +5188,6 @@ body {
 
     .hero-orb--suite {
         opacity: 0.35;
-    }
-
-    .hero-devices-wrapper {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-        min-height: auto;
-    }
-
-    .hero-mobile-container {
-        width: 102px; /* 120px × 0.85 */
-        margin-bottom: 0;
-        margin-top: -25px;
-        margin-left: 0;
-        left: 12px;
     }
 
     .construction-sectors-visual {

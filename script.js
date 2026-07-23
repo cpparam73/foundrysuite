@@ -294,6 +294,9 @@ const updateNavbarScroll = () => {
  * Update active navigation link based on scroll position
  */
 const updateActiveNavLink = () => {
+    // Homepage-only: product pages keep their statically marked active nav item
+    if (!document.getElementById('home')) return;
+
     const scrollY = window.pageYOffset;
     
     const setActiveLink = (targetId) => {

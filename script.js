@@ -291,7 +291,7 @@ const updateNavbarScroll = () => {
 };
 
 const SCROLL_TARGET_KEY = 'fs-scroll-to';
-const HOME_SECTION_IDS = ['home', 'products', 'foundry-platform', 'solutions', 'services', 'about', 'contact'];
+const HOME_SECTION_IDS = ['home', 'products', 'solutions', 'services', 'about', 'contact'];
 
 const isHomePage = () => Boolean(document.getElementById('home'));
 
@@ -405,7 +405,7 @@ const getDocumentTop = (el) => {
  * Update active navigation link based on scroll position
  */
 const updateActiveNavLink = () => {
-    // Homepage-only: product pages keep their statically marked active nav item
+    // Homepage-only scroll spy for in-page section links
     if (!isHomePage()) return;
 
     const scrollY = window.pageYOffset;
@@ -413,7 +413,12 @@ const updateActiveNavLink = () => {
 
     const setActiveLink = (targetId) => {
         DOM.navLinks.forEach((link) => {
-            if (link.classList.contains('nav-login') || link.classList.contains('nav-cta')) {
+            if (
+                link.classList.contains('nav-login') ||
+                link.classList.contains('nav-cta') ||
+                link.classList.contains('nav-link--platform') ||
+                /foundry-platform\.html/i.test(link.getAttribute('href') || '')
+            ) {
                 link.classList.remove('active');
                 return;
             }
@@ -427,7 +432,6 @@ const updateActiveNavLink = () => {
         return;
     }
 
-    // Prefer deeper targets (e.g. foundry-platform card inside products)
     const targets = HOME_SECTION_IDS
         .map((id) => {
             const el = document.getElementById(id);

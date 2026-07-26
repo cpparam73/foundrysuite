@@ -19,14 +19,14 @@ Apply on all HTML (and preferably all) responses:
 
 ### Content-Security-Policy (marketing site)
 
-Static pages currently rely on a small inline theme bootstrap and Google Fonts CSS, so `'unsafe-inline'` remains in `script-src` / `style-src` until those are moved to hashes/nonces via a build step.
+Static pages load theme bootstrap from `assets/js/core/theme-init.js` (no inline scripts). Google Fonts CSS still requires `'unsafe-inline'` in `style-src` for any remaining presentational exceptions; prefer CSS classes.
 
 ```
 default-src 'self';
-script-src 'self' 'unsafe-inline';
+script-src 'self';
 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
 font-src 'self' https://fonts.gstatic.com;
-img-src 'self' data: https:;
+img-src 'self' data:;
 media-src 'self';
 connect-src 'self' https://formspree.io;
 frame-ancestors 'self';
@@ -37,8 +37,8 @@ upgrade-insecure-requests;
 
 Tighten further when ready:
 
-1. Remove `'unsafe-inline'` from `script-src` by hashing the theme bootstrap snippet or moving it to an external file.
-2. Prefer `style-src 'self' https://fonts.googleapis.com` after eliminating inline `<style>` blocks (e.g. login page).
+1. Prefer `style-src 'self' https://fonts.googleapis.com` after confirming no inline `style` attributes remain.
+2. Keep `script-src 'self'` — do not reintroduce inline scripts.
 
 `frame-ancestors 'self'` is the primary clickjacking control (meta CSP cannot fully replace HTTP CSP for framing in all browsers — **send CSP as an HTTP header**).
 

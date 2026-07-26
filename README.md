@@ -1,27 +1,21 @@
-# FoundrySuite Website 2.0
+# FoundrySuite Website
 
 Brand-led marketing site for FoundrySuite — pure HTML, CSS, and JavaScript.
 
-## What’s new in 2.0
-
-- Full-bleed hero with video background and FoundrySuite as the primary signal
-- Visual system aligned to the logo (Foundry orange / Suite blue)
-- Typography: Outfit + Source Sans 3
-- Cleaner product, industry, and services layouts
-- Scroll reveals and restrained motion
-- Same Formspree contact flow, CAPTCHA, and security headers
-
 ## Structure
 
-- `index.html` — marketing site
+- `index.html` — marketing homepage
 - `foundry-platform.html` — Foundry Platform product page
 - `login.html` — customer login
-- `styles.css` — design system
+- `platform.html` — redirect shim to Foundry Platform
+- `styles.css` — shared design system
+- `assets/css/login.css` — login page styles
 - `script.js` — nav, theme, slideshow, form validation & Formspree
-- `assets/js/core/` — security-manager & content-protection
+- `assets/js/core/` — theme-init, security-manager, content-protection
+- `robots.txt` / `sitemap.xml` — crawl guidance
 - `docs/SECURITY.md` — server/hosting security configuration
+- `docs/ops/` — Formspree / operations notes
 - `assets/images/` — brand, product, icon, and social assets
-- `videos/` — optional media assets
 
 ## Local preview
 

@@ -67,7 +67,7 @@ RewriteRule ^images/Social/(.*)$ /assets/images/Social/$1 [R=301,L]
     
     # Content Security Policy — keep in sync with docs/SECURITY.md
     # Includes Formspree for contact forms; frame-ancestors blocks unauthorized embedding
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://formspree.io; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://formspree.io; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests"
     
     # Permissions Policy — disable unused powerful APIs
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=(), accelerometer=(), magnetometer=(), gyroscope=(), interest-cohort=()"
@@ -98,7 +98,7 @@ RewriteRule ^images/Social/(.*)$ /assets/images/Social/$1 [R=301,L]
 # ============================================================================
 
 # Block access to sensitive files
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|bak|backup|old|tmp)$">
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|bak|backup|old|tmp|md)$">
     Order allow,deny
     Deny from all
 </FilesMatch>

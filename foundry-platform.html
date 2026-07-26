@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundry Platform | FoundrySuite</title>
+    <meta name="robots" content="index, follow">
     <meta name="description" content="Foundry Platform — the cloud-native, AI-powered foundation powering every FoundrySuite solution. Identity, workflows, integrations, security, and intelligence in one core.">
 
     <!-- Open Graph -->
@@ -16,19 +17,19 @@
     <meta property="og:image" content="https://www.foundrysuite.com/assets/images/Social/og-image.png">
     <meta property="og:image:secure_url" content="https://www.foundrysuite.com/assets/images/Social/og-image.png">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="682">
-    <meta property="og:image:alt" content="FoundrySuite — Your business. Your modules. One platform.">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="FoundrySuite | Business Transformation Software — Your business. Your modules. One platform.">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Foundry Platform | FoundrySuite">
     <meta name="twitter:description" content="The cloud-native, AI-powered platform powering every FoundrySuite solution.">
     <meta name="twitter:image" content="https://www.foundrysuite.com/assets/images/Social/og-image.png">
-    <meta name="twitter:image:alt" content="FoundrySuite — Your business. Your modules. One platform.">
+    <meta name="twitter:image:alt" content="FoundrySuite | Business Transformation Software — Your business. Your modules. One platform.">
 
     <!-- Security -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://formspree.io; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://formspree.io; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -39,12 +40,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/Icons/favicon-32x32-light.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/Icons/favicon-16x16-light.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/Icons/apple-touch-icon-light.png">
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            document.documentElement.setAttribute('data-theme', savedTheme || 'light');
-        })();
-    </script>
+    <script src="assets/js/core/theme-init.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,6 +153,7 @@
                             height="1024"
                             alt="Foundry Platform capability orbit"
                             class="platform-orbit-img platform-orbit-img--dark"
+                            loading="lazy"
                             decoding="async"
                         >
                     </div>

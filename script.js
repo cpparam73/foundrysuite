@@ -931,7 +931,9 @@ const validateField = (fieldId, value) => {
                 return 'Invalid characters detected. Please use only alphanumeric characters and standard punctuation.';
             }
             if (!trimmed) return 'Please enter your company name';
-            if (!/^[A-Za-z\s]+$/.test(trimmed)) return 'Company name must contain only alphabetic characters';
+            if (!/^[A-Za-z0-9][A-Za-z0-9\s.&'\-]*$/.test(trimmed)) {
+                return 'Company name may include letters, numbers, spaces, and . & \' -';
+            }
             if (trimmed.length < 5) return 'Company name must be at least 5 characters';
             if (trimmed.length > 50) return 'Company name must not exceed 50 characters';
             return null;
@@ -1431,7 +1433,10 @@ const initImageFallbacks = () => {
         img.addEventListener('error', () => {
             img.style.display = 'none';
             const sibling = img.nextElementSibling;
-            if (sibling) sibling.style.display = 'flex';
+            if (sibling) {
+                sibling.classList.remove('is-hidden');
+                sibling.style.display = 'flex';
+            }
         });
     });
 };

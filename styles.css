@@ -5264,14 +5264,6 @@ body {
     transform: rotate(45deg);
 }
 
-.platform-deploy-closing {
-    max-width: 48rem;
-    margin: 0;
-    font-size: 0.94rem;
-    line-height: 1.65;
-    color: var(--text-secondary);
-}
-
 .platform-ai-grid,
 .platform-benefits {
     display: grid;
@@ -6022,8 +6014,7 @@ body {
         margin-inline: auto;
     }
 
-    .platform-deploy-lead,
-    .platform-deploy-closing {
+    .platform-deploy-lead {
         text-align: center;
         margin-inline: auto;
     }
@@ -6059,8 +6050,7 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .platform-deploy-lead,
-    .platform-deploy-closing {
+    .platform-deploy-lead {
         font-size: 0.92rem;
     }
 

@@ -5094,6 +5094,184 @@ body {
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
+/* Deploy Anywhere */
+.platform-deploy-lead {
+    max-width: 52rem;
+    margin: 0 0 1.15rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.platform-deploy-targets {
+    list-style: none;
+    margin: 0 0 1.15rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    gap: 0.75rem;
+}
+
+.platform-deploy-target {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.7rem;
+    row-gap: 0.1rem;
+    align-items: center;
+    padding: 0.85rem 0.9rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.platform-deploy-target:hover {
+    transform: translateY(-2px);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] .platform-deploy-target {
+    background: rgba(15, 23, 42, 0.35);
+}
+
+[data-theme="dark"] .platform-deploy-target:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.platform-deploy-target-icon {
+    grid-row: 1 / span 2;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(59, 130, 246, 0.14));
+    color: #3B82F6;
+}
+
+.platform-deploy-target-icon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.platform-deploy-target-icon--aws {
+    color: #232F3E;
+    background: rgba(245, 158, 11, 0.16);
+}
+
+.platform-deploy-target-icon--azure {
+    color: #0078D4;
+    background: rgba(0, 120, 212, 0.12);
+}
+
+.platform-deploy-target-icon--gcp {
+    background: rgba(66, 133, 244, 0.1);
+}
+
+.platform-deploy-target-icon--oci {
+    color: #C74634;
+    background: rgba(199, 70, 52, 0.12);
+}
+
+.platform-deploy-target-icon--private {
+    color: #0F766E;
+    background: rgba(20, 184, 166, 0.12);
+}
+
+.platform-deploy-target-icon--onprem {
+    color: #475569;
+    background: rgba(71, 85, 105, 0.12);
+}
+
+.platform-deploy-target-icon--hybrid {
+    color: #F59E0B;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(59, 130, 246, 0.14));
+}
+
+[data-theme="dark"] .platform-deploy-target-icon--aws {
+    color: #E5E7EB;
+}
+
+[data-theme="dark"] .platform-deploy-target-icon--onprem {
+    color: #CBD5E1;
+}
+
+.platform-deploy-target-name {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    line-height: 1.25;
+}
+
+.platform-deploy-target-code {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.platform-deploy-highlights {
+    list-style: none;
+    margin: 0 0 1.1rem;
+    padding: 0.95rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.55rem 1rem;
+    border-radius: 0.9rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    background:
+        linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(59, 130, 246, 0.07)),
+        var(--bg-secondary);
+}
+
+.platform-deploy-highlights li {
+    position: relative;
+    padding-left: 1.35rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-primary);
+}
+
+.platform-deploy-highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.2rem;
+    width: 0.95rem;
+    height: 0.95rem;
+    border-radius: 999px;
+    background:
+        linear-gradient(135deg, #14b8a6, #3B82F6);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.25);
+}
+
+.platform-deploy-highlights li::after {
+    content: '';
+    position: absolute;
+    left: 0.28rem;
+    top: 0.38rem;
+    width: 0.28rem;
+    height: 0.45rem;
+    border: solid #fff;
+    border-width: 0 1.6px 1.6px 0;
+    transform: rotate(45deg);
+}
+
+.platform-deploy-closing {
+    max-width: 48rem;
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
 .platform-ai-grid,
 .platform-benefits {
     display: grid;
@@ -5796,7 +5974,8 @@ body {
     .platform-list-grid,
     .platform-overview-grid,
     .platform-overview-pillars,
-    .platform-why-grid {
+    .platform-why-grid,
+    .platform-deploy-highlights {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -5842,6 +6021,12 @@ body {
         text-align: center;
         margin-inline: auto;
     }
+
+    .platform-deploy-lead,
+    .platform-deploy-closing {
+        text-align: center;
+        margin-inline: auto;
+    }
 }
 
 @media (max-width: 720px) {
@@ -5869,8 +6054,18 @@ body {
     .platform-overview-grid,
     .platform-overview-pillars,
     .platform-why-grid,
-    .platform-engines-grid {
+    .platform-engines-grid,
+    .platform-deploy-highlights {
         grid-template-columns: 1fr;
+    }
+
+    .platform-deploy-lead,
+    .platform-deploy-closing {
+        font-size: 0.92rem;
+    }
+
+    .platform-deploy-highlights {
+        padding: 0.85rem 0.9rem;
     }
 
     .platform-hero-actions {
@@ -5898,7 +6093,8 @@ body {
     .platform-faq-item:hover,
     .platform-arch-layers li:hover,
     .platform-engine-card:hover,
-    .platform-engines-nav-item:hover {
+    .platform-engines-nav-item:hover,
+    .platform-deploy-target:hover {
         transform: none;
     }
 

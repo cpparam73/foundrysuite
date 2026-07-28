@@ -7,7 +7,6 @@ Folder structure:
 - About/          — About section photography (about-us.jpg)
 - Architecture/   — Orbit visuals and platform architecture diagrams
 - Branding/       — Logos (logo-light.png, logo-dark.png) and bid-hd.svg
-- Founder/        — Founder portrait (parameswaran-cp.jpg)
 - Icons/          — Favicons and apple-touch icons (light + dark variants)
 - Products/       — Industry product visuals (foundry-build, campus, health, it, agri)
 - Social/         — Open Graph / social share image (og-image.png)

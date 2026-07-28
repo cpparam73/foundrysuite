@@ -1608,3 +1608,89 @@ const initArchitectureStickyScroll = () => {
 };
 
 initArchitectureStickyScroll();
+
+// ============================================================================
+// PLATFORM ENGINES — sticky layer nav active state
+// ============================================================================
+
+const initPlatformEnginesNav = () => {
+    const section = document.getElementById('engines');
+    const slot = document.getElementById('platformEnginesNavSlot');
+    const nav = document.getElementById('platformEnginesNav');
+    const links = nav ? Array.from(nav.querySelectorAll('.platform-engines-nav-item')) : [];
+    const layers = section ? Array.from(section.querySelectorAll('.platform-engine-layer[id]')) : [];
+    if (!section || !slot || !nav || !links.length || !layers.length) return;
+
+    const homeParent = slot.parentNode;
+    const placeholder = document.createElement('div');
+    placeholder.className = 'platform-engines-nav-placeholder';
+    placeholder.setAttribute('aria-hidden', 'true');
+    homeParent.insertBefore(placeholder, slot);
+
+    const setActive = (id) => {
+        links.forEach((link) => {
+            const on = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('is-active', on);
+            if (on) link.setAttribute('aria-current', 'true');
+            else link.removeAttribute('aria-current');
+        });
+    };
+
+    const pinNav = () => {
+        const headerH = DOM.navbar ? DOM.navbar.offsetHeight : 70;
+        const sectionRect = section.getBoundingClientRect();
+        const slotHeight = slot.offsetHeight || nav.offsetHeight || 48;
+        const anchorTop = placeholder.classList.contains('is-active')
+            ? placeholder.getBoundingClientRect().top
+            : slot.getBoundingClientRect().top;
+
+        // Keep menu visible while the engines section is in view
+        const shouldPin =
+            anchorTop <= headerH + 1 &&
+            sectionRect.bottom > headerH + slotHeight + 40;
+
+        if (shouldPin) {
+            if (!slot.classList.contains('is-pinned')) {
+                placeholder.style.height = `${slotHeight}px`;
+                placeholder.classList.add('is-active');
+                document.body.appendChild(slot);
+                slot.classList.add('is-pinned');
+            }
+            slot.style.top = `${headerH}px`;
+        } else if (slot.classList.contains('is-pinned')) {
+            slot.classList.remove('is-pinned');
+            slot.style.top = '';
+            homeParent.insertBefore(slot, placeholder.nextSibling);
+            placeholder.style.height = '';
+            placeholder.classList.remove('is-active');
+        }
+
+        const marker = headerH + (shouldPin ? slot.offsetHeight : 0) + 16;
+        let current = layers[0].id;
+        layers.forEach((layer) => {
+            if (layer.getBoundingClientRect().top <= marker) current = layer.id;
+        });
+        setActive(current);
+    };
+
+    let frame = 0;
+    const requestPin = () => {
+        if (frame) return;
+        frame = window.requestAnimationFrame(() => {
+            frame = 0;
+            pinNav();
+        });
+    };
+
+    window.addEventListener('scroll', requestPin, { passive: true });
+    window.addEventListener('resize', requestPin);
+    links.forEach((link) => {
+        link.addEventListener('click', () => {
+            const id = (link.getAttribute('href') || '').slice(1);
+            if (id) setActive(id);
+        });
+    });
+    pinNav();
+};
+
+initPlatformEnginesNav();

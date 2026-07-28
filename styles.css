@@ -4063,23 +4063,27 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .nav-actions .nav-cta {
-        display: none;
-    }
-
-    .logo-text {
-        font-size: 1.125rem;
-    }
-}
-
 /* Compact header: hamburger before links can collide with brand/CTAs */
 @media (max-width: 1100px) {
     .nav-wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        column-gap: 0.75rem;
+        column-gap: 0.5rem;
+        min-width: 0;
+    }
+
+    .nav-brand {
+        flex: 1 1 auto;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .logo {
+        flex-shrink: 1;
+        min-width: 0;
+        max-width: 100%;
+        gap: 0.5rem;
     }
 
     .nav-menu {
@@ -4108,18 +4112,26 @@ body {
     }
 
     .nav-actions {
-        gap: 8px;
+        gap: 6px;
+        flex: 0 0 auto;
+        margin-left: 0.25rem;
+    }
+
+    /* Free space for Login + brand; demo is available via menu/hero CTAs */
+    .nav-actions .nav-cta {
+        display: none;
+    }
+
+    .nav-actions .nav-login {
+        width: auto;
+        height: 40px;
+        padding: 0 0.75rem;
+        font-size: 0.8125rem;
         flex-shrink: 0;
     }
 
-    .nav-actions .nav-login,
-    .nav-actions .nav-cta {
-        height: 40px;
-        padding: 0 0.85rem;
-        font-size: 0.8125rem;
-    }
-
-    .nav-link {
+    /* Full-width only for drawer links — not Login/CTA in the header bar */
+    .nav-menu .nav-link {
         width: 100%;
         justify-content: center;
         min-height: 44px;
@@ -4136,25 +4148,50 @@ body {
         display: inline;
     }
 
-    .nav-link::after {
+    .nav-menu .nav-link::after {
         bottom: 4px;
     }
 
     .theme-toggle {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
     }
 
     .nav-toggle {
         display: flex;
+        flex-shrink: 0;
     }
 
     .logo-text {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .logo-img {
-        height: 35px;
+        height: 32px;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .nav-actions {
+        gap: 4px;
+    }
+
+    .nav-actions .nav-login {
+        padding: 0 0.65rem;
+        font-size: 0.75rem;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
     }
 }
 
@@ -4360,23 +4397,8 @@ body {
         justify-content: center;
     }
 
-    .nav-brand {
-        flex: 1 1 auto;
-    }
-
-    .nav-actions {
-        flex: 0 0 auto;
-        gap: 8px;
-    }
-
-    .nav-actions .nav-login,
-    .nav-actions .nav-cta {
-        height: 40px;
-        padding: 0 0.85rem;
-        font-size: 0.8125rem;
-    }
-
-    .nav-link {
+    /* Full-width only for drawer links — keep Login sized to its content */
+    .nav-menu .nav-link {
         width: 100%;
         justify-content: center;
         min-height: 44px;
@@ -4393,13 +4415,8 @@ body {
         display: inline;
     }
 
-    .nav-link::after {
+    .nav-menu .nav-link::after {
         bottom: 4px;
-    }
-
-    .theme-toggle {
-        width: 44px;
-        height: 44px;
     }
 
     .nav-toggle {
@@ -4416,14 +4433,6 @@ body {
 
     .nav-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -7px);
-    }
-
-    .logo-text {
-        font-size: 1.25rem;
-    }
-
-    .logo-img {
-        height: 35px;
     }
 
     .hero-title {

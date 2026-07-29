@@ -5169,7 +5169,7 @@ body {
     width: 1.05rem;
     height: 1.05rem;
     margin-top: 0.1rem;
-    color: #D97706;
+    color: #EAB308;
 }
 
 .platform-deploy-hybrid-icon svg {
@@ -5184,7 +5184,7 @@ body {
 }
 
 [data-theme="dark"] .platform-deploy-hybrid-icon {
-    color: #FBBF24;
+    color: #FACC15;
 }
 
 .platform-deploy-target {

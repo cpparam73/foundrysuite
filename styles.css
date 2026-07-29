@@ -5117,20 +5117,58 @@ body {
 
 /* Deploy Anywhere */
 .platform-deploy-lead {
-    max-width: 52rem;
+    max-width: none;
     margin: 0 0 1.15rem;
     font-size: 0.95rem;
     line-height: 1.65;
+    color: var(--text-secondary);
+    text-wrap: pretty;
+}
+
+.platform-deploy-groups {
+    display: grid;
+    gap: 1rem;
+    margin: 0 0 1.15rem;
+}
+
+.platform-deploy-group-label {
+    margin: 0 0 0.5rem;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     color: var(--text-secondary);
 }
 
 .platform-deploy-targets {
     list-style: none;
-    margin: 0 0 1.15rem;
+    margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.75rem;
+}
+
+.platform-deploy-targets--private {
+    /* Keep the same 4-column track so Private/On-Prem cards match Public Cloud card width */
+    margin-bottom: 0.65rem;
+}
+
+.platform-deploy-hybrid-note {
+    margin: 0;
+    padding: 0.55rem 0.85rem;
+    border-radius: 0.65rem;
+    border: 1px dashed rgba(59, 130, 246, 0.28);
+    background: rgba(59, 130, 246, 0.04);
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .platform-deploy-hybrid-note {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.35);
 }
 
 .platform-deploy-target {
@@ -5207,11 +5245,6 @@ body {
     background: rgba(71, 85, 105, 0.12);
 }
 
-.platform-deploy-target-icon--hybrid {
-    color: #F59E0B;
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(59, 130, 246, 0.14));
-}
-
 [data-theme="dark"] .platform-deploy-target-icon--aws {
     color: #E5E7EB;
 }
@@ -5239,7 +5272,7 @@ body {
 
 .platform-deploy-highlights {
     list-style: none;
-    margin: 0 0 1.1rem;
+    margin: 0;
     padding: 0.95rem 1rem;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -6024,6 +6057,7 @@ body {
     .platform-overview-grid,
     .platform-overview-pillars,
     .platform-why-grid,
+    .platform-deploy-targets,
     .platform-deploy-highlights {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -6093,6 +6127,7 @@ body {
     .platform-overview-pillars,
     .platform-why-grid,
     .platform-engines-grid,
+    .platform-deploy-targets,
     .platform-deploy-highlights {
         grid-template-columns: 1fr;
     }

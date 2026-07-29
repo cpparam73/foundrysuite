@@ -15,7 +15,8 @@ Apply on all HTML (and preferably all) responses:
 | `Permissions-Policy` | `geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=(), accelerometer=(), magnetometer=(), gyroscope=(), interest-cohort=()` |
 | `Strict-Transport-Security` | `max-age=31536000; includeSubDomains; preload` (HTTPS only) |
 | `Cross-Origin-Opener-Policy` | `same-origin-allow-popups` (or `same-origin` if no third-party window needs) |
-| `Cross-Origin-Resource-Policy` | `same-site` |
+| `Cross-Origin-Resource-Policy` | `cross-origin` (required so social crawlers can fetch OG images) |
+| `X-Permitted-Cross-Domain-Policies` | `none` |
 
 ### Content-Security-Policy (marketing site)
 
@@ -24,11 +25,15 @@ Static pages load theme bootstrap from `assets/js/core/theme-init.js` (no inline
 ```
 default-src 'self';
 script-src 'self';
+script-src-attr 'none';
 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
 font-src 'self' https://fonts.gstatic.com;
 img-src 'self' data:;
 media-src 'self';
 connect-src 'self' https://formspree.io;
+object-src 'none';
+frame-src 'none';
+worker-src 'none';
 frame-ancestors 'self';
 base-uri 'self';
 form-action 'self' https://formspree.io;
@@ -38,7 +43,7 @@ upgrade-insecure-requests;
 Tighten further when ready:
 
 1. Prefer `style-src 'self' https://fonts.googleapis.com` after confirming no inline `style` attributes remain.
-2. Keep `script-src 'self'` — do not reintroduce inline scripts.
+2. Keep `script-src 'self'` — do not reintroduce inline scripts or event-handler attributes.
 
 `frame-ancestors 'self'` is the primary clickjacking control (meta CSP cannot fully replace HTTP CSP for framing in all browsers — **send CSP as an HTTP header**).
 
@@ -47,7 +52,7 @@ Tighten further when ready:
 This repository ships an updated `.htaccess` under `mod_headers`. After deploying:
 
 1. Confirm `AllowOverride` permits headers.
-2. Enable HTTPS redirect + HSTS only after TLS is verified.
+2. HTTPS redirect and HSTS are enabled — confirm TLS remains correctly configured on the host/CDN.
 3. Align CDN/proxy header rules so they do not strip CSP.
 
 ## Cookies (future authentication)

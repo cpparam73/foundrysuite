@@ -4372,53 +4372,6 @@ body {
 
     
 
-    .nav-menu {
-        position: fixed;
-        top: var(--header-height);
-        left: -100%;
-        flex-direction: column;
-        background: var(--bg-secondary);
-        width: 100%;
-        text-align: center;
-        transition: left 0.3s ease;
-        box-shadow: var(--shadow-lg);
-        padding: 1.5rem 0;
-        gap: 0;
-        flex: none;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .nav-menu > li {
-        padding: 0.65rem 0;
-        width: 100%;
-        justify-content: center;
-    }
-
-    /* Full-width only for drawer links — keep Login sized to its content */
-    .nav-menu .nav-link {
-        width: 100%;
-        justify-content: center;
-        min-height: 44px;
-    }
-
-    .nav-link--platform {
-        font-size: 0.9375rem;
-        flex-direction: row;
-        gap: 0.35rem;
-        line-height: 1.2;
-    }
-
-    .nav-link--platform span {
-        display: inline;
-    }
-
-    .nav-menu .nav-link::after {
-        bottom: 4px;
-    }
-
     .nav-toggle {
         display: flex;
     }
@@ -4602,7 +4555,7 @@ body {
     position: relative;
     overflow: hidden;
     margin-top: var(--header-height);
-    padding: 1.5rem 0 1.25rem;
+    padding: 1.5rem 0;
     background: linear-gradient(165deg, #ffffff 0%, #f8fafc 45%, #eef4ff 100%);
 }
 
@@ -4759,7 +4712,7 @@ body {
 }
 
 .platform-section {
-    padding: 1.35rem 0;
+    padding: 1.5rem 0;
 }
 
 .platform-section--alt {
@@ -4798,7 +4751,6 @@ body {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.9rem;
-    margin-bottom: 0.75rem;
 }
 
 .platform-overview-card {
@@ -5118,7 +5070,7 @@ body {
 /* Deploy Anywhere */
 .platform-deploy-lead {
     max-width: none;
-    margin: 0 0 1.15rem;
+    margin: 0 0 0.85rem;
     font-size: 0.95rem;
     line-height: 1.65;
     color: var(--text-secondary);
@@ -5128,7 +5080,7 @@ body {
 .platform-deploy-groups {
     display: grid;
     gap: 1rem;
-    margin: 0 0 1.15rem;
+    margin: 0 0 0.85rem;
 }
 
 .platform-deploy-group-label {
@@ -5573,7 +5525,7 @@ body {
 .platform-section--engines {
     position: relative;
     overflow: visible;
-    padding: 0.75rem 0 1rem;
+    padding: 1.5rem 0;
     background: var(--bg-primary);
     scroll-margin-top: var(--header-height);
 }
@@ -5994,7 +5946,7 @@ body {
 }
 
 .platform-final-cta {
-    padding: 1.1rem 0;
+    padding: 1.5rem 0;
     background:
         radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.16), transparent 45%),
         radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.16), transparent 40%),
@@ -6027,10 +5979,17 @@ body {
 }
 
 @media (max-width: 1024px) {
+    .platform-hero,
+    .platform-section,
+    .platform-section--engines,
+    .platform-final-cta {
+        padding: 1.5rem 0;
+    }
+
     .platform-hero-grid,
     .platform-architecture {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
         overflow: visible;
     }
 
@@ -6073,6 +6032,10 @@ body {
     .platform-architecture-visual {
         will-change: auto;
         transform: none !important;
+    }
+
+    .platform-section-header {
+        margin-bottom: 0.85rem;
     }
 
     .platform-card-grid--4,
@@ -6126,22 +6089,6 @@ body {
 }
 
 @media (max-width: 720px) {
-    .platform-hero {
-        padding: 1.25rem 0 1rem;
-    }
-
-    .platform-section {
-        padding: 1.15rem 0;
-    }
-
-    .platform-final-cta {
-        padding: 1.35rem 0;
-    }
-
-    .platform-section-header {
-        margin-bottom: 0.85rem;
-    }
-
     .platform-card-grid--4,
     .platform-card-grid--3,
     .platform-list-grid,
@@ -6156,12 +6103,14 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .platform-deploy-lead {
-        font-size: 0.92rem;
+    .platform-overview-card,
+    .platform-deploy-target,
+    .platform-deploy-highlights {
+        padding: 0.95rem 1rem;
     }
 
-    .platform-deploy-highlights {
-        padding: 0.85rem 0.9rem;
+    .platform-deploy-lead {
+        font-size: 0.92rem;
     }
 
     .platform-hero-actions {

@@ -320,6 +320,16 @@
         const href = anchor.getAttribute('href') || '';
         const target = (anchor.getAttribute('target') || '').toLowerCase();
 
+        // Strip dangerous URI schemes before they can execute
+        if (/^\s*(javascript|data|vbscript):/i.test(href)) {
+            logSuspicious('unsafe-href', href.slice(0, 64));
+            anchor.removeAttribute('href');
+            anchor.setAttribute('role', 'link');
+            anchor.setAttribute('aria-disabled', 'true');
+            anchor.setAttribute('data-sec-link', '1');
+            return;
+        }
+
         if (target === '_blank' || isExternalHref(href)) {
             const rel = new Set(
                 String(anchor.getAttribute('rel') || '')

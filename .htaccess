@@ -4,9 +4,9 @@
 # Enable Rewrite Engine
 RewriteEngine On
 
-# Force HTTPS (uncomment if you want to force HTTPS)
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Remove non-www prefix - redirect apex to www
 RewriteCond %{HTTP_HOST} ^foundrysuite\.com$ [NC]
@@ -67,10 +67,13 @@ RewriteRule ^images/Social/(.*)$ /assets/images/Social/$1 [R=301,L]
     
     # Content Security Policy — keep in sync with docs/SECURITY.md
     # Includes Formspree for contact forms; frame-ancestors blocks unauthorized embedding
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://formspree.io; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://formspree.io; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'self'; frame-src 'none'; worker-src 'none'; upgrade-insecure-requests"
     
     # Permissions Policy — disable unused powerful APIs
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=(), accelerometer=(), magnetometer=(), gyroscope=(), interest-cohort=()"
+
+    # Block Adobe Flash / PDF cross-domain policy files
+    Header always set X-Permitted-Cross-Domain-Policies "none"
 
     # Cross-origin isolation helpers
     # Public marketing assets (especially OG images) must be fetchable by
@@ -78,8 +81,8 @@ RewriteRule ^images/Social/(.*)$ /assets/images/Social/$1 [R=301,L]
     Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
     Header always set Cross-Origin-Resource-Policy "cross-origin"
     
-    # Strict Transport Security - Force HTTPS (enable only when TLS is confirmed)
-    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    # Strict Transport Security - Force HTTPS
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     
     # Remove server information
     Header unset Server

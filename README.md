@@ -21,7 +21,20 @@ Brand-led marketing site for FoundrySuite — pure HTML, CSS, and JavaScript.
 
 ## Local preview
 
-Open `index.html` in a browser. No build step required.
+Use a **fixed port (5500)** so the URL does not keep changing:
+
+```bash
+./scripts/dev-server.sh
+```
+
+- Home: http://127.0.0.1:5500/
+- Platform: http://127.0.0.1:5500/foundry-platform.html
+- Stop: `./scripts/dev-server.sh stop`
+- Restart: `./scripts/dev-server.sh restart`
+
+If you use the Live Server extension in Cursor/VS Code, it is also locked to port **5500** via `.vscode/settings.json`.
+
+You can also open `index.html` directly in a browser (no server required for most pages).
 
 ## Contact form
 

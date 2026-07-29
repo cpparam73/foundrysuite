@@ -2,3 +2,7 @@
 # macOS AppleDouble resource forks
 ._*
 **/._*
+
+# Local preview server
+.dev-server.pid
+.dev-server.log

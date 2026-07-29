@@ -4601,7 +4601,8 @@ body {
 .platform-hero {
     position: relative;
     overflow: hidden;
-    padding: calc(70px + 1rem) 0 1.25rem;
+    margin-top: var(--header-height);
+    padding: 1.5rem 0 1.25rem;
     background: linear-gradient(165deg, #ffffff 0%, #f8fafc 45%, #eef4ff 100%);
 }
 
@@ -4613,9 +4614,22 @@ body {
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: 1.25rem;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.45fr);
+    gap: 1.5rem;
     align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.platform-hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    justify-self: start;
+    max-width: 34rem;
+    width: 100%;
+    min-width: 0;
 }
 
 .platform-eyebrow {
@@ -4632,11 +4646,11 @@ body {
 
 .platform-hero-title {
     font-family: 'Outfit', 'Inter', sans-serif;
-    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.1;
+    font-size: clamp(2.35rem, 4.2vw, 3.65rem);
+    font-weight: 700;
+    line-height: 1.15;
     letter-spacing: -0.035em;
-    margin: 0 0 0.65rem;
+    margin: 0 0 1.15rem;
     color: var(--text-primary);
 }
 
@@ -4683,13 +4697,20 @@ body {
 }
 
 .platform-hero-visual {
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-self: center;
+    justify-self: stretch;
+    width: 100%;
+    min-width: 0;
 }
 
 .platform-orbit-frame {
     position: relative;
-    width: min(100%, 560px);
+    width: 100%;
+    max-width: none;
     animation: platformOrbitFloat 9s ease-in-out infinite;
 }
 
@@ -5952,8 +5973,44 @@ body {
     .platform-hero-grid,
     .platform-architecture {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 2rem;
         overflow: visible;
+    }
+
+    .platform-hero-grid {
+        text-align: center;
+        align-items: center;
+    }
+
+    .platform-hero-copy {
+        max-width: none;
+        align-items: center;
+        justify-self: center;
+    }
+
+    .platform-hero-subtitle {
+        margin-inline: auto;
+    }
+
+    .platform-hero-actions {
+        justify-content: center;
+    }
+
+    .platform-hero-points {
+        text-align: left;
+        max-width: 34rem;
+        width: 100%;
+        margin-inline: auto;
+    }
+
+    .platform-hero-visual {
+        justify-self: center;
+        max-width: min(100%, 640px);
+        margin-inline: auto;
+    }
+
+    .platform-hero-title {
+        font-size: clamp(2rem, 7vw, 2.6rem);
     }
 
     .platform-architecture-visual {
@@ -6008,21 +6065,11 @@ body {
         grid-template-columns: 1fr;
         gap: 0.65rem;
     }
-
-    .platform-section-header--left {
-        text-align: center;
-        margin-inline: auto;
-    }
-
-    .platform-deploy-lead {
-        text-align: center;
-        margin-inline: auto;
-    }
 }
 
 @media (max-width: 720px) {
     .platform-hero {
-        padding: calc(70px + 0.75rem) 0 1rem;
+        padding: 1.25rem 0 1rem;
     }
 
     .platform-section {

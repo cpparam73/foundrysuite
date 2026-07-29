@@ -14,6 +14,8 @@ Brand-led marketing site for FoundrySuite — pure HTML, CSS, and JavaScript.
 - `assets/js/core/` — theme-init, security-manager, content-protection
 - `robots.txt` / `sitemap.xml` — crawl guidance
 - `docs/SECURITY.md` — server/hosting security configuration
+- `.github/SECURITY.md` — vulnerability reporting policy
+- `scripts/check-security.sh` — CSP/meta consistency checks
 - `docs/ops/` — Formspree / operations notes
 - `assets/images/` — brand, product, icon, and social assets
 

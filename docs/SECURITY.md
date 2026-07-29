@@ -55,6 +55,27 @@ This repository ships an updated `.htaccess` under `mod_headers`. After deployin
 2. HTTPS redirect and HSTS are enabled — confirm TLS remains correctly configured on the host/CDN.
 3. Align CDN/proxy header rules so they do not strip CSP.
 
+## GitHub repository controls
+
+This repository also ships GitHub-native security:
+
+| Control | Location |
+| --- | --- |
+| Security policy / vulnerability reporting | `.github/SECURITY.md` |
+| Local/CI security meta + CSP consistency checks | `scripts/check-security.sh` |
+
+Run checks locally:
+
+```bash
+./scripts/check-security.sh
+```
+
+Notes:
+
+- GitHub Pages cannot apply Apache `.htaccess` headers. Keep the HTML `<meta>` CSP tags in sync, and prefer CDN/host HTTP headers (Cloudflare, Apache, nginx) for production `www.foundrysuite.com`.
+- Client-side hardening still loads from `assets/js/core/security-manager.js` and `content-protection.js` on every page.
+- To add GitHub Actions automation later, grant the push credential the `workflow` scope and add `.github/workflows/security-checks.yml`.
+
 ## Cookies (future authentication)
 
 When a backend issues session cookies, set:

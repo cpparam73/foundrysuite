@@ -5150,25 +5150,11 @@ body {
     gap: 0.75rem;
 }
 
-.platform-deploy-targets--private {
-    /* Keep the same 4-column track so Private/On-Prem cards match Public Cloud card width */
-    margin-bottom: 0.65rem;
-}
-
 .platform-deploy-hybrid-note {
     margin: 0;
-    padding: 0.55rem 0.85rem;
-    border-radius: 0.65rem;
-    border: 1px dashed rgba(59, 130, 246, 0.28);
-    background: rgba(59, 130, 246, 0.04);
-    font-size: 0.84rem;
-    line-height: 1.45;
+    font-size: 0.9rem;
+    line-height: 1.55;
     color: var(--text-secondary);
-}
-
-[data-theme="dark"] .platform-deploy-hybrid-note {
-    background: rgba(59, 130, 246, 0.08);
-    border-color: rgba(59, 130, 246, 0.35);
 }
 
 .platform-deploy-target {

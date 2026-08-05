@@ -489,12 +489,13 @@ const initSmoothScroll = () => {
 
         const href = (link.getAttribute('href') || '').trim();
 
-        // Foundry Platform + Login are real pages — never intercept / scroll
+        // Foundry Platform + official Sign In entry — never intercept / scroll
         if (
             link.classList.contains('nav-link--platform') ||
             link.classList.contains('nav-login') ||
             /foundry-platform\.html(?:[?#]|$)/i.test(href) ||
-            /login\.html(?:[?#]|$)/i.test(href)
+            /login\.html(?:[?#]|$)/i.test(href) ||
+            /login\.foundrysuite\.com/i.test(href)
         ) {
             closeMobileNav();
             return;
@@ -1293,21 +1294,6 @@ const initThemeToggle = () => {
 };
 
 /**
- * Login page placeholder submit handler (no credentials processed client-side)
- */
-const initLoginForm = () => {
-    const loginForm = document.getElementById('loginForm');
-    if (!loginForm) return;
-
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        // Do not read or transmit credentials from this static marketing site
-        alert('Login functionality will be connected to your authentication system.');
-    });
-};
-
-/**
  * Platform FAQ — exclusive accordion (one open panel at a time)
  */
 const initPlatformFaqAccordion = () => {
@@ -1492,7 +1478,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initSuccessModal();
     initThemeToggle();
     initPlatformFaqAccordion();
-    initLoginForm();
 
     // Core platform services — ensure active even if a page forgets a script tag.
     if (window.FoundrySecurity && typeof window.FoundrySecurity.init === 'function') {

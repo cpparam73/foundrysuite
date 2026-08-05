@@ -6,10 +6,10 @@ Brand-led marketing site for FoundrySuite — pure HTML, CSS, and JavaScript.
 
 - `index.html` — marketing homepage
 - `foundry-platform.html` — Foundry Platform product page
-- `login.html` — customer login
+- `login.html` — redirect stub to official Sign In (`https://login.foundrysuite.com`)
 - `platform.html` — redirect shim to Foundry Platform
 - `styles.css` — shared design system
-- `assets/css/login.css` — login page styles
+- `assets/css/login.css` — legacy login styles (unused; auth is hosted at login.foundrysuite.com)
 - `script.js` — nav, theme, slideshow, form validation & Formspree
 - `assets/js/core/` — theme-init, security-manager, content-protection
 - `robots.txt` / `sitemap.xml` — crawl guidance
@@ -18,6 +18,17 @@ Brand-led marketing site for FoundrySuite — pure HTML, CSS, and JavaScript.
 - `scripts/check-security.sh` — CSP/meta consistency checks
 - `docs/ops/` — Formspree / operations notes
 - `assets/images/` — brand, product, icon, and social assets
+
+## Authentication (Sign In)
+
+All website **Sign In** actions use the official centralized entry:
+
+`https://login.foundrysuite.com`
+
+User-facing label: **Sign In**. Technical endpoint host remains `login.foundrysuite.com`.  
+Internal identity service name: **Foundry Identity**.
+
+Legacy `/login` and `login.html` redirect there (see `.htaccess`).
 
 ## Local preview
 
@@ -29,6 +40,7 @@ Use a **fixed port (5500)** so the URL does not keep changing:
 
 - Home: http://127.0.0.1:5500/
 - Platform: http://127.0.0.1:5500/foundry-platform.html
+- Sign In: https://login.foundrysuite.com (do not use a local Sign In page)
 - Stop: `./scripts/dev-server.sh stop`
 - Restart: `./scripts/dev-server.sh restart`
 

@@ -4117,7 +4117,7 @@ body {
         margin-left: 0.25rem;
     }
 
-    /* Free space for Login + brand; demo is available via menu/hero CTAs */
+    /* Free space for Sign In + brand; demo is available via menu/hero CTAs */
     .nav-actions .nav-cta {
         display: none;
     }
@@ -4130,7 +4130,7 @@ body {
         flex-shrink: 0;
     }
 
-    /* Full-width only for drawer links — not Login/CTA in the header bar */
+    /* Full-width only for drawer links — not Sign In/CTA in the header bar */
     .nav-menu .nav-link {
         width: 100%;
         justify-content: center;

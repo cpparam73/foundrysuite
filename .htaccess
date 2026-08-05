@@ -28,6 +28,10 @@ RewriteRule ^index\.html$ / [R=301,L]
 # Canonical Foundry Platform product page
 RewriteRule ^platform\.html$ /foundry-platform.html [R=301,L]
 
+# Official Authentication Entry (EPS §14.6.3.1) — no independent website login
+RewriteRule ^login\.html$ https://login.foundrysuite.com [R=301,L]
+RewriteRule ^login/?$ https://login.foundrysuite.com [R=301,L]
+
 # Legacy image path redirects (old /images/ → /assets/images/)
 RewriteRule ^images/Social/og-image\.png$ /assets/images/Social/og-image.png [R=301,L]
 RewriteRule ^images/About/About-Us\.jpg$ /assets/images/About/about-us.jpg [R=301,L]
